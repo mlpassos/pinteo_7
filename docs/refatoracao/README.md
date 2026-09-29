@@ -4,14 +4,14 @@ Resposta à issue #2. Pesquisa feita em 29/09/2026 sobre o commit `b582715`. Nad
 
 ## Recomendação em uma página
 
-**Stack:** TypeScript + Vite no front, React 19 confinado à casca da interface, Node 24 LTS com Hono para uma API mínima. Motor LOGO, tartaruga, renderização e blocos ficam em TypeScript puro, sem framework, com testes em Vitest e Playwright.
+**Stack:** TypeScript + Vite no front, React 19 confinado à casca da interface, Node 24 LTS com Hono para uma API mínima. O React renderiza a casca e a lista de blocos. Motor LOGO, runtime da tartaruga, palco, editor, modelo de programa e o arrastar e soltar ficam em TypeScript puro, sem framework, com testes em Vitest e Playwright.
 
 **Por quê:**
 
 1. O motor Papert é bom e é MIT. Vale portar para TypeScript preservando gramática, comandos e mensagens em pt-BR, e não trocar por outro interpretador. Ele só toca o DOM em dois pontos (`js/logo.js:147`, `js/logo.js:154`) e o acoplamento da tartaruga com o DOM (`js/turtle.js:214`) se resolve com uma interface injetada.
 2. O problema real está na interface: 2740 linhas num único `$(document).ready` (`js/pinteo7.js:73-2812`), estado guardado no DOM, quatro cópias do mesmo handler de drop e sete cópias da mesma configuração de `sortable`. Um render declarativo com estado explícito resolve a classe inteira de problemas; por isso React, e só ali.
 3. A infra cabe: Caddy serve o `dist/` do Vite e faz proxy de `/api/*` para o Node. Sem PHP.
-4. A migração pode ser feita em 11 etapas pequenas na `main`, com o app funcionando em todas, porque os testes de caracterização vêm antes do primeiro porte.
+4. A migração pode ser feita em etapas pequenas na `main`, com o app funcionando em todas, porque os testes de caracterização vêm antes do primeiro porte, e o porte é 1:1 antes de qualquer mudança no modelo de execução.
 
 **Alternativas descartadas, em resumo:** trocar o motor por jslogo (muda o comportamento); Blockly (troca o modelo e o visual dos blocos e quebra a compatibilidade com os 34 compartilhados); GSAP (licença não livre); fancyBox e Intro.js atuais (CC BY-NC e AGPL); sem framework nenhum (viável, mas recria à mão a sincronia estado → DOM justamente onde há mais estado).
 
@@ -22,6 +22,13 @@ Resposta à issue #2. Pesquisa feita em 29/09/2026 sobre o commit `b582715`. Nad
 - Não existe modo professor no app principal; só em `welcome.html`, sem autenticação (`js/welcome.js:227`).
 - `save.php` aceita HTML arbitrário no campo dos blocos e o app o injeta para todos os visitantes ao abrir (`js/pinteo7.js:489-513`). É XSS armazenado e deve pesar na decisão de não publicar o PHP.
 
+## Contexto que pesa nas decisões
+
+- **Quem usa o site:** a maior parte dos acessos vem de quem chega pelos artigos publicados, pelas apresentações em congresso e pelos vídeos no YouTube: pesquisadores, universidades e público geral, além das crianças para quem o app foi desenhado. Ainda chegam e-mails perguntando sobre o app. Por isso o layout precisa ser bom de mostrar e o plano inclui uma página "Sobre" com o contexto acadêmico.
+- **Ritmo:** o projeto é um hobby, feito em parceria com Claude e Codex. Prazo não é critério; os tamanhos P, M e G do plano são relativos. A prioridade continua sendo arquitetura, qualidade, organização e aparência moderna.
+- **Produção:** `pinteo7.instadev.com.br` fica no ar com o app atual durante toda a refatoração. Nenhuma etapa depende de deploy.
+- **Analytics:** é só curiosidade (de onde vêm os acessos). Virou a etapa 12, opcional, no fim do plano. O Google Analytics Universal atual, já descontinuado, sai junto com a casca na etapa 6.
+
 ## Documentos
 
 | Documento | Responde |
@@ -30,8 +37,8 @@ Resposta à issue #2. Pesquisa feita em 29/09/2026 sobre o commit `b582715`. Nad
 | [avaliacao-stack.md](avaliacao-stack.md) | Perguntas 1 a 3: encaixe de cada peça, tabela de substituições (atual → candidatos → recomendação → licença), comparação honesta com a opção sem framework, alertas de licença |
 | [arquitetura-proposta.md](arquitetura-proposta.md) | Pergunta 4: camadas, módulos, padrões (Interpreter, Command, Strategy, Observer), estado, pastas, documentação |
 | [layout-ux.md](layout-ux.md) | Pergunta 5: layout em tela cheia com wireframes, interação com blocos, animação com `prefers-reduced-motion`, acessibilidade, toque |
-| [plano-migracao.md](plano-migracao.md) | Pergunta 6: 11 etapas com tamanho, risco, critério de pronto e como o comportamento é preservado |
-| [adr/](adr/) | 11 ADRs com status "proposto", um por decisão recomendada |
+| [plano-migracao.md](plano-migracao.md) | Pergunta 6: 12 etapas (a última opcional) com tamanho, risco, critério de pronto e como o comportamento é preservado |
+| [adr/](adr/) | 12 ADRs com status "proposto", um por decisão recomendada |
 
 ## Versões conferidas
 

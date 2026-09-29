@@ -153,6 +153,17 @@ Sons de clique e exclusão continuam (`sounds/`), com um interruptor e desligado
 - Tutorial: Driver.js com quatro passos (paleta, área de trabalho, rodar, palco), disparado na primeira visita e disponível na ajuda. O vídeo continua na ajuda em `<video>` nativo com a legenda `legendas/pt-br.vtt`.
 - Galeria de compartilhados numa página própria (`/galeria`), em grade com o PNG, o nome e um botão "abrir no Pinte o 7". Substitui o carrossel bxSlider e o fancyBox.
 
-## 7. O que muda para o professor
+## 7. Quem chega pelos artigos e vídeos
+
+A maior parte dos acessos não vem de crianças, e sim de quem chega pelos artigos publicados, pelas apresentações em congresso e pelos vídeos no YouTube: pesquisadores, universidades e público geral. Essas pessoas querem entender o projeto em um minuto, ver o app funcionando e, às vezes, entrar em contato. Hoje o site não ajuda: cai direto no app, e o contexto está só no `README.md`.
+
+- **Página "Sobre"** (`/sobre`), curta: o que é o Pinte o 7, o contexto acadêmico (TCC no CESMAC, Maceió), links para as publicações, as apresentações e os vídeos, créditos (interpretador Papert de Thomas Figg, personagens originais), licença e contato. Um botão "Abrir o app" no topo.
+- **Link discreto na barra** do app ("Sobre") e um rodapé na galeria.
+- **Primeira impressão:** o app abre com um exemplo já desenhado no palco (como o `carregaExemplo` de hoje, `js/pinteo7.js:489-547`, mas sem carregar HTML de terceiros), para quem chega por um link ver algo acontecendo em segundos.
+- **Compartilhável:** título e imagem de prévia (`og:title`, `og:image`) no HTML, para os links postados em redes e em slides mostrarem o palco.
+
+No plano isso é item de baixa prioridade na etapa 10.
+
+## 8. O que muda para o professor
 
 Não há hoje um modo professor de fato (ver inventário, seção 5). Recomendação: não construir agora. Se voltar como feature, cabe na arquitetura como uma flag de `ui` que libera "mostrar código gerado sempre" e "exportar programa".

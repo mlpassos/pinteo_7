@@ -91,15 +91,15 @@ O que **não** muda: nomes e aliases dos comandos, mensagens de erro, limite de 
 
 Extensão prevista, fora do escopo inicial: aliases em pt-BR (`pf`, `pt`, `pd`, `pe` como no LOGO brasileiro) entram por uma tabela no registry sem tocar no núcleo.
 
-### Execução cooperativa
+### Execução cooperativa (etapa própria, depois do porte)
 
-Hoje `Logo.run` roda tudo de uma vez e `DelayTurtle` só adia o desenho (`js/turtle.js:311-333`). Um `forever` sem `stop` trava a aba (`js/logo.js:310-323`). A proposta é o interpretador ser um **generator** que cede o controle a cada comando de tartaruga:
+Hoje `Logo.run` roda tudo de uma vez e `DelayTurtle` só adia o desenho (`js/turtle.js:311-333`). Um `forever` sem `stop` trava a aba (`js/logo.js:310-323`). O porte do motor (etapa 2 do plano) **mantém esse modelo**: `run(code)` síncrono, mesma suíte de caracterização verde. Só depois, em etapa própria (etapa 3, ADR-0012), o interpretador ganha uma segunda forma de execução, um **generator** que cede o controle a cada comando de tartaruga:
 
 ```ts
 function* run(program: string): Generator<TurtleCommand, LogoError | null>
 ```
 
-O `Runner` consome com orçamento de tempo por frame (`requestAnimationFrame`), o que dá pausa, parada, passo a passo e velocidades sem recriar o interpretador (`js/init.js:43-51`).
+O `run` síncrono continua existindo como "drenar o generator até o fim", então os testes não mudam. O `Runner` consome o generator com orçamento de tempo por frame (`requestAnimationFrame`), o que dá pausa, parada, passo a passo e velocidades sem recriar o interpretador (`js/init.js:43-51`). As diferenças de comportamento (por exemplo, `forever` deixa de travar e "Parar" responde na hora) são documentadas e testadas nessa etapa.
 
 ## 3. Domínio: runtime da tartaruga
 
@@ -205,7 +205,8 @@ pinteo7/
     logo/                    # domínio: tokenizer.ts, parser.ts, ast.ts, interpreter.ts, primitives/*.ts, errors.ts, ports.ts
     turtle/                  # domínio: state.ts, runtime.ts, geometry.ts, draw-ops.ts
     program/                 # blocks.ts, blocks-to-logo.ts, cp7-import.ts, serialize.ts
-    runner/                  # runner.ts (generator + rAF), events.ts
+    runner/                  # runner.ts (generator + rAF, a partir da etapa 3), events.ts
+    legacy-bridge/           # adaptadores que expõem os globais que o legado espera; some na etapa 11
     render/                  # canvas-renderer.ts, svg-renderer.ts, sprite-layer.ts
     animation/               # scheduler.ts, reduced-motion.ts
     persistence/             # share-store.ts, api-share-store.ts, local-share-store.ts, download.ts
@@ -215,7 +216,8 @@ pinteo7/
     i18n/pt-BR.ts
     main.tsx
   api/                       # backend Node (pacote separado no workspace quando existir)
-  public/                    # images/, sounds/, videos/, legendas/, fonts/ (o que sobrar)
+  public/                    # images/, sounds/, videos/, legendas/, fonts/, compartilhados/ (servidos como estão)
+    legacy/                  # js/, css/, cm/ do app atual, apagados peça a peça durante a migração
   tests/
     fixtures/programs/       # programas LOGO de referência + saída esperada
     e2e/                     # Playwright
@@ -223,7 +225,6 @@ pinteo7/
     refatoracao/             # estes documentos
     adr/                     # ADRs aceitos (os propostos ficam em docs/refatoracao/adr até a decisão)
     modulos/                 # um README por módulo de src/
-  legacy/                    # o app atual, intocado, enquanto a migração durar
 ```
 
 ## 9. Documentação

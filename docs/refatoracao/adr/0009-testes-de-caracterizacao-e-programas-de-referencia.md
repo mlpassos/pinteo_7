@@ -5,7 +5,7 @@
 
 ## Contexto
 
-Não há testes. A prioridade é preservar o comportamento. O repo tem 68 programas reais em `compartilhados-code/` (pares `.txt` e `.cp7`) e um guia com exemplos em `comandos-logo.txt:196-214`. O motor é determinístico se `rerandom` for chamado (`js/logo.js:36-43`).
+Não há testes. A prioridade é preservar o comportamento. O repo tem 34 programas reais em `compartilhados-code/` (cada um com um `.txt` e um `.cp7`, 68 arquivos) e um guia com exemplos em `comandos-logo.txt:196-214`. O motor é determinístico se `rerandom` for chamado (`js/logo.js:36-43`).
 
 ## Decisão
 

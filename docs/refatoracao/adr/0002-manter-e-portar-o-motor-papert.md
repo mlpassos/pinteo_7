@@ -5,11 +5,11 @@
 
 ## Contexto
 
-O motor (`js/logo.js`, `js/parser.js`, cerca de mil linhas) é MIT (`Papert-License.txt`) e define o comportamento que os alunos e os 68 programas compartilhados conhecem: comandos em inglês com aliases (`js/logo.js:85-268`), mensagens de erro em pt-BR (`js/logo.js:86`) e detalhes como o gerador de aleatórios próprio (`js/logo.js:36-39`). Ele toca o DOM em `print` e `cleartext` (`js/logo.js:147`, `js/logo.js:154`).
+O motor (`js/logo.js`, `js/parser.js`, cerca de mil linhas) é MIT (`Papert-License.txt`) e define o comportamento que os alunos e os 34 programas compartilhados conhecem: comandos em inglês com aliases (`js/logo.js:85-268`), mensagens de erro em pt-BR (`js/logo.js:86`) e detalhes como o gerador de aleatórios próprio (`js/logo.js:36-39`). Ele toca o DOM em `print` e `cleartext` (`js/logo.js:147`, `js/logo.js:154`).
 
 ## Decisão
 
-Portar o motor para TypeScript puro, preservando gramática, comandos, aliases, mensagens e limites, com duas interfaces injetadas (`TurtleCommands`, `TextOutput`) e execução como generator. Não adotar outro interpretador.
+Portar o motor para TypeScript puro, preservando gramática, comandos, aliases, mensagens e limites, com duas interfaces injetadas (`TurtleCommands`, `TextOutput`) e o **mesmo modelo de execução síncrono do legado**. A execução cooperativa por generator é decisão separada (ADR-0012), tomada só depois do porte estar verde na suíte de caracterização. Não adotar outro interpretador.
 
 ## Consequências
 

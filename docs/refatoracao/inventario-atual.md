@@ -22,7 +22,7 @@ Legado sem uso, candidato a remoção: `js/pinteo7.new.js`, `js/pinteo7.old.js`,
 
 ## 2. Ordem de carga e dependências
 
-`index.html` carrega, nesta ordem: CodeMirror 5.3.0 e quatro addons via cdnjs (`index.html:16-21`); `cm/logo.js` (`index.html:23`); Nunito do Google Fonts (`index.html:27`); os CSS (`index.html:28-34`); prefixfree, jQuery 1.9.1, jQuery UI 1.10.4, Touch Punch, fancyBox e bxSlider (`index.html:36-42`); Playr (`index.html:44`); o motor `turtle.js`, `parser.js`, `logo.js`, `init.js` (`index.html:45-48`); e por fim `pinteo7.js` (`index.html:49`). O Google Analytics `UA-68656926-2` é carregado em `index.html:118-124` e grava cookies, o que importa para a LGPD num app infantil.
+`index.html` carrega, nesta ordem: CodeMirror 5.3.0 e quatro addons via cdnjs (`index.html:16-21`); `cm/logo.js` (`index.html:23`); Nunito do Google Fonts (`index.html:27`); os CSS (`index.html:28-34`); prefixfree, jQuery 1.9.1, jQuery UI 1.10.4, Touch Punch, fancyBox e bxSlider (`index.html:36-42`); Playr (`index.html:44`); o motor `turtle.js`, `parser.js`, `logo.js`, `init.js` (`index.html:45-48`); e por fim `pinteo7.js` (`index.html:49`). O Google Analytics `UA-68656926-2` é carregado em `index.html:118-124` e grava cookies. O Universal Analytics foi descontinuado pelo Google em 2023, então esse script não coleta mais nada.
 
 Nota: o `CLAUDE.md` diz que `pinteo7.js` é o único JS de interface carregado. `init.js` também é carregado e faz a ponte com o motor. Isso deve ser corrigido no `CLAUDE.md` quando a issue for fechada.
 

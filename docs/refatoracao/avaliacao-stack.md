@@ -7,7 +7,7 @@ Versões e licenças conferidas em 29/09/2026 no registro npm (`npm view <pacote
 ## Resumo
 
 - **TypeScript**: sim, sem ressalva. O motor (~1,4 mil linhas) e a interface se beneficiam de tipos, e é o pré-requisito para testes e refatoração segura.
-- **React**: sim, mas só na casca da interface (menus, modos, diálogos, estado da aplicação). Palco, editor e blocos são ilhas imperativas embrulhadas em componentes. Tudo abaixo da casca fica sem framework, o que mantém a troca barata se um dia a escolha mudar.
+- **React**: sim, na casca da interface (menus, modos, diálogos, estado da aplicação) e na renderização da lista de blocos. Palco, editor e o arrastar e soltar são código imperativo embrulhado em componentes. Motor, runtime da tartaruga, modelo de programa e persistência ficam sem framework, o que mantém a troca barata se um dia a escolha mudar.
 - **Node**: sim, para uma API mínima que substitui `save.php` e `listar.php`. O alvo deve ser **Node 24 LTS**, não 22: o Node 22 está em Maintenance desde 2025-10-21 e sai de suporte em 2027-04-30. O 24 é Active LTS até 2026-10-20 e Maintenance até 2028-04-30. Se o droplet ficar no 22 por enquanto, nada muda no código; só o `engines` do `package.json` deve aceitar `>=22`.
 - **Alternativa sem framework**: viável e mais leve, mas o custo de manter a sincronia estado → DOM à mão é exatamente a origem da bagunça atual em `js/pinteo7.js`. Recomendo a opção 1 com React fino. Detalhes na seção 3.
 
@@ -151,7 +151,7 @@ Opção 3: manter HTML e JS, modernizar com ES modules, classes, TypeScript opci
 | Manutenção por outra pessoa | Fácil de achar quem conheça React; padrões conhecidos | Precisa de documentação própria dos padrões de componente |
 | Curva de aprendizado | React e hooks | Só TypeScript e DOM |
 | Tamanho do bundle | React + ReactDOM cerca de 45 kB gzip; Preact 10.29.8 (MIT) reduz a cerca de 4 kB com a mesma API se isso importar | Mínimo |
-| Reversibilidade | Motor, palco, editor e blocos ficam sem framework; só a casca depende de React | Total |
+| Reversibilidade | Motor, runtime da tartaruga, palco, editor, modelo de programa e arrastar e soltar ficam sem framework; a casca e a renderização da lista de blocos dependem de React | Total |
 
 Veredito: a opção 3 seria a escolha se o app fosse só o palco e o editor. O que pesa a favor da opção 1 é o sistema de blocos e os modos aluno/professor: são interface com bastante estado, e um render declarativo evita reconstruir a bagunça atual. A recomendação é a opção 1 com React confinado à casca, e a opção 2 (outra stack) fica desnecessária, porque a opção 1 cabe na infra: Caddy serve o `dist/` do Vite e faz proxy para o Node.
 
