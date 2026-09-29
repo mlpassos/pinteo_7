@@ -9,10 +9,10 @@ A regra do `CLAUDE.md` é licença livre verificada. Em uso: fancyBox 2.1.5 (CC 
 
 ## Decisão
 
-- Remover fancyBox, prefixfree, Touch Punch, bxSlider, Playr, Intro.js, highlight.js, os temas e os arquivos `.old`, nas etapas 8 e 10 do plano.
+- Remover fancyBox, prefixfree, Touch Punch, bxSlider, Playr, Intro.js, highlight.js, os temas e os arquivos `.old`, nas etapas 9 e 11 do plano.
 - Substitutos: `<dialog>` nativo, CSS `scroll-snap`, `<video>` nativo com `legendas/pt-br.vtt`, Driver.js 1.8.0 (MIT) para o tour. Não adotar Intro.js 8.x nem Shepherd.js (AGPL-3.0). PhotoSwipe 5.4.4 (MIT) só se a galeria precisar de lightbox.
 - Ícones: Lucide (`lucide-react` 1.48.0, ISC) em SVG inline, dispensando a fonte `fonts/icomoon.*` e a necessidade de regenerar subconjuntos.
-- O script do Google Analytics sai junto com a casca (etapa 6), sem etapa própria. Métrica básica de acessos, se um dia interessar, é a etapa 12 opcional do plano.
+- O script do Google Analytics sai junto com a casca (etapa 7), sem etapa própria. Métrica básica de acessos, se um dia interessar, é a etapa 13 opcional do plano.
 
 ## Consequências
 

@@ -162,7 +162,7 @@ A maior parte dos acessos não vem de crianças, e sim de quem chega pelos artig
 - **Primeira impressão:** o app abre com um exemplo já desenhado no palco (como o `carregaExemplo` de hoje, `js/pinteo7.js:489-547`, mas sem carregar HTML de terceiros), para quem chega por um link ver algo acontecendo em segundos.
 - **Compartilhável:** título e imagem de prévia (`og:title`, `og:image`) no HTML, para os links postados em redes e em slides mostrarem o palco.
 
-No plano isso é item de baixa prioridade na etapa 10.
+No plano isso é item de baixa prioridade na etapa 11.
 
 ## 8. O que muda para o professor
 

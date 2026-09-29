@@ -134,7 +134,7 @@ Diagnóstico: `save.php` grava PNG em base64 mais o código `.txt` e os blocos `
 | prefixfree | `index.html:36` | — | Remover; repositório arquivado e prefixos desnecessários | — |
 | Fonte de ícones `fonts/icomoon.*` | `css/icomoon.css` | Lucide, Phosphor | Lucide 1.48.0 (ISC); Phosphor 2.1.10 (MIT) é equivalente | ISC |
 | `save.php`, `listar.php` | raiz | Hono, Fastify, Express | Hono 4.13.10 + Zod 4.6.5, Node 24 LTS | MIT |
-| `getCidades.php` e cadastro | `welcome.html`, `js/welcome.js` | — | Decidir: remover o cadastro ou reduzir a um nome local. Ver `plano-migracao.md`, etapa 10 | — |
+| `getCidades.php` e cadastro | `welcome.html`, `js/welcome.js` | — | Decidir: remover o cadastro ou reduzir a um nome local. Ver `plano-migracao.md`, etapa 11 | — |
 | Sem build | — | Vite | Vite 8.3.1 | MIT |
 | Sem testes | — | Vitest, Playwright | Vitest 5.0.2 e Playwright 1.63.0 | MIT / Apache-2.0 |
 

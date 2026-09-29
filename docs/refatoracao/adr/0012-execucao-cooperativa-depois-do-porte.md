@@ -9,10 +9,10 @@
 
 ## Decisão
 
-- Depois do porte verde, e em etapa própria (etapa 3 do plano), o interpretador ganha uma segunda forma de execução: um generator que cede o controle a cada comando de tartaruga. O `run` síncrono continua existindo e passa a ser "drenar o generator até o fim", então a suíte de caracterização não muda.
+- Depois do porte verde, e em etapa própria (etapa 4 do plano), o interpretador ganha uma segunda forma de execução: um generator que cede o controle a cada comando de tartaruga. O `run` síncrono continua existindo e passa a ser "drenar o generator até o fim", então a suíte de caracterização não muda.
 - Um `Runner` consome o generator com orçamento de tempo por frame e oferece `start`, `pause`, `resume`, `stop` e `step`, com eventos para a interface.
 - As diferenças de comportamento são documentadas em `docs/modulos/runner.md` e cobertas por testes próprios: `forever` e recursão sem fim não travam; "Parar" interrompe na hora; `print` e desenho saem na ordem de execução, frame a frame.
-- O adaptador legado continua usando o `run` síncrono; o `Runner` só é ligado à interface na casca React (etapa 6).
+- O adaptador legado continua usando o `run` síncrono; o `Runner` só é ligado à interface na casca React (etapa 7).
 
 ## Consequências
 

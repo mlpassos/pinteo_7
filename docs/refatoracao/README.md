@@ -27,7 +27,7 @@ Resposta à issue #2. Pesquisa feita em 29/09/2026 sobre o commit `b582715`. Nad
 - **Quem usa o site:** a maior parte dos acessos vem de quem chega pelos artigos publicados, pelas apresentações em congresso e pelos vídeos no YouTube: pesquisadores, universidades e público geral, além das crianças para quem o app foi desenhado. Ainda chegam e-mails perguntando sobre o app. Por isso o layout precisa ser bom de mostrar e o plano inclui uma página "Sobre" com o contexto acadêmico.
 - **Ritmo:** o projeto é um hobby, feito em parceria com Claude e Codex. Prazo não é critério; os tamanhos P, M e G do plano são relativos. A prioridade continua sendo arquitetura, qualidade, organização e aparência moderna.
 - **Produção:** `pinteo7.instadev.com.br` fica no ar com o app atual durante toda a refatoração. Nenhuma etapa depende de deploy.
-- **Analytics:** é só curiosidade (de onde vêm os acessos). Virou a etapa 12, opcional, no fim do plano. O Google Analytics Universal atual, já descontinuado, sai junto com a casca na etapa 6.
+- **Analytics:** é só curiosidade (de onde vêm os acessos). Virou a etapa 13, opcional, no fim do plano. O Google Analytics Universal atual, já descontinuado, sai junto com a casca na etapa 7.
 
 ## Documentos
 
@@ -37,7 +37,7 @@ Resposta à issue #2. Pesquisa feita em 29/09/2026 sobre o commit `b582715`. Nad
 | [avaliacao-stack.md](avaliacao-stack.md) | Perguntas 1 a 3: encaixe de cada peça, tabela de substituições (atual → candidatos → recomendação → licença), comparação honesta com a opção sem framework, alertas de licença |
 | [arquitetura-proposta.md](arquitetura-proposta.md) | Pergunta 4: camadas, módulos, padrões (Interpreter, Command, Strategy, Observer), estado, pastas, documentação |
 | [layout-ux.md](layout-ux.md) | Pergunta 5: layout em tela cheia com wireframes, interação com blocos, animação com `prefers-reduced-motion`, acessibilidade, toque |
-| [plano-migracao.md](plano-migracao.md) | Pergunta 6: 12 etapas (a última opcional) com tamanho, risco, critério de pronto e como o comportamento é preservado |
+| [plano-migracao.md](plano-migracao.md) | Pergunta 6: etapas 0 a 13 (a última opcional) com tamanho, risco, critério de pronto e como o comportamento é preservado |
 | [adr/](adr/) | 12 ADRs com status "proposto", um por decisão recomendada |
 
 ## Versões conferidas
