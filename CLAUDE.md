@@ -40,4 +40,17 @@ O repo antigo `mlpassos/pinteo7` foi bloqueado por DMCA em 2019 por conter a fon
 - Todo trabalho vai numa branch curta a partir da `main` (`feat/…`, `fix/…`, `refactor/…`, `docs/…`) e entra por PR. Márcio revisa e faz o merge.
 - Release é uma tag `vX.Y.Z` na `main`, com um GitHub Release. O deploy na DigitalOcean vai rodar a partir dessas tags quando o pipeline existir.
 - Sem `dev` nem `staging` por enquanto; crie `staging` só quando houver um ambiente de staging de verdade.
+- Refatoração para a stack nova: é feita dentro da `main`, em PRs pequenos, e não numa branch longa de reescrita. O código novo convive com o legado até a troca.
 - Ainda não há CI nem testes automatizados. Antes de abrir o PR, valide no navegador: o palco desenha, a troca de personagem funciona, e os ícones e a fonte carregam.
+
+## Deploy (planejado, ainda não existe)
+
+- Destino: o droplet do instadev na DigitalOcean, com Caddy servindo arquivos estáticos, em `pinteo7.instadev.com.br`. A URL antiga `instadev.com.br/pinteo7/*` deve redirecionar (301) para o subdomínio.
+- Gatilho: push de tag `vX.Y.Z`. Um GitHub Actions copia os arquivos para o droplet, e o Caddy serve a pasta.
+- Sem PHP no droplet, compartilhar e salvar desenhos não funcionam em produção até a refatoração trazer um backend.
+
+## Direção da refatoração
+
+- Stack alvo: TypeScript e React no front, e Node 22 LTS no back quando precisar de API, por exemplo para substituir `save.php` e `listar.php`.
+- A prioridade é arquitetura, qualidade e organização do código: separar o interpretador LOGO, a tartaruga e a interface, com tipos e testes, mais do que adicionar features.
+- Preserve o comportamento atual (comandos LOGO em pt-BR, blocos, personagens) e troque uma parte por vez.
