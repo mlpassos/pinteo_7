@@ -1,0 +1,300 @@
+<nav class="navigation">
+	<ul class="menu">
+		<!-- ## MOVIMENTOS ##-->
+		<li class="menu-item">
+			<a id="movimentos" href="#" title="Movimentos" class="principal menu-link btn btn-medium ">
+				<span class="icon-gamecursor"></span> Movimentos
+			</a>&nbsp;
+		</li>
+		<!-- ## PERSONAGEM ##-->
+		<li class="menu-item">
+			<a id="personagem" href="#" title="Cores, Tamanho, Jogador" class="principal menu-link btn btn-medium ">
+				<span class="icon-smile"></span> Personagem
+			</a>&nbsp;
+		</li>
+		<!-- ## CONTROLE ##-->
+		<li class="menu-item">
+			<a id="controle" href="#" title="Repetir, esperar, se..." class="principal menu-link btn btn-medium ">
+				<span class="icon-repeatone"></span> Controle
+			</a>&nbsp;
+		</li>
+		<!-- ## CANETA ##-->
+		<li class="menu-item">
+			<a id="caneta" href="#" title="Escrever ao mover" class="principal menu-link btn btn-medium ">
+				<span class="icon-pen"></span> Desenho
+			</a>&nbsp;
+		</li>
+		
+	</ul>
+
+	<!-- ## MOVIMENTOS ## -->
+
+	<ul id="sub-menu-movimentos" class="sub-menu">
+		<li class="sub-menu-item">
+			<a id="forward" href="#" data-name="Mover para esquerda" title="Mover para frente" class="menu-link btn btn-medium ">
+				<span class="icon-up"></span>
+			</a>&nbsp;
+			<input title="Quantos passos?" id="valor_forward" class="valor" placeholder="0" size="2">
+		</li>
+		<!-- ## MOVER PARA DIREITA ##-->
+		<li class="sub-menu-item">
+			<a id="backward" href="#" data-name="Mover para direita" title="Mover para trás" class="menu-link btn btn-medium ">
+				<span class="icon-down"></span>
+			</a>&nbsp;
+			<input title="Quantos passos?" id="valor_backward" class="valor" placeholder="0" size="2" value="0">	
+		</li>
+		<!-- ## MOVER PARA CIMA ##-->
+		<li class="sub-menu-item">
+			<a id="left" href="#" data-name="Girar X graus para esquerda" title="Girar X graus para esquerda" class="menu-link btn btn-medium ">
+				<span class="icon-undo"></span>
+			</a>
+			<input title="Quantos graus?" id="valor_left" class="valor" placeholder="0" size="2" value="0">	
+		</li>
+		<!-- ## MOVER PARA BAIXO ##-->
+		<li class="sub-menu-item">
+			<a id="right" href="#" data-name="Girar X graus para direita" title="Girar X graus para direita" class="menu-link btn btn-medium ">
+				<span class="icon-redo"></span>
+			</a>
+			<input title="Quantos graus?" id="valor_right" class="valor" placeholder="0" size="2" value="0">	
+		</li>
+		<!-- ## IR PARA X ##-->
+		<li class="sub-menu-item">
+			<a id="setx" href="#" data-name="Ir para X" title="Ir para X" class="menu-link btn btn-medium ">
+				<span class="icon-buttonx"></span>
+			</a>
+			<input title="Onde?" id="valor_setx" class="valor" placeholder="0" size="2" value="0">	
+		</li>
+		<!-- ## IR PARA Y ##-->
+		<li class="sub-menu-item">
+			<a id="sety" href="#" data-name="Ir para Y" title="Ir para Y" class="menu-link btn btn-medium ">
+				<span class="icon-buttony"></span>
+			</a>
+			<input title="Onde?" id="valor_sety" class="valor" placeholder="0" size="2" value="0">	
+		</li>
+		<!-- ## IR PARA XY ##-->
+		<li class="sub-menu-item">
+			<a id="setxy" href="#" data-name="Ir para X Y" title="Ir para X Y" class="menu-link btn btn-medium ">
+				<span class="icon-buttonx"></span>
+				<span class="icon-buttony"></span>
+			</a>
+			<input title="Onde?" id="valor_setxy" class="valor" placeholder="0" size="2" value="0">	
+		</li>
+		<!-- ## VOLTAR ##-->
+		<li class="sub-menu-item">
+			<a href="#"  title="Voltar ao menu principal" class="voltar menu-link btn btn-medium ">
+				<span class="icon-multiply"></span> <span>voltar</span>
+			</a>
+		</li>
+	</ul>
+
+	<!-- ## SONS ## -->
+	<ul id="sub-menu-personagem" class="sub-menu">
+		<li class="sub-menu-item">
+			<a id="personagem-escolher" href="#" data-name="Personagem " title="Mudar o personagem" class="menu-link btn btn-medium ">
+				<span class="icon-smile"></span>
+			</a>
+			<ul class="extra-menu">
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Tartaruga" data-src="tartaruga.png">
+						<img src="images/personagens/tartaruga.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Jabuti" data-src="jabuti.png">
+						<img src="images/personagens/jabuti.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Joaninha" data-src="joaninha.png">
+						<img src="images/personagens/joaninha.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Rato" data-src="rato.png">
+						<img src="images/personagens/rato.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Fantasma azul" data-src="fantasma-azul.png">
+						<img src="images/personagens/fantasma-azul.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Fantasma rosa" data-src="fantasma-rosa.png">
+						<img src="images/personagens/fantasma-rosa.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Fantasma laranja" data-src="fantasma-laranja.png">
+						<img src="images/personagens/fantasma-laranja.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Fantasma verde" data-src="fantasma-verde.png">
+						<img src="images/personagens/fantasma-verde.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Boto" data-src="boto.png">
+						<img src="images/personagens/boto.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Muiraquitã verde" data-src="muiraquita-verde.png">
+						<img src="images/personagens/muiraquita-verde.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Muiraquitã jade" data-src="muiraquita-jade.png">
+						<img src="images/personagens/muiraquita-jade.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Muiraquitã dourado" data-src="muiraquita-dourado.png">
+						<img src="images/personagens/muiraquita-dourado.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Foguete" data-src="foguete.png">
+						<img src="images/personagens/foguete.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Disco voador" data-src="disco-voador.png">
+						<img src="images/personagens/disco-voador.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Nave estrela" data-src="nave-estrela.png">
+						<img src="images/personagens/nave-estrela.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Robô quadrado" data-src="robo-quadrado.png">
+						<img src="images/personagens/robo-quadrado.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Robô redondo" data-src="robo-redondo.png">
+						<img src="images/personagens/robo-redondo.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Astronauta" data-src="astronauta.png">
+						<img src="images/personagens/astronauta.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Onça" data-src="onca.png">
+						<img src="images/personagens/onca.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Arara" data-src="arara.png">
+						<img src="images/personagens/arara.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+				<li class="extra-menu-item">
+					<a class="extra-menu-item-link" href="#" title="Capivara" data-src="capivara.png">
+						<img src="images/personagens/capivara.png" class="extra-menu-icon" alt="imagem do personagem">
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- <li class="sub-menu-item">
+			<a id="personagem_cor" href="#" data-name="Cor " title="Mudar a cor do personagem" class="menu-link btn btn-medium ">
+				<span class="icon-eyedropper"></span>
+			</a>
+		</li>
+		<li class="sub-menu-item">
+			<a id="personagem_tamanho" href="#" data-name="Tamanho " title="Mudar ao tamanho do personagem" class="menu-link btn btn-medium ">
+				<span class="icon-resize"></span>
+			</a>
+		</li>
+
+		<li class="sub-menu-item">
+			<a id="personagem_forma" href="#" data-name="Forma " title="Mudar a forma do personagem" class="menu-link btn btn-medium ">
+				<span class="icon-shapes"></span>
+			</a>
+		</li> -->
+
+		<!-- ## VOLTAR ##-->
+		<li class="sub-menu-item">
+			<a href="#"  title="Voltar ao menu principal" class="voltar menu-link btn btn-medium ">
+				<span class="icon-multiply"></span> voltar
+			</a>
+		</li>
+	</ul>
+
+	<!-- ## CONTROLE ## -->
+
+	<ul id="sub-menu-controle" class="sub-menu">
+		<li class="sub-menu-item">
+			<a id="repeat" href="#" data-name="Mover para esquerda" title="Repetir quantas vezes?" class="menu-link btn btn-medium ">
+				<span class="icon-repeat"></span>
+			</a>&nbsp;
+			<input title="Quantas vezes?" id="valor_repeat" class="valor" placeholder="0" size="2" value="0">
+		</li>
+		<!-- <li class="sub-menu-item">
+			<a id="controle_tempoespera" href="#" data-name="Esperar " title="Esperar um pouco?" class="menu-link btn btn-medium ">
+				<span class="icon-uptime"></span>
+				<input title="Quanto tempo?" id="controle_tempoespera" class="valor" placeholder="0" size="2" value="0">
+			</a>
+		</li>
+		<li class="sub-menu-item">
+			<a id="controle_tempoespera" href="#" data-name="Esperar " title="Se algo ocorrer, faça isso, se não, faca aquilo" class="menu-link btn btn-medium ">
+				<span class="icon-tictactoe"></span>
+				Se... então... se não
+			</a>
+		</li> -->
+		
+		<!-- ## VOLTAR ##-->
+		<li class="sub-menu-item">
+			<a href="#"  title="Voltar ao menu principal" class="voltar menu-link btn btn-medium ">
+				<span class="icon-multiply"></span> voltar
+			</a>
+		</li>
+	</ul>
+
+	<!-- ## CANETA ## -->
+
+	<ul id="sub-menu-caneta" class="sub-menu">
+		<li class="sub-menu-item">
+			<a id="pendown" href="#" data-name="Escrever" title="Escrever com a caneta" class="menu-link btn btn-medium ">
+				<span class="icon-handpointdown"></span>
+				
+			</a>
+		</li>
+
+		<li class="sub-menu-item">
+			<a id="penup" href="#" data-name="Escrever" title="Soltar a caneta" class="menu-link btn btn-medium ">
+				<span class="icon-handdrag"></span>
+				
+			</a>
+		</li>
+		
+		<li class="sub-menu-item">
+			<a id="reset" href="#" data-name="Reiniciar" title="Reinicia e volta a posiçäo original" class="menu-link btn btn-medium ">
+				<span class="icon-eraser"></span>
+				
+			</a>
+		</li>
+
+		<li class="sub-menu-item">
+			<a id="color" href="#" data-name="Escolher a cor" title="Qual a cor do traço?" class="menu-link btn btn-medium ">
+				<span class="icon-color"></span>
+			</a>&nbsp;
+			<input type="color" title="Qual a cor do traço?" id="valor_color" class="valor" placeholder="0" size="2" value="0">
+		</li>
+		
+		<!-- ## VOLTAR ##-->
+		<li class="sub-menu-item">
+			<a href="#"  title="Voltar ao menu principal" class="voltar menu-link btn btn-medium ">
+				<span class="icon-multiply"></span> voltar
+			</a>
+		</li>
+	</ul>
+</nav>
+<div class="site-logo">
+	<img src="http://placehold.it/60x60" alt="logo do prototipo pinte o 7" title="Pipo Pinte o 7">
+</div>	

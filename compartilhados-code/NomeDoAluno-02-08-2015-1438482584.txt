@@ -1,0 +1,17 @@
+make "tamanho 20
+make "nome 16
+to lado
+  forward :tamanho
+  left 90
+  forward :tamanho
+  right 90
+  forward :tamanho
+  right 90
+  forward :tamanho
+  left 90
+  forward :tamanho
+  right divide 360 :nome
+end
+repeat :nome [
+ lado
+] 

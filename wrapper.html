@@ -1,0 +1,67 @@
+
+		<form id="input" action="/" method="post" onSubmit="this.img.value = canvas.toDataURL().replace('data:image/png;base64,','')">
+			<div id="content" class="content cf">
+				<div class="inner">
+			        <ol name="codeblocks" id="codeblocks" class="codeblocks-list">
+					      <li class="placeholder">Arraste para cá os blocos</li>
+					</ol>
+			        <div id="oldcode">&nbsp;
+						<div class="messages">
+
+							<p>Olá, seja bem vindo ao Pinte o 7! <br> Aperte tal tecla para isso.</p>
+							<a href='#' id='close'>close</a>
+						</div>
+						<img id="loader" src="images/bx_loader.gif" class="ajaxloading" alt="loader image">
+					</div>
+
+			        
+			        <div style="margin-bottom:10px;">
+			        	
+			        	<textarea name="code" id="code" rows="80" cols="20"></textarea>
+			        	
+			        </div>
+			        
+			        <div style="clear:both;margin-top:10px;position:absolute;bottom:30px;left:15px;">
+				        <a title="Executar lentamente"   href='#' id='lento' class="executar btn btn-medium btn-noshadow"><span>Lento</span></a>
+				        <a title="Executar normalmente"  href='#' id='normal' class="executar btn btn-medium btn-noshadow"><span>Normal</span></a>
+				        <a title="Executar rapidamente"  href='#' id='rapido' class="executar btn btn-medium btn-noshadow"><span>Rápido</span></a>
+				        <a onClick="stop();" title="Parar execução" class="parar btn btn-medium btn-noshadow"><span>Parar</span></a>
+				        <a title="Mudar para o modo de Blocos"  href='#' id='blocos' class="blocksmode btn btn-medium btn-noshadow"><span>Blocos</span></a>
+				        <a title="Exibir ajuda"  href='#' id='ajuda' class="ajuda btn btn-medium btn-noshadow"><span>Ajuda</span></a>
+				        <input type="hidden" name="img" />
+			        </div>
+
+			    </div>
+			 </div>
+				<div id="left-content">
+					<div class="inner">
+						<div id="textOutput"></div>
+					    <div id="turtle">
+						   	<embed width="20" height="20" id='sprite' src="images/personagens/tartaruga.png"/>
+					    </div>
+					    <canvas id="canvas" width="500" height="500">
+					    	Seu navegador não suporta o elemento "canvas". Atualize para a versão mais recente e volte aqui... =)
+					    </canvas>
+					    <span style="float: left; margin-top: 10px;">
+			   			    <a id="like" title="Compartilhar no site do Pinte o 7" style="position:relative;margin-right:5px;" class="btn btn-medium btn-noshadow">
+			   			    	<span class="icon-thumbup" style="position:absolute;top:12px;left:0;margin-rigth:10px;"></span>
+			   			    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compartilhar
+			   			    </a>
+			   			    <a id="save" style="position:relative;" title="Baixar seu desenho" onClick="document.location.href = canvas.toDataURL().replace('image/png', 'image/octet-stream')" class="btn btn-medium btn-noshadow">
+			   			    	<span class="icon-save" style="position:absolute;top:12px;left:0;margin-rigth:10px;"></span>
+			   			    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Salvar como PNG
+			   			    </a>
+					    </span>
+					    <span style="position:relative;float: right;margin-left: auto; margin-right: 20px;margin-bottom:50px;">
+						    <a title="Limpar a tela" id="limparTela" class="btn btn-medium btn-noshadow" style="display:block;">
+						    	<span class="icon-eraser" style="position:absolute;top:12px;left:-2px;margin-rigth:10px;"></span>
+						    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Limpar
+						    </a>
+					    </span>
+					</div>
+				</div>
+		</form>
+
+
+		
+	

@@ -1,0 +1,224 @@
+welcome-box {
+	position:absolute;
+	width:450px;
+	height:200px;
+	/*background-color:green;*/
+	color:white;
+	top:50%;
+	left:50%;
+	margin-top:-100px;
+	margin-left:-225px;
+}
+
+.welcome-box-title {
+	position:absolute;
+	font-family: 'Nunito';
+	color:rgba(255,255,255,.8);
+	background-color:rgba(0,100,255,.8);
+	font-size:32px;
+	display:block;
+	top:-100px;
+	left:0;
+	padding:10px;
+	opacity:0;
+	animation:fadeInDownBig 1s ease-in-out normal forwards;
+}
+
+/*.aluno {
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-96px;
+	margin-top:-64px;
+	opacity:1;
+	width:128px;
+	height:128px;
+	padding:20px;
+	box-shadow: none;
+	transform-origin:-168px -168px;
+	transition: border-radius .275s ease-in-out,transform .275s ease-in,box-shadow .275s ease-in-out;
+	animation:bounceIn .5s 1.5s ease-in-out normal forwards;
+}
+*/
+
+.aluno-selected {
+	top:150px;
+	right:0;
+	margin-top:0;
+	/*margin-left:-32px;*/
+	/*transform:translateX(1000px);*/
+	z-index:10000;
+}
+
+/*.form-login {
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-50%;
+	margin-left: -440px;
+	margin-top:-155px;
+	width:880px;
+	height:310px;
+	background-color:green;
+	padding:20px;
+	display:none;
+}*/
+
+.professor {
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:64px;
+	margin-top:-64px;
+	opacity:1;
+	width:128px;
+	height:128px;
+	padding:20px;
+	/*transform-origin:-100px -100px;*/
+	box-shadow: none;
+	transition: border-radius .275s ease-in-out,transform .275s ease-in,box-shadow .275s ease-in-out;
+	
+	/*transition: all .275s ease-in-out;*/
+	/*animation:bounceIn .5s 2s ease-in-out normal forwards;*/
+}
+
+.aluno:hover {
+	cursor:pointer;
+	border-radius:5p;
+	transform:translateY(-5px) scale(1.03);
+	padding:20px;
+	box-shadow:-1px 3px 3px 0px rgba(50, 50, 50, 0.2),1px -3px 3px 0px rgba(50, 50, 50, 0.2);	;
+}
+.professor:hover {
+	cursor:pointer;
+	border-radius:5px;
+	transform:translateY(-5px) scale(1.03);
+	padding:20px;
+	box-shadow:1px -3px 3px 0px rgba(50, 50, 50, 0.2),-1px 3px 3px 0px rgba(50, 50, 50, 0.2);	;	
+}
+
+
+.form-login {
+	display:none;
+	color:rgba(255,255,255,1);
+	background-color:rgba(0,100,255,.8);
+	/*border:1px solid rgba(0,0,0,.3);*/
+	border-radius:5px;
+	/*animation: fadeInDown 1s ease-in normal;*/
+	box-shadow:1px 1px 0px rgba(0,0,0,.2), -1px -1px 0px rgba(0,0,0,.2);
+}
+
+.form-login > .left, .form-login-professor .left {
+	float:left;
+	margin-right:50px;
+}
+.form-login > .right > .ui-widget-header {
+	
+}
+.form-login > .ui-button {
+	opacity:0;
+}
+
+.form-login-label {
+	color:#245E8B;
+}
+
+.form-login-title {
+	color:rgba(0,100,255,.8);
+	background-color:white;
+	font-weight:bold;
+	display:block;
+	width:auto;
+	padding:10px;
+	font-size:20px;
+	margin:10px 0;
+}
+
+.form-login-campo {
+	border-radius:5px;
+	border:1px solid rgba(0,0,0,.3);
+	padding:5px;
+	margin:10px 0 10px 0px;
+	
+	/*transition: all .6s ease-in;*/
+}
+
+.form-login-autocomplete {
+	width:325px;
+}
+
+.form-login-conhecimentos {
+
+}
+.form-login-conhecimentos-item {
+/*	border: 1px solid #4297d7;
+	background: #5c9ccc url("images/ui-bg_gloss-wave_55_5c9ccc_500x100.png") 50% 50% repeat-x;
+	color: #fff;
+	font-weight: bold;
+	border-radius:5px;
+	width:50px;*/
+	position:relative;
+	margin: 0 5px 5px 0;
+}
+
+.label-idade {
+	padding:5px;
+	display:inline-block;
+	/*margin:5px 0;*/
+}
+#idade {
+	padding:0;
+	cursor:pointer;
+}
+
+#valorIdade {
+	position:relative;
+	width:30px;
+}
+
+.valor-idade {
+	position:absolute;
+	bottom:170px;
+	left:160px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: #0064FF;
+    width: 200px;
+    height: 10px;
+    transition: all .275s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: #96F064;
+    opacity: 1;
+    width: 8px;
+    height: 20px;
+    box-shadow:1px 1px 1px rgba(0,0,0,.3), -1px -1px 1px rgba(0,0,0,.3);
+    transition: all .275s ease-in-out;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+	background-color:red;
+}
+
+input[type="range"]::-moz-range-thumb {
+	background:#96F064;
+	width: 8px;
+    height: 20px;
+    transition: all .275s ease-in-out;
+}
+
+input[type="range"]:active::-moz-range-thumb {
+	background: red !important;
+    box-shadow:1px 1px 1px rgba(0,0,0,.3), -1px -1px 1px rgba(0,0,0,.3);
+}
+
+input[type="range"]::-moz-range-track {
+	background-color: #0064FF;
+    width: 200px;
+    height: 10px;
+    transition: all .275s ease-in-out;	
+}

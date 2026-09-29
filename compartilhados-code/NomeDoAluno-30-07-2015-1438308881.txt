@@ -1,0 +1,19 @@
+reset
+make "r 20
+repeat 3 [
+forward product :r 6
+left 120
+]penup
+forward product :r 3
+pendown
+left 90
+forward product :r 5.19
+penup
+left 180
+forward product :r 3.46
+left 90
+pendown
+repeat 360 [
+forward divide :r 10
+right 1
+] 

@@ -1,0 +1,141 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.woff?v=2') format('woff'),
+		url('../fonts/icomoon.ttf?v=2') format('truetype'),
+		url('../fonts/icomoon.svg?v=2#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon', 'Nunito', sans-serif;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	text-align:center;
+	vertical-align: middle;
+	cursor:pointer;
+	/*display:inline-block;*/
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-archive:before {
+	content: "\ec42";
+}
+.icon-back:before {
+	content: "\edf0";
+}
+.icon-braces:before {
+	content: "\eb85";
+}
+.icon-buttonx:before {
+	content: "\ed93";
+}
+.icon-buttony:before {
+	content: "\ed94";
+}
+.icon-checkmark:before {
+	content: "\e61d";
+}
+.icon-color:before {
+	content: "\ecb7";
+}
+.icon-down:before {
+	content: "\edd0";
+}
+.icon-eraser:before {
+	content: "\ecc2";
+}
+.icon-eyedropper:before {
+	content: "\ec7e";
+}
+.icon-gamecursor:before {
+	content: "\eda2";
+}
+.icon-handdrag:before {
+	content: "\ebaf";
+}
+.icon-handpointdown:before {
+	content: "\ea57";
+}
+.icon-info:before {
+	content: "\ede7";
+}
+.icon-joystickarcade:before {
+	content: "\eda6";
+}
+.icon-lightbulb:before {
+	content: "\ee0a";
+}
+.icon-multiply:before {
+	content: "\e607";
+}
+.icon-pen:before {
+	content: "\ecbf";
+}
+.icon-pin:before {
+	content: "\ecdb";
+}
+.icon-play2:before {
+	content: "\ec4f";
+}
+.icon-plus:before {
+	content: "\e603";
+}
+.icon-record:before {
+	content: "\ec5a";
+}
+.icon-redo:before {
+	content: "\edfd";
+}
+.icon-repeat:before {
+	content: "\ec58";
+}
+.icon-repeatone:before {
+	content: "\ec67";
+}
+.icon-resize:before {
+	content: "\ecbe";
+}
+.icon-save:before {
+	content: "\eb99";
+}
+.icon-shapes:before {
+	content: "\ecae";
+}
+.icon-smile:before {
+	content: "\e61b";
+}
+.icon-stop:before {
+	content: "\ec56";
+}
+.icon-thumbup:before {
+	content: "\ec09";
+}
+.icon-tictactoe:before {
+	content: "\ea6a";
+}
+.icon-undo:before {
+	content: "\edfc";
+}
+.icon-uniF013:before {
+	content: "\eae3";
+}
+.icon-up:before {
+	content: "\edd3";
+}
+.icon-uptime:before {
+	content: "\eae7";
+}
+.icon-user:before {
+	content: "\ec04";
+}
+.icon-wizard3:before {
+	content: "\ee09";
+}

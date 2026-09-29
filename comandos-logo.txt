@@ -1,0 +1,216 @@
+﻿Guia de referência rápida ao LOGO:
+
+As coisas devem funcionar tanto em caixa alta como em caixa baixa.
+
+Tipos:
+
+PALAVRAS:          FW BW ....
+NÚMEROS:        0, 0.1, 20
+LISTAS:          [1 2 3 5]
+SÍMBOLOS:        "foo "bar
+VARIÁVEIS:      :foo :bar 
+FUNÇÕES: COMMAND arg arg arg ...
+                (COMMAND arg arg arg ...)
+
+Comandos disponíveis:
+
+RESET           Limpa a tela, move o personagem pra posição inicial.
+
+
+Movimentos:
+
+FORWARD n       Move o personagem para frente n pixels
+FW n    
+
+BACKWARD n      Move o personagem para trás n pixels
+
+RIGHT n         Move o personagem para esquerda ou direita em n graus
+RT n
+LEFT n
+LT n
+
+SETX x          Ajustas as coordenadas do personagem nas posições X, Y ou X Y
+SETY y
+SETXY x y
+
+HOME            Move o personagem para a posição inicial.
+
+
+Desenho:
+
+CLEARSCREEN     Limpa a tela
+CLEAR
+CS
+
+CIRCLE r        Desenha um círculo de raio r ao redor do personagem
+
+ARC r d         Desenha um arco de raio r por d graus
+
+PENUP           Levanta a caneta (para de desenhar)
+PU
+PENDOWN         Desce a caneta (volta a desenhar)
+PD
+
+COLOR [r g b]   Mudar a cor da caneta (código rgb = red green blue / 0 a 255)
+
+PENWIDTH w      Muda a grossura da caneta
+
+
+Texto:
+
+PRINT "foo          Imprime na tela "foo"
+PR "foo
+PRINT ["foo "bar]   Imprime na tela "foo bar"
+PR ["foo "bar]
+
+CLEARTEXT           Limpa o texto impresso anteriormente
+CT
+
+
+Operações Matemáticas:
+
+:: SOMA ::              :: MULTIPLICAÇÃO ::
+
+1 + 2                   1 * 2
+SUM 1 2                 PRODUCT 1 2
+(SUM 1 2 3 ...)         (PRODUCT 1 2 3 ...)
+
+:: DIFERENÇA ::         :: DIVISÃO ::
+
+1 - 2                   1 / 2
+DIFFERENCE 1 2          DIVIDE 1 2
+
+
+:: MÓDULO ::
+
+1 % 2
+MOD 1 2
+
+RANDOM n        Retorna um inteiro em [0,n)
+RAND n
+
+RERANDOM s      Modifica o valor do incremento aleatório
+SRAND s
+
+
+:: ALGUNS EXEMPLOS ::
+
+() INT n
+() ROUND n
+() POWER e m
+() EXP n
+() LN n
+() LOG10 n
+
+:: TRIGONOMETRIA ::
+
+SIN, COS
+RADSIN,RADCOS
+
+ARCTAN
+RADARCTAN
+
+:: LISTAS ::
+
+* Estas funcionalidades podem apresentar instabilidade a qualquer momento.
+
+FIRST, HEAD             Retorna o primeiro item em uma lista
+BUTFIRST, TAIL          Retorna todos menos o primeiro item em uma lista
+LAST                    Retorna o último item em uma lista
+BUTLAST                 Retorna todos os itens menos o último em uma lista
+
+FPUT item list  Retorna uma nova lista com o item na frente
+LPUT item list  Retorna uma nova lista com o item por trás
+
+ITEM index list                 Busca o item indexado (get)
+SETITEM index list value        Grava o item indexado (set)
+
+EMPTY? list     Returna true se a lista estiver vazia
+EMPTYP list 
+
+:: OPERADORES LÓGICOS E DE COMPARAÇÃO ::
+
+:: IGUALDADE
+
+1 = 1
+EQUAL? 1 1
+EQUALP 1 1
+
+:: MENOR
+
+1 < 2                1 <= 2
+LESS? 1 2               LESSEQUAL? 1 2
+LESSP 1 2               LESSEQUALP 1 2
+
+:: MAIOR
+
+2 > 1                2 > 1
+GREATER? 2 1            GREATEREQUAL? 2 1
+GREATERP 2 1            GREATEREQUALP 2 1
+
+:: LÓGICOS
+
+AND TRUE FALSE          OR FALSE TRUE
+
+:: OPERAÇÕES CONDICIONAIS (E SE...) ::
+
+:: SE CONDIÇÃO EXISTIR FAÇA...
+IF COND [IF_TRUE] 
+IF 2 > 1 [FW 100]
+
+:: SE CONDIÇÃO FAÇA ISSO SE NÃO AQUILO
+
+IFELSE COND [IF_TRUE] [IF_FALSE]
+IFELSE 2 > 1 [FW 100 RT 90] [BW 100 LT 90]
+
+
+:: BUSCAR E MODIFICAR ::
+
+:: X = 1
+
+Set x to 1:             make "x 1
+
+:: SOMAR N E X
+
+Adding :n to :x         :n + :x
+
+:: ATRIBUIR A X A SOMA DE N + X
+
+Setting :x to :n + :x   make "x :x + :n
+
+:: REPETIÇÕES ::
+
+REPEAT n [COMMANDOS ...]
+
+STOP    - Parar a repetição atual ou função.
+
+OUTPUT f  - Retornar f.
+OP f
+
+
+:: DEFININDO E CHAMANDO
+
+:: CRIA A FUNÇÃO FOO QUE RECEBE OS ARGUMENTOS ARG1, ARG2
+:: TODA FUNÇÃO TEM UM CORPO BODY (COMANDOS) E UM FIM (END)
+
+TO FOO :ARG1 :ARG2 BODY END
+
+:: PARA CRIAR UMA FUNÇÃO QUE DESENHA UM QUADRADO E RECEBE O TAMANHO DESSE QUADRADO COMO ARGUMENTO
+
+TO QUADRADO :tamanho
+REPEAT 4 [FW :tamanho RT 90]
+END
+
+:: DESENHA UM QUADRADO DE TAMANHO 10
+
+QUADRADO :10
+
+:: PARA CRIAR UMA FUNÇÃO QUE DESENHA UM POLÍGONO QUE RECEBE O TAMANHO E O NÚMERO DE LADOS COMO ARGUMENTOS
+
+TO POLYGONO :tamanho :lados
+REPEAT :sides [FW :tamanho RT 360/:lados]
+END
+
+POLYGONO 5 10
+
+Nota: Funções recursivas são suportadas.

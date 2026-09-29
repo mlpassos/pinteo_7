@@ -1,0 +1,11 @@
+to desenho
+repeat 4 [
+forward 100
+right 90
+] end
+reset
+setxy 90 100
+desenho
+setxy 100 90
+desenho
+ 

@@ -1,0 +1,25 @@
+reset
+make "tam 2
+to ce
+repeat 180 [
+forward :tam
+right 1
+]end
+left 90
+ce
+penup
+forward 20
+pendown
+make "tam 1
+ce
+right 180
+ce
+right 90
+forward 230
+right 90
+penup
+forward 100
+right 90
+pendown
+forward 230
+ 

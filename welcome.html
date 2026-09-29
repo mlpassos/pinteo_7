@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<title>Pinte o 7</title>
+	<meta charset="utf-8" />
+	<meta name="robots" content="noindex,follow" />
+        <meta name="keywords" content="" />
+	<meta name="description" content="Protótipo de Sistema Interativo para o Ensino de Lógica de Programação para Crianças baseado em LOGO."/>
+	<meta name="author" content="Márcio Passos" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/home.css?v=2">
+	<!-- <link rel="stylesheet" type="text/css" href="css/buttons.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/icomoon.css?v=3">
+	<link rel="stylesheet" type="text/css" href="css/papert.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
+	<link rel="stylesheet" type="text/css" href="css/redmond/jquery-ui-1.10.4.custom.min.css">
+	<script type="text/javascript" src="js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+	<script type="text/javascript" src="js/welcome.js"></script>
+	<script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
+	<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+	<script type="text/javascript" src="js/turtle.js"></script>
+	<script type="text/javascript" src="js/parser.js"></script>
+	<script type="text/javascript" src="js/logo.js"></script>
+	<script type="text/javascript" src="js/init.js"></script>
+	<script type="text/javascript" src="js/pinteo7.js"></script>
+	<style type="text/css">
+		.ui-tooltip, .arrow:after {
+          background: #0064FF;
+          border: 1px solid rgba(250,250,250,1);
+	  	}
+		.ui-tooltip {
+		  padding: 5px 10px;
+		  color: white;
+		  border-radius: 5px;
+		  font: bold 12px "Nunito",Georgia, Sans-Serif;
+		  text-transform: uppercase;
+		  box-shadow: 0 0 8px rgba(0,0,0,.3);
+		}
+		.arrow {
+		  width: 70px;
+		  height: 16px;
+		  overflow: hidden;
+		  position: absolute;
+		  left: 50%;
+		  margin-left: -35px;
+		  bottom: -16px;
+		}
+		.arrow.top {
+		  top: -16px;
+		  bottom: auto;
+		}
+		.arrow.left {
+		  left: 20%;
+		}
+		.arrow:after {
+		  content: "";
+		  position: absolute;
+		  left: 20px;
+		  top: -20px;
+		  width: 25px;
+		  height: 25px;
+		  box-shadow: 6px 5px 9px -9px black;
+		  -webkit-transform: rotate(45deg);
+		  -moz-transform: rotate(45deg);
+		  -ms-transform: rotate(45deg);
+		  -o-transform: rotate(45deg);
+		   tranform: rotate(45deg);
+		}
+		.arrow.top:after {
+		  bottom: -20px;
+		  top: auto;
+		}
+		.ui-autocomplete {
+			z-index:1000;
+
+		}
+	</style>
+</head>
+<body>
+	<header id="header" class="header">
+		<nav class="navigation">
+			<ul class="menu">
+				<li class="menu-item">
+					<a id="guia" href="#" title="Guia Básico" class="menu-link btn btn-medium ">
+						<span class="icon-wizard3"></span> Guia
+					</a>&nbsp;
+				</li>
+				<!-- <li class="menu-item">
+					<a id="wizard" href="#" title="Comandos e regras" class="menu-link btn btn-medium ">
+						<span class="icon-uniF013"></span> Ajuda
+					</a>&nbsp;
+				</li> -->
+				<!-- <li class="menu-item">
+					<a id="descricao" href="#" title="Afinal de contas, o que é isso?" class="menu-link btn btn-medium ">
+						<span class="icon-info"></span> O que é?
+					</a>&nbsp;
+				</li> -->
+				<li class="menu-item">
+					<a id="sobre" href="#" title="Informações sobre o Pinte o 7" class="menu-link btn btn-medium ">
+						<span class="icon-info"></span> Sobre
+					</a>&nbsp;
+				</li>
+			</ul>
+		</nav>
+		<div class="site-logo">
+			<img src="http://placehold.it/44x44" alt="logo do prototipo pinte o 7" title="Protótipo Pinte o 7">
+		</div>
+	</header>	
+	<div class="wrapper cf">
+		<div class="welcome-box">
+			<h2 class="welcome-box-title">Bem vindo<br>Quem é você?</h2>
+		</div>
+		<img src="images/icon-aluno.png" class="aluno">
+		<img src="images/icon-professor.png" class="professor">
+		<div class="dialog-cadastro">
+			<div class="left">
+				<input type="text" class="form-login-campo" placeholder="E-mail" required><br>
+				<input type="password" class="form-login-campo" placeholder="Senha" required><br>
+			</div>
+			<div class="right">
+				<img class="dialog-cadastro-avatar" src="http://placehold.it/64x64" alt="avatar do usuário" title="Avatar">
+				<span class="dialog-cadastro-usuario">João</span>
+			</div>
+		</div>
+		<div class="form-login-professor">
+			<div class="left">				
+				<input type="text" class="form-login-campo" placeholder="Nome" required><br>
+				<input type="mail" class="form-login-campo" placeholder="E-mail" required><br>
+				<label for="idade" class="ui-widget-header label-idade ui-corner-all">Idade</label><br>
+				<input id="idade" type="range" min="8" max="100" step="1" value ="0" class="form-login-campo" required>
+				<input id="valorIdade" type="text" class="form-login-campo" placeholder="0"><br><!--<span class="valor-idade">0</span>-->
+				<h2 class="ui-widget-header label-idade ui-corner-all">De onde você é?</h2><br><br>
+				<!-- <label for="cidade" class="form-login-label">Cidade</label><br> -->
+				<select class="lstEstado form-login-select">
+				<option value="" disabled selected>Estado</option>
+					<option value="AC">Acre</option>
+					<option value="AL">Alagoas</option>
+					<option value="AP">Amapá</option>
+					<option value="AM">Amazonas</option>
+					<option value="BA">Bahia</option>
+					<option value="CE">Ceará</option>
+					<option value="DF">Distrito Federal</option>
+					<option value="ES">Espirito Santo</option>
+					<option value="GO">Goiás</option>
+					<option value="MA">Maranhão</option>
+					<option value="MT">Mato Grosso</option>
+					<option value="MS">Mato Grosso do Sul</option>
+					<option value="MG">Minas Gerais</option>
+					<option value="PA">Pará</option>
+					<option value="PB">Paraiba</option>
+					<option value="PR">Paraná</option>
+					<option value="PE">Pernambuco</option>
+					<option value="PI">Piauí</option>
+					<option value="RJ">Rio de Janeiro</option>
+					<option value="RN">Rio Grande do Norte</option>
+					<option value="RS">Rio Grande do Sul</option>
+					<option value="RO">Rondônia</option>
+					<option value="RR">Roraima</option>
+					<option value="SC">Santa Catarina</option>
+					<option value="SP">São Paulo</option>
+					<option value="SE">Sergipe</option>
+					<option value="TO">Tocantis</option>
+				</select>
+				<select id="lstCidade" class="form-login-select">
+					<option value="" disabled selected>Cidade</option>
+					<option value="Maceió">Maceió Alagoas Brasil</option>
+				</select>
+			</div>
+			<div class="right">
+				<label for="pesqConhecimentoProg">Você ensina disciplinas de Computação?</label><br><br>
+				<input type="radio" value="1" name="conhecimentoProg"> Sim
+				<input type="radio" value="0" name="conhecimentoProg"> Não<br><br>
+				<label for="pesqConhecimentoProg2">Qual nível?</label><br><br>
+				<input type="radio" value="1" name="conhecimentoProg2"> Ensino Fundamental<br>
+				<input type="radio" value="0" name="conhecimentoProg2"> Ensino Médio<br>
+				<input type="radio" value="1" name="conhecimentoProg2"> Ensino Superior<br>
+				
+			</div>
+		</div>
+		<div class="form-login">
+			<div class="left">
+				<input type="text" class="form-login-campo" placeholder="Nome" required><br>
+				<input type="mail" class="form-login-campo" placeholder="E-mail" required><br>
+				<label for="idade" class="ui-widget-header label-idade ui-corner-all">Idade</label><br>
+				<input id="idade" type="range" min="8" max="100" step="1" value ="0" class="form-login-campo" required>
+				<input id="valorIdade" type="text" class="form-login-campo" placeholder="0"><br><!--<span class="valor-idade">0</span>-->
+				<h2 class="ui-widget-header label-idade ui-corner-all">De onde você é?</h2><br><br>
+				<!-- <label for="cidade" class="form-login-label">Cidade</label><br> -->
+				<select class="lstEstado form-login-select">
+				<option value="" disabled selected>Estado</option>
+					<option value="AC">Acre</option>
+					<option value="AL">Alagoas</option>
+					<option value="AP">Amapá</option>
+					<option value="AM">Amazonas</option>
+					<option value="BA">Bahia</option>
+					<option value="CE">Ceará</option>
+					<option value="DF">Distrito Federal</option>
+					<option value="ES">Espirito Santo</option>
+					<option value="GO">Goiás</option>
+					<option value="MA">Maranhão</option>
+					<option value="MT">Mato Grosso</option>
+					<option value="MS">Mato Grosso do Sul</option>
+					<option value="MG">Minas Gerais</option>
+					<option value="PA">Pará</option>
+					<option value="PB">Paraiba</option>
+					<option value="PR">Paraná</option>
+					<option value="PE">Pernambuco</option>
+					<option value="PI">Piauí</option>
+					<option value="RJ">Rio de Janeiro</option>
+					<option value="RN">Rio Grande do Norte</option>
+					<option value="RS">Rio Grande do Sul</option>
+					<option value="RO">Rondônia</option>
+					<option value="RR">Roraima</option>
+					<option value="SC">Santa Catarina</option>
+					<option value="SP">São Paulo</option>
+					<option value="SE">Sergipe</option>
+					<option value="TO">Tocantis</option>
+				</select>
+				<select id="lstCidade" class="form-login-select">
+					<option value="" disabled selected>Cidade</option>
+					<option value="Maceió">Maceió Alagoas Brasil</option>
+				</select>
+				
+			</div>
+			<div class="right">
+				<label for="pesqConhecimentoProg">Sabe alguma coisa de programação?</label><br><br>
+				<input type="radio" value="1" name="conhecimentoProg"> Sim
+				<input type="radio" value="0" name="conhecimentoProg"> Não<br><br>
+				<label for="disciplinasFav">Disciplinas favoritas na escola</label><br>
+				<input id="cu" name="disciplinasFav" placeholder="Ex: Matemática, Português, Ciências..." class="form-login-campo form-login-autocomplete">
+				<ul class="form-login-disciplinasfav ">
+					<!-- <li class="form-conhecimentos-item"></li> -->
+				</ul>
+				<!-- <label for="disciplinasDesfav">Disciplinas que não gosta</label><br>
+				<input id="buceta" name="disciplinasDesFav" placeholder="Ex: Matemática, Português, Ciências..." class="form-login-campo form-login-autocomplete">
+				<ul class="form-login-disciplinasdesfav cf">
+					  <li class="form-conhecimentos-item"></li>  
+				</ul>  -->
+				<!-- <input type="checkbox" value="0" name="pesqConceitosConhecidos[]"> Lógica
+				<input type="checkbox" value="1" name="pesqConceitosConhecidos[]"> Algorítimos
+				<input type="checkbox" value="2" name="pesqConceitosConhecidos[]"> Variáveis<br>
+				<input type="checkbox" value="3" name="pesqConceitosConhecidos[]"> Laços e repetições
+				<input type="checkbox" value="3" name="pesqConceitosConhecidos[]"> Funções<br>
+				<input type="checkbox" value="3" name="pesqConceitosConhecidos[]"> Estruturas Condicionais -->
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+	<div class="help"></div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+reset
+make "lados 8
+make "tamanho 100
+to poligonos
+repeat :lados [
+forward :tamanho
+right divide 360 :lados
+] end
+color [35 175 0]
+setx 150
+poligonos
+ 
