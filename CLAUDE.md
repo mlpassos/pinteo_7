@@ -17,10 +17,10 @@ Abra `http://127.0.0.1:8077/`. CodeMirror (cdnjs) e Nunito (Google Fonts) vêm d
 
 ## Mapa do código
 
-- `index.html`: app principal (palco, editor, blocos, menu de personagens). `welcome.html` é a tela de cadastro, que carrega `header.html`, `wrapper.html` e `footer.html` via `js/welcome.js`.
-- `js/pinteo7.js`: lógica da interface, e é o único arquivo carregado. `pinteo7.new.js`, `pinteo7.old.js`, `pinteo7.js.old` e `parser.old` são legado sem uso.
+- `index.html`: app principal (palco, editor, blocos, menu de personagens). `welcome.html` é a tela de cadastro, que carrega `header.html`, `wrapper.html` e `footer.html` via `js/welcome.js`. O "modo professor" existe só nela, sem autenticação; o app principal não distingue perfis.
+- `js/pinteo7.js`: lógica da interface. `js/init.js` também é carregado e faz a ponte entre o editor, o interpretador e o canvas (`init`, `run`, `stop`, `clearcanvas`). `pinteo7.new.js`, `pinteo7.old.js`, `pinteo7.js.old` e `parser.old` são legado sem uso.
 - `js/logo.js`, `js/parser.js`, `js/turtle.js`: interpretador LOGO Papert (Thomas Figg, MIT, ver `Papert-License.txt`) e a tartaruga.
-- `save.php` e `listar.php`: salvam e listam os desenhos compartilhados em `compartilhados/` (PNG) e `compartilhados-code/` (código `.txt` e blocos `.cp7`). Não há autenticação nem validação: o `save.php` grava qualquer conteúdo recebido. Não exponha isso em produção sem corrigir.
+- `save.php` e `listar.php`: salvam e listam os desenhos compartilhados em `compartilhados/` (PNG) e `compartilhados-code/` (código `.txt` e blocos `.cp7`). Não há autenticação nem validação: o `save.php` grava qualquer conteúdo recebido, e o HTML dos blocos salvo no `.cp7` é injetado na página de todo visitante (XSS armazenado, `js/pinteo7.js:510`). Não exponha isso em produção sem corrigir.
 - `getCidades.php` (usado no cadastro da `welcome.html`) é um esboço inacabado com erro de sintaxe, e hoje não funciona.
 - `css/home.css`: estilos principais. `css/welcome.css` não é carregado por nenhuma página.
 
@@ -53,4 +53,4 @@ O repo antigo `mlpassos/pinteo7` foi bloqueado por DMCA em 2019 por conter a fon
 
 - Stack alvo: TypeScript e React no front, e Node 22 LTS no back quando precisar de API, por exemplo para substituir `save.php` e `listar.php`.
 - A prioridade é arquitetura, qualidade e organização do código: separar o interpretador LOGO, a tartaruga e a interface, com tipos e testes, mais do que adicionar features.
-- Preserve o comportamento atual (comandos LOGO em pt-BR, blocos, personagens) e troque uma parte por vez.
+- Preserve o comportamento atual (comandos LOGO em inglês, como `forward`, `right` e `repeat`, com mensagens de erro e rótulos dos blocos em pt-BR; blocos; personagens) e troque uma parte por vez.
