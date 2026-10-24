@@ -311,3 +311,15 @@ describe('geometria e comandos de tartaruga fora dos 34 exemplos', () => {
     });
   });
 });
+
+describe('compatibilidade de nomes Papert com ponto inicial', () => {
+  it('preserva procedimento .forma sem alterar a gramática de variável/símbolo', () => {
+    const source = 'to .forma print 7 end .forma';
+    expect(output(source)).toBe('<div>7</div>');
+    expect(runLegacy([{ kind: 'run', source }])).toMatchObject({
+      snapshots: [{ output: '<div>7</div>', error: null }],
+    });
+    expect(parseLogo('make ".nome 1')).toMatchObject({ ok: false });
+    expect(parseLogo('print :.nome')).toMatchObject({ ok: false });
+  });
+});

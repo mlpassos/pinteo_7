@@ -87,7 +87,7 @@ export type BlockAction =
   | Readonly<{ type: 'remove'; id: BlockId }>
   | Readonly<{ type: 'replace'; id: BlockId; block: Block }>;
 
-/** Contrato puro da conversão futura; nenhuma implementação parcial é exposta. */
+/** Porta pura da conversão integral; fonte e comentários são preservados ou a operação falha. */
 export interface ConversionService {
   /** Analisa sem executar; falha se qualquer trecho não puder ser representado. */
   sourceToBlocks(source: string, revision: number): Result<Projection>;
@@ -96,3 +96,6 @@ export interface ConversionService {
   /** Retorna a fonte exata sem edição; preserva os comentários quando editada. */
   blocksToSource(projection: Projection): Result<string>;
 }
+
+export { sourceToBlocks, blocksToSource } from './conversion.js';
+export { editBlocks } from './editing.js';
