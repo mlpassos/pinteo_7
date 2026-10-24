@@ -1,6 +1,6 @@
 # Layout — T-061, propostas v1 a v6
 
-Apresentação em 23/10/2026 (America/Belem). **Aguardando aprovação explícita de Márcio.** T-061 permanece in-progress; T-062–T-069 não iniciadas. A meta persistente está ativa e ainda não foi concluída.
+Apresentação em 23/10/2026 (America/Belem). **V6 aprovada explicitamente por Márcio nesta sessão.** Aceite vinculado ao commit `f96dc6f` e às capturas v6; registro abaixo. T-061 liberada para integração; T-062 pode iniciar após a integração. A meta persistente está ativa e ainda não foi concluída.
 
 ## Direção da v1 (histórico)
 
@@ -146,6 +146,6 @@ Capturas: [1280 px](../design/reviews/t-061/v6/1280.png), [768 px](../design/rev
 ## Decisão de Márcio
 
 - Versão submetida agora: **v6**; anteriores preservadas nos commits e capturas.
-- Aprovação: **pendente**. Liberdade para experimentar não constitui aceite da versão resultante.
+- Aprovação: **recebida** — Márcio respondeu **“Aceito”** à apresentação da v6 nesta conversa. Versão aprovada: `f96dc6f`, com as capturas v6 acima.
 - Pedido desta rodada: pesquisar e explorar materialidade/paleta/acabamento moderno, atendido no experimento v6.
-- Gate: aceite explícito da versão visual encerra T-061; T-062 permanece não iniciada.
+- Gate visual atendido pela mensagem “Aceito”; a integração da T-061 libera T-062. Produção continua exigindo go próprio.

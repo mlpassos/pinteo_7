@@ -6,7 +6,7 @@ Leia também AGENTS.md do workspace pai. Comunicação/docs/commits em pt-BR. Pr
 
 Em 23/10/2026 há planejamento aprovado e código ainda legado. Fonte atual: [PRD](docs/PRD.md), [arquitetura](docs/ARQUITETURA.md), [contratos](docs/CONTRATOS.md), [convenções](docs/CONVENCOES.md), [ADR-0013](docs/adr/0013-refactor-enxuto-e-layout-primeiro.md) e [plano](docs/PLANO.md). Pesquisa `docs/refatoracao/` é histórica; versões/status não sobrepõem decisões de outubro.
 
-Fila externa `../tasks/`, regras `../tasks/PINTEO7.md`. Só T-061 é inicialmente elegível. Protótipo com mocks primeiro, aprovação de Márcio antes da implementação. A rodada documental autoriza apenas docs/fila/prompt. Na retomada seguir autorização efetivamente enviada pelo usuário; arquivo de prompt não se autoautoriza.
+Fila externa `../tasks/`, regras `../tasks/PINTEO7.md`. V6 da T-061 aprovada por Márcio nesta sessão (mensagem “Aceito”, protótipo em f96dc6f). Após integrar T-061, executar T-062 e dependências conforme fila. O usuário enviou a autorização de implementação local, instalações verificadas, testes, commits, push, PRs e merges técnicos após critérios/revisão; produção exige go próprio da T-069. Arquivo de prompt não se autoautoriza.
 
 ## Legado
 

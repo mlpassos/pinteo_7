@@ -1,6 +1,6 @@
 # Protótipo de layout — T-061, versão 6
 
-Estudo descartável em HTML/CSS/JS, sem dependências. Aguarda aprovação visual de Márcio. Não é implementação do produto.
+Estudo descartável em HTML/CSS/JS, sem dependências. V6 aprovada explicitamente por Márcio nesta conversa (mensagem “Aceito”), com referência ao commit f96dc6f. Não é implementação do produto.
 
 Na raiz do repositório:
 
