@@ -370,7 +370,7 @@ button:active:not(:disabled) {
 }
 .program .eyebrow,
 .local-label {
-  color: #20130e;
+  color: #160c08;
 }
 .local-label {
   font-size: 9px;
@@ -408,7 +408,7 @@ button:active:not(:disabled) {
   padding: 7px 20px;
   background: transparent;
   border: 0;
-  color: #20130e;
+  color: #160c08;
   font-size: 12px;
 }
 .mode-tabs button[aria-selected='true'] {
