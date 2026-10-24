@@ -113,3 +113,70 @@ body.running .knob-right { animation:toy-turn .8s ease-in-out infinite alternate
   .stage-panel .output { margin:0; }
   .stage-panel .output summary { font-size:10px; }
 }
+
+/* V5 — tabuleiro de madeira clara, desenhado em CSS, sem asset externo. */
+:root { background:#f8efdc; }
+.topbar { background:#fffdf6; border-bottom-color:#decdae; }
+.demo-banner { background:#efe4cd; color:#62543e; }
+.demo-dot { background:#b17a37; }
+.command-dock { background:#fff9eb; border-bottom-color:#ddc59b; }
+.app-footer,.app-footer button { color:#6e604b; }
+.program {
+  border:6px solid #a36e3d; border-radius:24px 20px 23px 21px;
+  background-color:#d6aa70;
+  background-image:repeating-linear-gradient(2deg,transparent 0 7px,#6d3c1812 8px,transparent 9px 17px),linear-gradient(100deg,#e9c48a,#d4a068 48%,#e7c18a);
+  box-shadow:inset 0 3px 0 #ffe7bc,0 5px 0 #704b2d,0 9px 0 #d7bf932e;
+}
+.program .panel-heading { padding:18px 17px 16px; }
+.program .eyebrow,.program .local-label { color:#60432a; }
+.program h1 { color:#4e3423; text-shadow:0 1px #ffe7bb; }
+.program-tools { margin:0 13px 14px; padding:0; border:0; gap:8px; }
+.program .mode-tabs { background:#9f6d4160; border:1px solid #9a683d; box-shadow:inset 0 2px 3px #69462625; }
+.program .mode-tabs button { color:#4e3423; }
+.program .mode-tabs button[aria-selected=true] { background:#fff7df; color:#365e7f; box-shadow:0 2px 0 #9c734e; }
+.program-tools>button { border:1px solid #986d45; background:#fff5db; color:#61462d; box-shadow:0 2px 0 #ab7b4b; }
+.program-tools>.quiet { background:#e6be84; }
+.program-body {
+  margin:0 9px 10px; border:2px solid #a77949; border-radius:10px;
+  background-color:#eed5a1;
+  background-image:
+    radial-gradient(ellipse at 24% 28%,transparent 0 37%,#a3713e0b 38%,transparent 39% 46%,#fff1cd50 47%,transparent 48%),
+    repeating-linear-gradient(1deg,transparent 0 3px,#925c2d0b 4px,transparent 5px 13px,#fff1cf35 14px,transparent 15px 23px),
+    repeating-linear-gradient(179deg,transparent 0 57px,#8050270a 58px,transparent 60px 119px),
+    linear-gradient(95deg,#f4dfb4,#eed2a0 50%,#f2dcad);
+  background-size:420px 230px,auto,auto,auto;
+  box-shadow:inset 0 3px 8px #77502d30,inset 0 0 0 4px #fff0c345;
+}
+.program-caption,.program-caption>span:last-child,.workspace-hint { color:#71502e; }
+.tiny-dot { background:#95632c; box-shadow:0 1px #fff1c7; }
+.program .code-block { box-shadow:inset 0 1px 0 #ffffff40,inset 0 -3px #0001,0 3px 2px #67451e21; }
+.program .repeat-shell { box-shadow:inset 0 1px 0 #fff7bf80,inset 0 -3px #b9801530,0 3px 2px #67451e21; }
+.program .repeat-shell>.code-block { box-shadow:none; }
+.repeat-body { background:#fff6dd; }
+.drop-slot:after { background:#ab8555; box-shadow:0 1px #fff0c7; }
+.drop-slot:hover,.drop-slot:focus-visible,.drop-slot.drop-active { background:#fff2cb; outline-color:#99612e; }
+.drop-slot.drop-active:after,.drop-slot:focus-visible:after { color:#704b24; box-shadow:none; }
+.drag-active .drop-slot { background:#f8e7be; }
+.drag-active .drop-slot.drop-active { background:#fff8e4; }
+.add-block { border-color:#b58d59; color:#72532d; background:#fff8e5ae; box-shadow:0 2px #b2884d20; }
+.program:has(#code-panel:not([hidden])) .program-body {
+  background:#fffaf0; box-shadow:inset 0 2px 5px #77502d20;
+}
+@media(max-width:1000px) and (min-width:651px) {
+  .program { border-width:5px; }
+  .program-tools { margin-left:9px; margin-right:9px; gap:5px; }
+  .program .mode-tabs button { padding:7px 12px; }
+  .program-tools>button { padding:8px 6px; }
+  .program-body { margin-left:6px; margin-right:6px; padding-left:13px; padding-right:13px; }
+}
+@media(max-width:650px) {
+  .program { border-width:5px; }
+  .program .panel-heading { padding:17px 12px; }
+  .program-tools { margin-left:8px; margin-right:8px; gap:5px; }
+  .program .mode-tabs button { padding:8px 10px; }
+  .program-tools>button { padding:8px 6px; }
+  .program-body { margin-left:5px; margin-right:5px; padding-left:11px; padding-right:11px; }
+  .program-caption { font-size:9px; }
+  .add-block { font-size:10px; }
+  .add-block small { font-size:9px; margin-left:4px; }
+}

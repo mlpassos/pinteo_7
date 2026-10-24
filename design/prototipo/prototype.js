@@ -366,7 +366,7 @@ document.addEventListener('pointerup', event => {
     document.querySelectorAll('.palette-list button').forEach(button => button.setAttribute('aria-pressed', 'false'));
     playSnap();
     toast('Encaixou! Arraste novamente para mudar a ordem · demonstração.');
-  } else toast('Solte sobre um encaixe azul. Nenhum bloco foi removido.');
+  } else toast('Solte sobre um encaixe destacado. Nenhum bloco foi removido.');
   finishDrag();
   refreshSlots();
 });

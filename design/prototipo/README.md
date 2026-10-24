@@ -1,4 +1,4 @@
-# Protótipo de layout — T-061, versão 4
+# Protótipo de layout — T-061, versão 5
 
 Estudo descartável em HTML/CSS/JS, sem dependências. Aguarda aprovação visual de Márcio. Não é implementação do produto.
 
@@ -10,12 +10,12 @@ python3 design/prototipo/preview.py
 
 Abrir http://127.0.0.1:8080/. O servidor atende apenas esta pasta, em loopback; Ctrl+C encerra. A porta precisa estar livre. O pequeno helper evita uma consulta de hostname que bloqueou `python3 -m http.server` neste ambiente. Também é possível abrir `index.html` diretamente, sem servidor.
 
-Na v4, o painel inteiro de resultado é a carcaça coral do brinquedo: tela central e controles integrados no topo e na base. Os controles circulares são decorativos e giram durante a animação de execução; não controlam o desenho. Movimento reduzido desliga as animações. Sem seletor de temas nesta rodada.
+Na v5, a metade do programa é um tabuleiro de madeira clara, com textura CSS original e peças com relevo. O modo Código tem fundo liso. O fundo geral foi harmonizado em creme. Como na v4, o painel inteiro de resultado é a carcaça coral do brinquedo: tela central e controles integrados no topo e na base. Os controles circulares são decorativos e giram durante a animação de execução; não controlam o desenho. Movimento reduzido desliga as animações. Sem seletor de temas nesta rodada.
 
 ## O que explorar
 
 - Categorias no topo, expandindo/recolhendo no clique; 19 opções. Metade esquerda para Blocos/Código e metade direita para execução/palco/resultado no desktop.
-- Arraste comandos até os encaixes azuis, inclusive dentro de repetições. Blocos existentes podem mudar de ordem/corpo. Som original de encaixe com interruptor.
+- Arraste comandos até os encaixes destacados, inclusive dentro de repetições. Blocos existentes podem mudar de ordem/corpo. Som original de encaixe com interruptor.
 - Alternativa: selecione um comando com clique ou Enter e depois ative um encaixe. Bloco focado + Alt+seta para cima/baixo reordena entre irmãos.
 - Abas Blocos/Código; realce estático e rascunho separado. Setas alternam as abas.
 - “Experimentar comando sem bloco” mantém o texto e demonstra a recusa de conversão. Qualquer rascunho editado permanece no Código, pois não há conversor.

@@ -1,4 +1,4 @@
-# Layout — T-061, propostas v1 a v4
+# Layout — T-061, propostas v1 a v5
 
 Apresentação em 23/10/2026 (America/Belem). **Aguardando aprovação explícita de Márcio.** T-061 permanece in-progress; T-062–T-069 não iniciadas. A meta persistente está ativa e ainda não foi concluída.
 
@@ -94,9 +94,19 @@ Capturas: [1280 px](../design/reviews/t-061/v4/1280.png), [768 px](../design/rev
 
 Verificações proporcionais: quatro larguras sem rolagem horizontal da página, inclusive com gaveta expandida; palco quadrado. Seletor com 21 personagens, diálogo de compartilhar acionado no novo painel, saída/histórico expansível e controles decorativos animados durante execução simulada. Console sem erros. Nenhuma mudança no JS de arraste/encaixe/som. Capturas inspecionadas em desktop e celular. Limitações anteriores de protótipo permanecem.
 
+## Revisão v5 — tabuleiro de madeira
+
+Márcio pediu que a metade do programa lembrasse um tabuleiro de madeira onde as peças são movidas com a mão, harmonizando a paleta do site. A v5 usa madeira clara desenhada em CSS, com veios suaves, moldura marrom, rebaixo no tabuleiro e sombras discretas nas peças existentes. Cabeçalho e abas do programa seguem tons de madeira/creme. Fundo global e faixa de demonstração foram aquecidos para combinar com a madeira e a carcaça coral.
+
+O modo Código usa superfície lisa clara para leitura. Não se acrescentaram assets, fontes ou dependências; a textura é composta por gradientes locais. Interações existentes preservadas; a mensagem de encaixe passa a dizer “encaixe destacado”, pois o indicador acompanha a nova paleta.
+
+Capturas: [1280 px](../design/reviews/t-061/v5/1280.png), [768 px](../design/reviews/t-061/v5/768.png), [412 px](../design/reviews/t-061/v5/412.png), [360 px](../design/reviews/t-061/v5/360.png) e [Código](../design/reviews/t-061/v5/codigo.png).
+
+Validação proporcional: inspeção de desktop/celular, quatro larguras com gaveta aberta/fechada sem rolagem horizontal. Inserção por seleção e encaixe aumentou 6→7 blocos; áudio com `paused=false` e sem erro. Console sem erros/avisos e `node --check` aprovado. Não houve mudança no mecanismo de arraste nem nova validação em dispositivo físico.
+
 ## Decisão de Márcio
 
-- Versão submetida agora: **v4**; versões anteriores preservadas nos commits e capturas.
-- Aprovação: **pendente**. Pedido de ajuste não constitui aprovação.
-- Ajuste solicitado nesta rodada: painel inteiro como brinquedo, aplicado na v4.
+- Versão submetida agora: **v5**; anteriores preservadas nos commits e capturas.
+- Aprovação: **pendente**. Pedido de ajuste não constitui aceite final.
+- Ajuste desta rodada: tabuleiro de madeira e harmonização dos tons, aplicado.
 - Gate: aceite explícito da versão visual encerra T-061; T-062 permanece não iniciada.
