@@ -1,5 +1,7 @@
 # Layout e UX
 
+> **Pesquisa histórica de setembro de 2026.** As decisões vigentes estão no [PRD](../PRD.md) e na [ADR-0013](../adr/0013-refactor-enxuto-e-layout-primeiro.md). Status, versões e contagens abaixo preservam o registro original e não substituem o planejamento de 23/10/2026.
+
 Responde à pergunta 5 da issue #2. Público: crianças de 8 a 12 anos, em desktop de escola, notebook e tablet. Objetivo: tela cheia, blocos fáceis de manipular no toque, animação suave, acessível e com aparência que se possa mostrar a alguém.
 
 ## 1. Diagnóstico do layout atual

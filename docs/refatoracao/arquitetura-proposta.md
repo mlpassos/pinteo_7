@@ -1,5 +1,7 @@
 # Arquitetura proposta
 
+> **Pesquisa histórica de setembro de 2026.** As decisões vigentes estão no [PRD](../PRD.md) e na [ADR-0013](../adr/0013-refactor-enxuto-e-layout-primeiro.md). Status, versões e contagens abaixo preservam o registro original e não substituem o planejamento de 23/10/2026.
+
 Responde à pergunta 4 da issue #2: camadas, módulos, padrões, estado, pastas e documentação. O princípio é um só: **o domínio (LOGO e tartaruga) não conhece o navegador**, e a interface consome o domínio por interfaces pequenas. Tudo que hoje está misturado em `js/init.js`, `js/turtle.js:214` e `js/logo.js:147` passa a ter um lugar.
 
 ## 1. Camadas

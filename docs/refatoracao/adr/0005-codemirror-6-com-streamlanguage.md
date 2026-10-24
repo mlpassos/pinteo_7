@@ -1,5 +1,7 @@
 # ADR-0005: CodeMirror 6 com a linguagem LOGO via StreamLanguage
 
+> **Pesquisa histórica de setembro de 2026.** As decisões vigentes estão no [PRD](../../PRD.md) e na [ADR-0013](../../adr/0013-refactor-enxuto-e-layout-primeiro.md). Status, versões e contagens abaixo preservam o registro original e não substituem o planejamento de 23/10/2026.
+
 - Status: proposto
 - Data: 2026-09-29
 
