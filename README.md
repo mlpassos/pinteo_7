@@ -1,94 +1,100 @@
-PINTE O 7
-=========
+# Pinte o 7
 
-Este é um protótipo de Sistema Interativo para o ensino de lógica de programação para crianças desenvolvido durante um trabalho de conclusão de curso na faculdade CESMAC / Maceió-AL. 
+Ambiente educacional de LOGO para aprender programação com blocos, código e desenho. O projeto nasceu de um trabalho de conclusão de curso no CESMAC, em Maceió, e preserva o interpretador Papert e os exemplos originais.
 
-A proposta inicial era apenas criar a interface baseada nas heurísticas de usabilidade de Jakob Nielsen, porém o projeto hoje em dia já caminha para algo mais. Desde a implementação do interpretador LOGO Papert, criado por Thomas Figg@Google Code, e lançado sob a licença MIT para software livre, o desenvolvimento tem continuado e buscado sempre melhorar a usabilidade e experiência do usuário, ao criar interações para usuários iniciantes, intermediários e avançados... 
+A versão **1.0.0** está integrada e pronta para uso local. A integração T-067 foi incorporada em `ef680594`; a versão foi registrada em `f844d71`. A publicação desta versão ainda não foi feita e exige o go específico da T-069. A T-068 prepara o aceite e a release; seus resultados finais serão registrados separadamente.
 
-Os testes começarão em breve. 
+A interface reúne as 19 opções visuais, os 21 personagens preservados, editor LOGO, execução cooperativa, exportação PNG e galeria/compartilhamento por API Node. Os 34 conjuntos de exemplos foram preservados e têm derivados seguros para importação administrativa. Não há login, banco de dados, analytics ou runtime PHP/jQuery na aplicação nova.
 
-Caso sua escola, filho, sobrinho e/ou primo queira participar, entrar em contato.
+## Executar localmente
 
-Contato e sugestões: marciopassosbel [at] gmail [dot] com
-
-## Status
-
-O projeto voltou a ser mantido em 2026 e está sendo refatorado aos poucos. Este repositório substitui o antigo `mlpassos/pinteo7`, que o GitHub bloqueou em 2019 por conter uma fonte comercial. Esta versão usa só fontes livres e personagens originais.
-
-O layout v6 foi aprovado por Márcio e integrado pelo PR #5 (`e7038fb`). A fundação TypeScript/React/Vite foi integrada pelo PR #6 (`bea82feb`), com contratos e caracterização do Papert original. T-063 (motor), T-065 (API) e T-066 (interface) avançam em frentes separadas; a integração final ainda não está entregue. Produção não foi alterada.
-
-- [PRD](docs/PRD.md), [arquitetura](docs/ARQUITETURA.md) e [contratos](docs/CONTRATOS.md)
-- [Convenções](docs/CONVENCOES.md) e [regras para agentes](AGENTS.md)
-- [Plano T-061–T-069](docs/PLANO.md) e [prompt da nova sessão com goal](docs/PROMPT-NOVA-SESSAO.md)
-
-## Rodar localmente
-
-Para a interface legada (sem instalar PHP):
-
-```bash
-python3 -m http.server 8077 --bind 127.0.0.1
-```
-
-Abra http://127.0.0.1:8077/. Galeria/compartilhamento ainda dependem dos PHPs legados e não funcionam integralmente no servidor estático. Há problemas conhecidos nos endpoints e na importação de HTML; não publicar o diretório nem reativar PHP para esse fim. O refactor os substituirá por API Node e importação segura.
-
-### Fundação do refactor
-
-Requer Node **24.22.1** e npm **11.19.1**. Dependências fixadas no lockfile; scripts de instalação são desativados por `.npmrc`.
+Use Node **24.22.1** e npm **11.19.1**, conforme o lockfile e a CI. A instalação desativa scripts por `.npmrc`; dependências nativas necessárias já foram verificadas para a base integrada.
 
 ```sh
 npm ci --ignore-scripts
+```
+
+Em um terminal, configure dados privados **fora do checkout** e inicie a API:
+
+```sh
+export PINTEO7_DATA_DIR="$HOME/.local/share/pinteo7-dev"
+export PINTEO7_PUBLIC_ORIGIN="http://127.0.0.1:5180"
+npm run dev:api
+```
+
+Em outro terminal:
+
+```sh
 npm run dev
+```
+
+Abra [Pinte o 7 local](http://127.0.0.1:5180/). O Vite escuta em loopback na porta 5180 e encaminha `/api` à API em loopback na porta 5178. `npm run dev:api` compila e inicia a API, sem hot reload. A galeria começa vazia em um diretório de dados novo; exemplos não são importados implicitamente ao iniciar.
+
+As variáveis da API são `PINTEO7_DATA_DIR` e `PINTEO7_PUBLIC_ORIGIN` (obrigatórias), `PORT` (padrão 5178), `PINTEO7_QUOTA_BYTES` (padrão 250 MiB) e `PINTEO7_TRUST_LOCAL_PROXY` (padrão `false`). Se mudar `PORT`, o proxy Vite também precisa ser coordenado. Não habilite confiança em proxy no desenvolvimento direto.
+
+## Exemplos e administração local
+
+Com a API parada, no terminal com as mesmas variáveis, importe os 34 exemplos preparados:
+
+```sh
+npm run admin -- import-examples "$HOME/.local/share/pinteo7-backup-inicial"
+```
+
+O destino de backup deve ser absoluto, novo, com pai existente e fora dos dados e do checkout. A importação confere o catálogo fechado, faz backup antes de alterar obras e registra progresso em journal; pode ser retomada com outro destino novo de backup, sem sobrescrever obras. Leia [migração e recuperação](docs/evidencias/t-067/MIGRACAO.md) antes de operar dados existentes.
+
+A mesma CLI oferece `npm run admin -- backup <diretório-absoluto-novo>` e `npm run admin -- remove <UUID>`, sempre com API parada e acesso local aos dados. Backup e rollback de código são operações distintas; nunca apagar dados para trocar de release. Configuração, limites e política de backup estão em [operação da API](docs/evidencias/t-065/API.md); para origem local e migração, prevalecem os comandos atuais deste README e o relatório T-067.
+
+## Verificar e compilar
+
+```sh
 npm run check
 npm test
+node scripts/legacy/import-examples.mjs --check
 npm run build
 npm run docs
+node scripts/check-artifact.mjs
 npm audit
 ```
 
-A entrada temporária da fundação está em http://127.0.0.1:5177/. Não é a interface final: permite verificar React/Vite e build sem conectar motor/API ou expor a árvore legada. `dist/web/` contém somente essa entrada e os bundles; `node scripts/check-artifact.mjs` confere a allowlist. Nunca publicar a raiz do repositório. `npm run docs` gera `docs/reference/`, não versionado.
+`check` agrega tipos, lint, formato e Knip. TypeDoc gera `docs/reference/`, não versionado. `npm run build` produz `dist/web/` e `dist/api/` separados; o build da API copia apenas os 69 derivados conhecidos dos exemplos para `dist/api/examples/`. A allowlist pública confere nomes e hashes dos assets autorizados. Somente `dist/web/` é artefato estático público; a API e seus dados ficam fora do webroot. Nunca servir a raiz do repositório como produto.
 
-O protótipo aprovado continua disponível com `python3 design/prototipo/preview.py` em http://127.0.0.1:8080/. Decisão visual: [LAYOUT](docs/LAYOUT.md). Playwright está configurado; E2E de produto será introduzido na T-066/T-067, sem teste trivial da tela de aviso para simular aceite.
-
-Preservação e comportamento real: [caracterização](docs/evidencias/t-062/legado.md). Os testes conferem hashes, executam os 34 exemplos no Papert original em VM com timeout efetivo e comparam a baseline. Regeneração de manifesto/baseline é operação explícita de manutenção, nunca parte de um teste.
-
-### API de compartilhamento (T-065)
-
-A API Node usa Hono e arquivos JSON/PNG privados, sem executar LOGO recebido. Após compilar, o processo escuta somente em loopback. Exemplo de desenvolvimento (dados fora do checkout):
+Para os testes de navegador, instale o Chromium compatível e libere a porta 5178 antes de executar:
 
 ```sh
-PINTEO7_DATA_DIR=/tmp/pinteo7-dados-local PINTEO7_PUBLIC_ORIGIN=http://127.0.0.1:5177 npm run dev:api
+npx --no-install playwright install chromium
+npm run test:e2e
 ```
 
-`npm run build` gera `dist/web` e `dist/api` separadamente. Somente `dist/web` pode ser servido como arquivos públicos. `npm run build:api` compila o servidor; `npm run dev:api` compila e inicia, sem hot reload. Remoção e backup usam `npm run admin -- remove <UUID>` ou `npm run admin -- backup <diretório-absoluto-novo>`, com a API parada e as mesmas variáveis de configuração. Dados não acompanham rollback de código. Detalhes: [API e operação local](docs/evidencias/t-065/API.md).
+Em Linux, a CI usa `playwright install --with-deps chromium`. Playwright cria sua própria API com dados temporários externos e importa os 34 exemplos; recusa reutilizar uma API já ativa. Os dados temporários são removidos ao encerrar. Localmente pode reutilizar Vite em 5180; na CI inicia ambos os processos.
 
-A UI da T-066 usa a porta5180 e proxy local para5178; ao integrá-la, configure a origem como `http://127.0.0.1:5180`. Não habilite confiança em proxy no desenvolvimento direto; na publicação Caddy deverá sobrescrever o IP encaminhado conforme o plano revisado.
+Para verificar os 8 cenários de produto contra o **build real**, em portas isoladas:
 
-## Como contribuir
+```sh
+npm run build
+npm run test:e2e -- --config playwright.release.config.ts
+```
 
-- A `main` é a base de integração; publicação do refactor exige os critérios e o go descritos no plano. O legado atual ainda não atende esse aceite.
-- Crie uma branch curta a partir da `main` (`codex/<task>`) e abra um PR conforme a autorização de trabalho.
-- As releases são tags `vX.Y.Z`.
+Essa configuração usa `vite preview` em 5190 e API temporária em 5198 (`scripts/test-api.mjs --release`), sem reutilizar servidores. Não altera a UI/API de desenvolvimento em 5180/5178. Capturas e traces das execuções ficam em `test-results/`; as evidências históricas versionadas não são regravadas por testes.
 
-Detalhes e regras de assets em [CLAUDE.md](CLAUDE.md).
+O fechamento registrado da T-067 tem **403 testes Vitest e 24 E2E aprovados**, sendo 16 cenários de interface com fakes identificados e 8 com serviços reais. Esses números são evidência da integração anterior, não resultado antecipado do QA final da T-068. Consulte [integração](docs/evidencias/t-067/INTEGRACAO.md) e [matriz de aceite](docs/ACEITE.md) para verificações e limites.
+
+## Contribuir e preservar
+
+- Leia [AGENTS.md](AGENTS.md), [arquitetura](docs/ARQUITETURA.md), [contratos](docs/CONTRATOS.md) e [convenções](docs/CONVENCOES.md).
+- O [guia de comandos, blocos e personagens](docs/COMANDOS.md) indica os pontos de extensão e os testes proporcionais.
+- Use branches curtas a partir de `main`, revisão técnica e tags `vX.Y.Z`. Publicação exige autorização própria; PR aberto não significa integrado.
+- Fonte LOGO é canônica. Conversão visual só aceita documentos integralmente representáveis; alternar sem editar preserva os bytes e comentários. Conteúdo incompatível permanece na CLI com diagnóstico.
+- Dependências e assets novos exigem revisão de origem, licença, integridade, scripts e audit completo. Sem pacotes ou infraestrutura por antecipação.
+
+O [PRD](docs/PRD.md) e as decisões de outubro continuam fontes de produto; o [plano](docs/PLANO.md) e as evidências registram execução. Pesquisa antiga e protótipo não substituem o estado integrado.
+
+A raiz `index.html`, `js/`, PHPs e arquivos CP7 permanecem como patrimônio e referência para a caracterização, sem integrar o runtime novo. O harness executa Papert original isolado, com timeout efetivo, e confere os hashes dos originais. Não reativar PHP nem tratar CP7 como HTML seguro. Regeneração de manifesto/baseline é manutenção explícita, nunca efeito colateral de testes. Detalhes: [caracterização](docs/evidencias/t-062/legado.md) e [conversão](docs/evidencias/t-064/CONVERSAO.md).
 
 ## Créditos e licenças
 
-- Código do Pinte o 7: MIT ([LICENSE](LICENSE)).
-- Interpretador LOGO Papert, de Thomas Figg: MIT ([Papert-License.txt](Papert-License.txt)).
-- Fonte Nunito (Google Fonts) e ícones WebHostingHub Glyphs: SIL Open Font License.
-- Personagens e ícones de aluno e professor: ilustrações originais criadas para o projeto.
-- Bibliotecas de terceiros em `js/` (jQuery, jQuery UI, CodeMirror, highlight.js, bxSlider, Intro.js, Playr e outras) seguem as licenças de cada uma.
-- fancyBox 2.1.5 tem licença restritiva CC BY-NC 3.0 e permanece somente no legado local; sua substituição é obrigatória e ele não integra o build novo.
+- Pinte o 7: MIT ([LICENSE](LICENSE)); Papert, de Thomas Figg e colaboradores: MIT ([Papert-License.txt](Papert-License.txt)).
+- Nunito local e ícones WebHostingHub Glyphs históricos: SIL Open Font License. Personagens e ilustrações do projeto são originais.
+- Bibliotecas preservadas em `js/` conservam suas licenças. fancyBox 2.1.5, restritivo, permanece somente no legado e não integra o build novo.
+- O repositório anterior foi bloqueado por conter uma fonte comercial; esta base usa fontes livres verificadas e preserva as atribuições.
 
---
-
-This is an Interactive System Prototype designed for kids (not just for) to learn programming logic, developed initialy throughout my final graduation paper. P7 uses now a JavaScript LOGO Interpreter, Papert, by Thomas Figg and features both CLI and Block Interactions, Student and Teacher Mode, Simulated Memory, etc...
-
-More english material, soon. 
-
-Tests will begin soon with children from 8-12. 
-
-Meanwhile, if you want to try it, drop me a line:
-
-Contato, suggestions and messages: marciopassosbel [at] gmail [dot] com
-
+Contato e sugestões: marciopassosbel [at] gmail [dot] com.

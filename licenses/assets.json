@@ -1,0 +1,167 @@
+{
+  "scope": "Assets importados pela aplicação; os 34 exemplos/dados possuem manifestos próprios de migração. Nenhuma nova autoria de terceiros é presumida.",
+  "entries": [
+    {
+      "source": "images/personagens/arara.png",
+      "sha256": "4620d80ce99ee96f1b6c5c4cc01e101417cceb20e0d37e97de149e99ef5f0c83",
+      "bytes": 14698,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/astronauta.png",
+      "sha256": "22d5b73d329e1487199faffff9f12d207b3cc724701b37e1440be31c63e2fcf5",
+      "bytes": 18100,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/boto.png",
+      "sha256": "dfc7a85b9763f7be237c6df3bfe5875d18c461e8a8ee67b30be66cc3df6e2ca8",
+      "bytes": 8792,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/capivara.png",
+      "sha256": "6e7b6a2e0abf760981f206a5e8b11267de8d1d65584657e5b62a58efaa3ffdab",
+      "bytes": 13051,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/disco-voador.png",
+      "sha256": "97a2c54e6d6693568641d51883a82a2894645f261203771a73968eb1315473b0",
+      "bytes": 23917,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/fantasma-azul.png",
+      "sha256": "5e45c8bc4fdb88ae20be0897d2e134df78386e56ca85fe6e4673e6d536047aa4",
+      "bytes": 12127,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/fantasma-laranja.png",
+      "sha256": "2ae24a978f6db6aaf4e51f22728e88c5430f849fc61b0251b363ec544361af5b",
+      "bytes": 12586,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/fantasma-rosa.png",
+      "sha256": "ded0a9816332a7f8d1fe8913a9c7f391310df9f18e8fb22f8653d0e9c89fc588",
+      "bytes": 12296,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/fantasma-verde.png",
+      "sha256": "d836ce1a0d87825d04c451d2bb126163f6bfb052c81c4254fbfb54d98142ef2c",
+      "bytes": 13405,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/foguete.png",
+      "sha256": "518eb356d5465d747ee79585315790ee7f1ebf178abf3c7d164ae55170f97acf",
+      "bytes": 11323,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/jabuti.png",
+      "sha256": "912519fde6ec45e960dd68187fa0941bfcee8d857ca091d4ad5e90737c740896",
+      "bytes": 19265,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/joaninha.png",
+      "sha256": "19bb41df326609c3267a31f304611ac6b7b5b625eda12843931359f484ca54a7",
+      "bytes": 13955,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/muiraquita-dourado.png",
+      "sha256": "eef2b581814129c22dedd49394811a7c8cd03eadac97696fc9e0a19e68379003",
+      "bytes": 25652,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/muiraquita-jade.png",
+      "sha256": "3dce78baa1c28812159377ed08dd836c122b81fd00df46d7daf3069ef69fd989",
+      "bytes": 23418,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/muiraquita-verde.png",
+      "sha256": "ad23b26dd81b94a9014e32284fe465337d9f008b1fd8b7d57e6d7e682baa8227",
+      "bytes": 22318,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/nave-estrela.png",
+      "sha256": "ad7f5061a02ed441adc848d4b8d94f3e6a0b420581ca06984e097576fb88f437",
+      "bytes": 15656,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/onca.png",
+      "sha256": "0cfa19c2101a3fb6a36e839c69c8be92d7ec308bbecada307bb132a437111aa3",
+      "bytes": 19644,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/rato.png",
+      "sha256": "5e5f8d31fb90e7b8a053b3865192d6116e093a426d0ad204f1914db7c5d4ac1f",
+      "bytes": 10960,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/robo-quadrado.png",
+      "sha256": "f903222d2768de54991c8eb58b672534d4d9ac7d1b922184b6b5f7e55a1230ab",
+      "bytes": 14899,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/robo-redondo.png",
+      "sha256": "4b53ac49e8b8cc2d9bd65f540f0d6ce0794976997e9faea3ffbf625b5bd8e959",
+      "bytes": 14792,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "images/personagens/tartaruga.png",
+      "sha256": "b66256dc918bb2f1962478fa9484ed617e01fdbf78e9a0762c088c5565173472",
+      "bytes": 18833,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "sounds/click.mp3",
+      "sha256": "1048f2539ac47e4eaa4bd1688968c0d7b9956bd6fef507644ee5131924c6517c",
+      "bytes": 2304,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "sounds/delete.mp3",
+      "sha256": "6ea0afab062cb3ba5409dc65d7a9fdf85d602b1870d231d80bdf3cc5b32432b6",
+      "bytes": 3123,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "videos/blockprog.mp4",
+      "sha256": "cd67df1294a4d8fc2d242616a11844a6a955dc13aa9bb3de9d36ae5c1c42cf54",
+      "bytes": 12528506,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "legendas/pt-br.vtt",
+      "sha256": "661ae7200a910a42c54468b27c58de96cc4a383b46930c4865d272b672a37b7b",
+      "bytes": 225,
+      "provenance": "Patrimônio do repositório Pinte o 7, preservado sob LICENSE do projeto; sem nova atribuição individual presumida."
+    },
+    {
+      "source": "src/infrastructure/assets/wood-grain.svg",
+      "sha256": "f3f4582d3ea75dad926f3bdefd418a67b649f54b9b332406565cf829a502cb2f",
+      "bytes": 793,
+      "provenance": "Textura SVG procedural criada para o projeto na T-061/T-066; MIT do projeto."
+    },
+    {
+      "source": "src/infrastructure/assets/material-noise.svg",
+      "sha256": "b96f368653d61fc72c5942a32f29baf3476aac7fdc79334a3d061b07703542f8",
+      "bytes": 471,
+      "provenance": "Textura SVG procedural criada para o projeto na T-061/T-066; MIT do projeto."
+    }
+  ]
+}

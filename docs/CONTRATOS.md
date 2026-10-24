@@ -1,6 +1,6 @@
 # Contratos de implementação
 
-Especificação de 23/10/2026, materializada na T-062 em src/core/{common,program,turtle}, src/application e src/shared. Motor/runner/Canvas foram materializados na T-063 e backend na T-065. T-064 materializa a conversão pura e a importação segura; T-066 materializa a interface. A integração completa dos serviços cabe à T-067. Ajustes de implementação são permitidos se preservarem PRD e consumidores, com alteração coordenada da documentação.
+Especificação aceita em 23/10/2026 e implementada até T-067, integrada em `ef680594`. Versão 1.0.0 registrada em `f844d71`; publicação ainda não realizada. APIs públicas em `src/core/{common,program,turtle,logo}`, `src/application`, `src/shared` e adaptadores implementam estas fronteiras. Alterações precisam preservar PRD/consumidores e coordenar documentação antes de dividir trabalho. Este documento descreve contratos; resultados de QA pertencem às evidências do lote.
 
 ## 1. Tipos do programa
 
@@ -15,8 +15,7 @@ export type Diagnostic = Readonly<{
   span?: Span;
 }>;
 export type Result<T> =
-  | Readonly<{ ok: true; value: T }>
-  | Readonly<{ ok: false; diagnostics: readonly Diagnostic[] }>;
+  Readonly<{ ok: true; value: T }> | Readonly<{ ok: false; diagnostics: readonly Diagnostic[] }>;
 
 export type Value =
   | Readonly<{ kind: 'number'; value: number }>
@@ -28,20 +27,21 @@ export type Value =
       right: Value;
     }>;
 export type BlockMeta = Readonly<{ id: BlockId; sourceSpan?: Span }>;
-export type Block = BlockMeta & (
-  | Readonly<{
-      kind: 'move';
-      command: 'forward' | 'backward' | 'left' | 'right' | 'setx' | 'sety';
-      value: Value;
-    }>
-  | Readonly<{ kind: 'position'; x: Value; y: Value }>
-  | Readonly<{ kind: 'pen'; command: 'penup' | 'pendown' | 'reset' }>
-  | Readonly<{ kind: 'color'; rgb: RGB }>
-  | Readonly<{ kind: 'repeat'; times: Value; body: readonly Block[] }>
-  | Readonly<{ kind: 'define'; name: string; body: readonly Block[] }>
-  | Readonly<{ kind: 'call'; name: string }>
-  | Readonly<{ kind: 'make'; name: string; value: Value }>
-);
+export type Block = BlockMeta &
+  (
+    | Readonly<{
+        kind: 'move';
+        command: 'forward' | 'backward' | 'left' | 'right' | 'setx' | 'sety';
+        value: Value;
+      }>
+    | Readonly<{ kind: 'position'; x: Value; y: Value }>
+    | Readonly<{ kind: 'pen'; command: 'penup' | 'pendown' | 'reset' }>
+    | Readonly<{ kind: 'color'; rgb: RGB }>
+    | Readonly<{ kind: 'repeat'; times: Value; body: readonly Block[] }>
+    | Readonly<{ kind: 'define'; name: string; body: readonly Block[] }>
+    | Readonly<{ kind: 'call'; name: string }>
+    | Readonly<{ kind: 'make'; name: string; value: Value }>
+  );
 
 /** Contrato persistido: fonte canônica, sem HTML ou cache de blocos. */
 export type ProgramDocument = Readonly<{
@@ -78,7 +78,7 @@ export declare function blocksToSource(projection: Projection): Result<string>;
 
 `replace` exige conservar o ID do alvo; mudar espécie de bloco não é funcionalidade de UI exigida. Valores aninhados são imutáveis. IDs são criados por fábrica central e validados nas fronteiras, não com casts espalhados. `Span` usa offsets UTF-16 semiabertos, compatíveis com editor; renderização calcula linha/coluna. Parser conserva posições e comentários para a projeção, sem prometer uma gramática nova de LOGO.
 
-Operadores da paleta criam expressões arrastáveis para slots; não precisam ser novas instruções de programa. Se houver operador raiz nos CP7 reais, caracterizar antes de decidir sua importação. Nome de variável/procedimento segue gramática atual; parâmetros de procedimentos permanecem CLI. Definir/chamar são parte das 19 opções visuais, sem expor todos os 80 comandos em blocos.
+Operadores da paleta criam expressões arrastáveis para slots; não precisam ser novas instruções de programa. A importação dos CP7 reais foi caracterizada offline; a política por fixture está nos relatórios da T-064. Operador solto não é convertido em instrução visual genérica. Nome de variável/procedimento segue gramática atual; parâmetros de procedimentos permanecem CLI. Definir/chamar são parte das 19 opções visuais, sem expor todos os 80 comandos em blocos.
 
 ```mermaid
 classDiagram
@@ -99,7 +99,15 @@ export type Speed = 'slow' | 'normal' | 'fast';
 export type Point = Readonly<{ x: number; y: number }>;
 export type DrawOp =
   | Readonly<{ kind: 'line'; from: Point; to: Point; width: number; color: RGB }>
-  | Readonly<{ kind: 'arc'; center: Point; radius: number; start: number; end: number; width: number; color: RGB }>
+  | Readonly<{
+      kind: 'arc';
+      center: Point;
+      radius: number;
+      start: number;
+      end: number;
+      width: number;
+      color: RGB;
+    }>
   | Readonly<{ kind: 'clear' }>;
 export type TurtleView = Readonly<{
   position: Point;
@@ -155,17 +163,17 @@ Reducer: `sourceChanged`, `switchModeRequested`, `blockActionRequested`, `charac
 
 ## 3. HTTP v1
 
-| Método/rota | Entrada | Resposta |
-|---|---|---|
-| POST `/api/v1/shares` | `{program: ProgramDocument, pngBase64: string}` | 201 `{data: ShareEntry}`; `Location` do recurso |
-| GET `/api/v1/shares?cursor=...&limit=...` | cursor opaco, limit 1–50 (padrão 20) | 200 `{data: SharePage}` |
-| GET `/api/v1/shares/:id` | UUID válido | 200 `{data: ShareEntry}` |
-| GET `/api/v1/shares/:id/preview.png` | UUID válido | PNG reencodado, tipo fixo, `nosniff` |
-| GET `/api/health` | nenhuma | 200 `{status:"ok"}`, sem detalhes internos |
+| Método/rota                               | Entrada                                         | Resposta                                        |
+| ----------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| POST `/api/v1/shares`                     | `{program: ProgramDocument, pngBase64: string}` | 201 `{data: ShareEntry}`; `Location` do recurso |
+| GET `/api/v1/shares?cursor=...&limit=...` | cursor opaco, limit 1–50 (padrão 20)            | 200 `{data: SharePage}`                         |
+| GET `/api/v1/shares/:id`                  | UUID válido                                     | 200 `{data: ShareEntry}`                        |
+| GET `/api/v1/shares/:id/preview.png`      | UUID válido                                     | PNG reencodado, tipo fixo, `nosniff`            |
+| GET `/api/health`                         | nenhuma                                         | 200 `{status:"ok"}`, sem detalhes internos      |
 
 Erro JSON: `{error:{code:string,message:string}}`; mensagens legíveis em pt-BR, sem stack/path interno. Códigos HTTP: 400 dados/ID/cursor inválidos; 403 origem estrangeira; 404 inexistente; 405 método; 413 tamanho; 415 tipo; 422 PNG/documento inválido; 429 frequência; 503 quota/ocupação/armazenamento indisponível; 500 falha inesperada. Método não permitido retorna 405. Listagem nunca revela diretórios, arquivos temporários ou caminhos físicos.
 
-Limites iniciais: corpo JSON até 3 MiB; PNG decodificado até 2 MiB e 2048×2048; fonte UTF-8 até 20 KiB; personagem da allowlist; propriedades desconhecidas rejeitadas. Valores finitos, strings limitadas e formato conhecido. LOGO sintaticamente inválido pode ser salvo como texto (rascunho); backend não o executa. Cliente avisa ao abrir/rodar.
+Limites iniciais: corpo JSON até 3 MiB; PNG decodificado até 2 MiB e 2048 × 2048; fonte UTF-8 até 20 KiB; personagem da allowlist; propriedades desconhecidas rejeitadas. Valores finitos, strings limitadas e formato conhecido. LOGO sintaticamente inválido pode ser salvo como texto (rascunho); backend não o executa. Cliente avisa ao abrir/rodar.
 
 Escrita: inicialmente 5 POST/minuto por IP, com limite global de concorrência 2 para imagens; ajustar justificadamente se uso de escola por NAT exigir. Leitura paginada. Quota de dados configurável (referência 250 MiB; confirmar espaço/backup antes do deploy), sem apagar obras antigas para liberar espaço automaticamente. Tamanhos são verificados antes e após decodificação; prevenir bombas de imagem.
 
@@ -183,22 +191,26 @@ Request body limitado também no proxy. Origem pública configurada; CORS same-o
 
 ## Materialização na T-062
 
-`core/common` expõe Result/Diagnostic/Span/RGB e helpers `succeed`/`fail` (falha exige pelo menos um diagnóstico). `core/program` expõe tipos e fábrica `createBlockId(unknown): Result<BlockId>`: 1–128 caracteres ASCII alfanuméricos/hífen/sublinhado, iniciando com alfanumérico, sem normalização. IDs não são gerados aleatoriamente no core; unicidade/parentesco serão validados pelo editor.
+`core/common` expõe Result/Diagnostic/Span/RGB e helpers `succeed`/`fail` (falha exige pelo menos um diagnóstico). `core/program` expõe tipos e fábrica `createBlockId(unknown): Result<BlockId>`: 1–128 caracteres ASCII alfanuméricos/hífen/sublinhado, iniciando com alfanumérico, sem normalização. IDs não são gerados aleatoriamente no core; conversor/editor validam unicidade, parentesco, ciclos e profundidade nas fronteiras.
 
-As três assinaturas de conversão acima formam a interface `ConversionService`; nenhuma função vazia ou conversão parcial é publicada na fundação. Portas de aplicação estão em application/index.ts. Schemas Zod em shared/index.ts validam envelope estrito, UTF-8 (não número de caracteres), 21 personagens, UUID/página/limites e vínculo da URL relativa de prévia ao mesmo UUID. Validação estrutural de base64 não afirma que o conteúdo é PNG válido: essa validação e reencode são obrigação da T-065.
-
+As três assinaturas de conversão acima formam a interface `ConversionService`; as três funções têm implementação real; nenhuma conversão parcial é publicada. Portas de aplicação estão em application/index.ts. Schemas Zod em shared/index.ts validam envelope estrito, UTF-8 (não número de caracteres), 21 personagens, UUID/página/limites e vínculo da URL relativa de prévia ao mesmo UUID. Validação estrutural de base64 não afirma que o conteúdo é PNG válido: essa validação e reencode são realizados no servidor com sharp.
 
 A integração T-063/T-066 acrescenta `Runner.clear()` e `Runner.setSpeed()` como operações explícitas. Limpar coordena cancelamento e reinício dentro do dono da sessão, evitando que UI limpe apenas o canvas e deixe variáveis antigas. Velocidade atua no agendamento, sem reconstruir tartaruga. O documento fonte não pertence ao runner.
 
+T-065 materializa limites adicionais do processo: até 32 operações de disco pendentes (incluindo ativa), duas criações de imagem sem fila e uma única instância sob trava exclusiva. O resumo privado summary.json é publicado no mesmo rename de program.json/preview.png; evita carregar fonte/imagens para paginar, sem mudar DTOs públicos. Código inesperado de erro é registrado sem conteúdo recebido ou caminhos.
 
-T-065 materializa limites adicionais do processo: até32 operações de disco pendentes (incluindo ativa), duas criações de imagem sem fila e uma única instância sob trava exclusiva. O resumo privado summary.json é publicado no mesmo rename de program.json/preview.png; evita carregar fonte/imagens para paginar, sem mudar DTOs públicos. Código inesperado de erro é registrado sem conteúdo recebido ou caminhos.
-
-
-`BodyTarget.index` identifica um encaixe entre irmãos na árvore **anterior à remoção**. Há length+1 encaixes; mover um item para índice posterior no mesmo corpo desconta a remoção uma única vez. A UI pode usar o mesmo destino para inserir ou mover; conversor valida e ajusta atomicamente, sem depender de DOM.
-
+`BodyTarget.index` identifica um encaixe entre irmãos na árvore **anterior à remoção**. Há `length + 1` encaixes; mover um item para índice posterior no mesmo corpo desconta a remoção uma única vez. A UI pode usar o mesmo destino para inserir ou mover; conversor valida e ajusta atomicamente, sem depender de DOM.
 
 ## Materialização na T-064
 
 `core/program` publica `sourceToBlocks`, `editBlocks` e `blocksToSource` como funções puras compatíveis com `ConversionService`. Uma edição aplica patches na fonte e reanalisa o resultado antes de confirmar árvore/fonte/revisão juntos. A fonte sem edição retorna exatamente como recebida; comentários internos ambíguos causam recusa explícita. Chamadas sem argumentos podem referir procedimentos da sessão sem exigir definição no mesmo documento. Não há bloco genérico de código.
 
 A fronteira reconstrói dados recebidos, verifica IDs, ciclos, profundidade, orçamento e correspondência à fonte. A importação offline fica em `infrastructure/legacy-import`: CP7 vira dados inertes auditados contra o TXT canônico. Os 34 documentos e PNGs derivados têm manifesto; originais e hashes permanecem preservados. Os relatórios da T-064 descrevem a única divergência TXT/CP7 e os limites da comparação.
+
+## Fronteiras integradas na T-067
+
+`createHttpShareStore()` implementa `ShareStore` com endpoints relativos fixos, `credentials: omit`, recusa de redirects e validação do envelope estrito `{data: ...}`. O ID de load precisa corresponder ao solicitado; a URL de prévia deve ser local e vinculada ao mesmo UUID. Resposta JSON é limitada a 256 KiB e UTF-8 válido; deadline de 15 s cobre fetch/leitura e o finally aborta a requisição em todos os caminhos. Falhas retornam Result e não alteram o documento do chamador.
+
+A UI abre `?share` sem executar código. Prévia PNG é validada antes da troca: até 2 MiB, dimensões até 2048 × 2048, assinatura/decode e rota relativa conhecida, sem redirect. Timeout de 10 s cobre fetch/leitura; encerramento aborta o corpo. Resposta tardia não substitui silenciosamente uma revisão editada. Exportar a prévia usa seu Blob local; nova execução/Limpar a descarta. Publicação requer gesto explícito com aviso de conteúdo público.
+
+A CLI offline `import-examples <backup-absoluto-novo>` usa exclusivamente os derivados conhecidos do artefato da API, sob trava e backup prévio. Journal reserva IDs estáveis e permite retomar sem sobrescrever obras; não há importação automática ao iniciar o servidor nem endpoint público de importação. Detalhes de falhas/recuperação em [MIGRACAO](evidencias/t-067/MIGRACAO.md).

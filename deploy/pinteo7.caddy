@@ -1,0 +1,21 @@
+# Candidato de site isolado. Importar na configuração existente após inspeção/go.
+pinteo7.instadev.com.br {
+	encode zstd gzip
+	@api path /api /api/*
+	handle @api {
+		request_body {
+			max_size 3145728
+		}
+		reverse_proxy 127.0.0.1:5178 {
+			header_up X-Forwarded-For {http.request.remote.host}
+			header_up -Forwarded
+			header_up -X-Forwarded-Host
+		}
+	}
+	handle {
+		root * /srv/pinteo7/current/dist/web
+		@entry path / /index.html
+		header @entry Cache-Control "no-cache"
+		file_server
+	}
+}

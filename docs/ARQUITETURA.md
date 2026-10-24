@@ -1,6 +1,6 @@
-# Arquitetura do refactor
+# Arquitetura do Pinte o 7
 
-Status: direção aceita em 23/10/2026; contratos são especificação a materializar na T-062, não código existente. Layout v6 aprovado na T-061 e integrado pelo PR #5. T-062 integrada materializou os contratos; T-063 entregou motor/runner/Canvas e T-065 a API. T-064 materializa conversão e importação segura, e T-066 materializa a UI; integração final permanece T-067. Complementa o PRD e substitui as escolhas conflitantes da pesquisa de setembro.
+Estado em 24/10/2026: implementação integrada até T-067 (`ef680594`), versão 1.0.0 registrada em `f844d71`. Layout v6 aprovado na T-061; T-062 estabeleceu fundação/caracterização, T-063 motor/runner/Canvas, T-064 conversão/importação, T-065 API, T-066 UI e T-067 composição/migração reais. Complementa o PRD e mantém as decisões de outubro, substituindo escolhas conflitantes da pesquisa histórica. Produto pronto localmente; publicação ainda não feita, sujeita ao go da T-069. QA final de release da T-068 é registrado separadamente.
 
 ## 1. Estrutura e dependências
 
@@ -18,7 +18,7 @@ src/
   server/           HTTP, validação, armazenamento e operação administrativa
   shared/           schemas e DTOs de programa/compartilhamento
 tests/              fixtures, unitários, integração e E2E
-public/             apenas assets publicáveis com licença
+web/                entrada Vite; assets locais entram por imports autorizados
 design/prototipo/    estudo visual separado do produto
 docs/               produto, contratos, decisões, evidências e referência
 ```
@@ -35,21 +35,23 @@ docs/               produto, contratos, decisões, evidências e referência
 
 Função pura para converter programa, validar drop ou calcular geometria. Classe/objeto com ciclo de vida para editor, canvas, runner e arquivos. Interface quando existe fronteira de IO, fake de teste ou implementação alternativa concreta; não criar `IService` para toda função.
 
-Composição no bootstrap injeta editor/renderizador/storage. Sem service locator, container DI, herança de componentes ou barramento global. Estado do bloco não mora no DOM; JSX renderiza dados. Exemplo a eliminar: os quatro handlers de drop duplicados e `data-*` como fonte de verdade em `js/pinteo7.js`.
+Composição no bootstrap injeta editor/renderizador/storage. Sem service locator, container DI, herança de componentes ou barramento global. Estado do bloco não mora no DOM; JSX renderiza dados. A UI nova usa o modelo tipado para edição; os handlers e `data-*` de `js/pinteo7.js` permanecem apenas no legado caracterizado.
 
 Padrões: Interpreter para LOGO; catálogo de comandos; Command para operações da tartaruga; Adapter para canvas/editor/API/CP7; assinaturas de eventos específicas do runner. Strategy somente nas portas que tenham consumidor concreto. Não implementar SVG, plugins ou repositório genérico por antecipação.
 
 ## 3. Motor e execução
 
-Portar Papert preservando gramática, aliases, mensagens, semente determinística e semântica caracterizada. Primeiro portar fielmente, depois tornar a execução cooperativa em commit separado. Bugs conhecidos têm caso de referência e decisão explícita; corrigir defeito comprovado com teste dedicado, sem tratá-lo como requisito de produto.
+Papert foi portado em etapas separadas: porte tipado confrontado ao harness real dos 34 exemplos, seguido de cooperatividade e correções documentadas. Gramática, aliases, semente determinística e semântica de sessão têm testes; bugs caracterizados e correções ficam em [decisões do motor](evidencias/t-063/DECISOES.md). Mensagens novas de diagnóstico são em pt-BR, com spans quando disponíveis. Não tratar defeito comprovado como requisito de produto.
 
 O avaliador cede controle em passos de avaliação e iterações, inclusive sem comando de tartaruga. Um generator apenas em `forward` não atende Q05. Runner consome passos com orçamento de tempo e agenda nova fatia; canvas anima operações em ordem. Sem pausa/step nesta release. O caminho síncrono usado em testes drena o mesmo avaliador com limite, sem segundo interpretador.
 
 Contratos distinguem execução do programa de desenho pendente: `running` só termina quando operações aceitas terminam de desenhar. Cancelar invalida callbacks da execução anterior, esvazia sua fila e preserva o documento fonte. A caracterização fixa o comportamento de estado da tartaruga, variáveis/procedimentos entre execuções e da ação Limpar; não resetar implicitamente ao trocar aba ou velocidade.
 
-Limites iniciais configuráveis: 100 mil passos de avaliação, 100 mil operações de desenho, 20 KiB de saída textual e profundidade de procedimento 200, mais limites de entrada do contrato. Confirmar que todos os exemplos cabem. Ajuste justificado é decisão técnica documentada. Scheduler usa orçamento aproximado de 8 ms por fatia; teste de parada usa limite de resposta do PRD, não precisão artificial de frames.
+Limites configuráveis por execução: 100 mil passos, 100 mil operações de desenho, 100 mil itens de listas alocados, 20 KiB de saída textual e profundidade de procedimento 200; fonte até 20 KiB UTF-8. Os 34 exemplos cabem nos limites padrão. Coerções, cópias e crescimento de listas também consomem orçamento; números e geometria não finitos são recusados. Scheduler usa orçamento aproximado de 8 ms por fatia; testes de parada observam resposta inferior a 250 ms, inclusive laços sem desenho.
 
-Tartaruga calcula geometria em coordenadas lógicas do palco legado (500×500); redimensionar altera transformação de apresentação e devicePixelRatio, não o programa ou suas coordenadas. Canvas desenha; sprite HTML acompanha posição/orientação. Log de operações permite redesenho, sem entregar undo ou SVG agora.
+A unidade visual desta release é o comando: lenta aguarda 90 ms, normal 12 ms e rápida processa lotes com espera de 1 ms. Velocidade muda agendamento, sem alterar geometria/estado. O legado segmentava movimentos em passos de 1 px; esta entrega não promete interpolação contínua. Essa diferença foi aceita e documentada, preservando cancelamento e log simples.
+
+Tartaruga calcula geometria em coordenadas lógicas do palco legado (500 × 500); redimensionar altera transformação de apresentação e devicePixelRatio, não o programa ou suas coordenadas. Canvas desenha; sprite HTML acompanha posição/orientação. Log de operações permite redesenho, sem acrescentar controles de undo na UI ou exportação SVG.
 
 ## 4. Programa, blocos e fonte de verdade
 
@@ -61,7 +63,7 @@ Ao editar blocos, aplicar função pura → gerar nova fonte preservando coment�
 
 Comentários associados a um bloco acompanham movimentos; comentários de programa permanecem. Exclusão de bloco preserva comentários como texto solto adjacente. Se não for possível preservar um trecho, rejeitar a edição e manter fonte/projeção anteriores. Não aceitar perder conteúdo com base em uma conversão parcial. JSON/source são tratados como dados; `eval`, `new Function` e HTML arbitrário não entram.
 
-Registro de comandos centraliza nome canônico, aliases, aridade e tipos de argumentos. Metadados visuais puros opcionais referenciam o ID (categoria, rótulo pt-BR, slots). React/ícones não entram no core. UI usa esse catálogo, conversor usa assinatura, ajuda gera tabela dele. Comando sem visual continua disponível na CLI.
+`core/logo/catalog.ts` contém o catálogo puro de 80 operações: nome canônico, aliases, aridade e categoria de execução, além dos operadores infixos. Tipos de valores são validados pelo avaliador/conversor. A paleta tipada em `ui/blocks/catalog.ts` contém 19 opções e seus valores iniciais; apresentação/slots ficam na UI. O conversor resolve aliases pelo catálogo LOGO e aceita somente formas visuais explícitas. Não há geração automática de ajuda a partir desse catálogo nesta release; alterações precisam manter catálogos, editor e documentação coerentes. React/ícones não entram no core. Comando sem visual continua disponível na CLI.
 
 ## 5. Blocos: regras
 
@@ -74,44 +76,42 @@ Inserir/mover/remover/editar são funções puras. Invariantes: IDs únicos; sem
 ## 6. React e UX
 
 ```text
-App (composição dos serviços)
-  ProgramProvider (reducer, ações, seletores)
-  WorkspacePage
-    Toolbar / CharacterPicker / HelpDialog
-    CommandPalette
-    ProgramPanel
-      ModeTabs / ConversionNotice
-      BlocksWorkspace → BlockView / ValueField / BodyDropZone
-      CodeEditor (adaptador CodeMirror)
-      RunControls / TextOutput / HistoryPanel
-    Stage (canvas + sprite)
-  GalleryPanel (listagem, abertura, paginação)
-  ShareDialog
+main.tsx (composição: LogoRunner, conversor, HTTP, createRenderer)
+  App (reducer de documento/revisão e estado de interface)
+    Paleta de comandos / seletor de personagem / controles
+    BlockWorkspace → BlockView / ValueEditor / destinos tipados
+    CodeEditor → import assíncrono do adaptador CodeMirror
+    Stage → canvas + sprite + prévia PNG validada
+    Modal → Gallery / Share / ajuda / confirmação de substituição
 ```
 
-Galeria/ajuda podem ser painéis ou páginas conforme T-061; não precisa adicionar router. Link de compartilhamento usa `/?share=<uuid>`; uma nova rota só se o layout aprovado justificar. Sobre é seção de ajuda, não uma nova frente editorial.
+Não há router nem container DI. O link `/?share=<uuid>` carrega fonte/personagem e prévia, sem executar LOGO. Antes da substituição, a composição valida resposta/ID e imagem limitada. Se o usuário já alterou o rascunho durante a rede, pede confirmação. Falha preserva fonte e desenho; fechar a galeria invalida a aplicação tardia.
 
-Componentes de apresentação recebem dados/callbacks; componentes conectados leem seletores e ações. Exemplos: `ModeTabs({mode,onChange})`, `BlockView({block,selected,onAction})`, `Stage({renderer,characterId})`, `ShareDialog({status,onSubmit,onClose})`. Adapters imperativos têm mount/dispose idempotentes e cleanup; effects só sincronizam sistemas externos. Evitar re-render por pixel/frame; canvas e filas ficam fora do reducer. Contextos separados de documento, execução e preferências reduzem atualizações amplas.
+App coordena transições síncronas no reducer e IO nos handlers/efeitos. Projeção é vinculada à revisão da fonte. Código/dados não ficam no DOM. Histórico é limitado a 100 entradas; preferências locais guardam somente personagem, velocidade e som. O catálogo de personagens é estático, com 21 IDs; não há cadastro/dados pessoais.
 
-Store: fonte/revisão; projeção ou diagnóstico; modo; personagem; velocidade; seleção; estado do runner; histórico limitado; diálogos. Estado derivável não é salvo duas vezes. Preferências locais guardam apenas personagem/velocidade/som; sem cadastro ou dados pessoais. `CharacterCatalog` é manifesto estático dos 21 assets, não serviço remoto.
+Editor e renderer têm cleanup; import tardio do CodeMirror não monta após desmontagem e recebe o draft/foco/diagnóstico atuais. Stage observa contêiner e DPR, revoga URLs de objeto e libera assinaturas/renderizador. Canvas e agendamento ficam fora de React, sem renderização por pixel. A composição é dona do runner: `pagehide` sem BFCache faz dispose; documento preservado em BFCache apenas interrompe execução.
+
+Compartilhamento é gesto explícito, com aviso de conteúdo público. A prévia recebida pode ser exportada sem executar a fonte; executar ou Limpar a descarta. Os efeitos assíncronos conferem montagem/versão antes de aplicar resultados. HTTP usa respostas limitadas e timeout; imagens são buscadas apenas em rota local conhecida, com limite de bytes/dimensões, timeout e decode antes de entrar no palco.
 
 ## 7. API, arquivos e segurança
 
 HTTP e limites em CONTRATOS. `ShareService` valida e coordena criação/listagem/leitura; `FileShareRepository` não conhece HTTP. UUID via `crypto.randomUUID`; uma pasta por compartilhado com JSON e PNG. Gravar em pasta temporária e renomear só após todos os arquivos estarem prontos, no mesmo filesystem. Listagem ignora staging; concorrência não usa um único JSON mutável global. Uma instância Node é suficiente.
 
-Validar tamanho antes de decodificar, conteúdo/dimensões PNG e reencodar com biblioteca auditada (candidata: sharp 0.35.5). Não carregar URLs recebidas nem executar programas no backend. Limitar POST por IP confiável, capacidade total de dados e filas de processamento. IP de proxy só é confiável vindo do Caddy local; não aceitar X-Forwarded-For arbitrário.
+Validar tamanho antes de decodificar, conteúdo/dimensões PNG e reencodar com sharp 0.35.5, dependência verificada. Não carregar URLs recebidas nem executar programas no backend. Limitar POST por IP confiável, capacidade total de dados e filas de processamento. IP de proxy só é confiável vindo do Caddy local; não aceitar X-Forwarded-For arbitrário.
 
-Caddy encaminha API para localhost; dados não são servidos como diretório público. Rota de preview entrega apenas PNG reencodado com tipo fixo e `nosniff`. Escrita exige Content-Type JSON e origem da aplicação quando houver header Origin; CORS não substitui validação/rate limit. API não usa cookies de autenticação; nenhuma rota pública de edição/exclusão. Remoção administrativa valida UUID e fica restrita ao usuário de operação. Logs não incluem código/conteúdo completo nem credenciais.
+Na publicação planejada, Caddy encaminhará a API para loopback; essa configuração não foi implantada nesta etapa. No desenvolvimento, Vite faz o proxy same-origin. Dados não são servidos como diretório público. Rota de preview entrega apenas PNG reencodado com tipo fixo e `nosniff`. Escrita exige Content-Type JSON e origem da aplicação quando houver header Origin; CORS não substitui validação/rate limit. API não usa cookies de autenticação; nenhuma rota pública de edição/exclusão. Remoção administrativa valida UUID e fica restrita ao usuário de operação. Logs não incluem código/conteúdo completo nem credenciais.
 
 ## 8. Migração
 
-Preservar original e fixtures por hashes antes de mover qualquer coisa. PRs curtos, sem branch longa de reescrita; legado permanece na raiz enquanto módulos novos são construídos/testados. A entrada nova de desenvolvimento pode ficar separada temporariamente; um único produto final. Não colocar a árvore toda em `public/` porque isso publicaria PHP, CP7 e fontes indevidas. Build usa allowlist de assets. Troca da entrada só na integração com paridade comprovada.
+Originais foram copiados para fixtures imutáveis com manifesto SHA-256 antes da importação; os 34 trios PNG/TXT/CP7 e os 21 personagens permanecem preservados. Papert original e UI antiga continuam disponíveis ao harness, sem runtime PHP/jQuery no produto. O build parte de `web/index.html`, com `publicDir` desativado; `dist/web` contém somente bundles e assets conhecidos, conferidos por allowlist/hash. A raiz não é webroot.
 
-CP7 é importado como estrutura inerte e limitada, com allowlist de elementos/atributos conhecidos; rejeitar scripts, handlers, URLs e estilos arbitrários. O resultado é modelo seguro e LOGO. Comparar aos TXT existentes; diferenças reais não são escondidas por snapshots atualizados automaticamente. Preservar TXT original quando for a fonte validada.
+CP7 é analisado offline como estrutura inerte e limitada: allowlist de elementos/atributos, recusa de scripts/handlers/URLs/estilos arbitrários e confronto ao TXT canônico. Diferenças estão documentadas, sem esconder divergências por atualização automática de snapshots. `--check` confere derivados; regeneração exige manutenção explícita e revisão.
+
+O build da API copia 69 derivados conhecidos (manifesto, 34 documentos e 34 PNGs) para `dist/api/examples/`. A CLI `import-examples` exige API parada, diretório externo privado, trava e backup novo verificado antes de journal/obras. Publicação é individual por staging/rename; journal permite retomada sem sobrescrever. Não há atomicidade global dos 34 itens nem promessa de durabilidade sob queda elétrica. Operação e recuperação estão em [migração T-067](evidencias/t-067/MIGRACAO.md).
 
 ## 9. Como expandir depois
 
-- Comando: definição/implementação em `core/logo`, teste e ajuda gerada; visual opcional em catálogo/conversor e testes de ida/volta.
+- Comando: catálogo/implementação em `core/logo`, testes semânticos e documentação; visual opcional exige modelo/conversor/paleta/slots e testes de ida/volta, conforme [COMANDOS](COMANDOS.md).
 - Personagem: PNG livre conforme guia, entrada no manifesto, teste do seletor; nenhuma classe nova.
 - Persistência: nova implementação da porta do repositório, reaproveitando serviço e testes de contrato; PostgreSQL só diante de necessidade concreta.
 - Alias pt-BR: registro de alias, lexer/highlight e testes; não traduzir o avaliador inteiro.
