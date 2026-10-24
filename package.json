@@ -29,7 +29,7 @@
     "docs": "typedoc",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run knip",
     "build:web": "vite build",
-    "build:api": "tsc -p tsconfig.server.json",
+    "build:api": "tsc -p tsconfig.server.json && node scripts/copy-examples.mjs",
     "dev:api": "npm run build:api && node dist/api/server/main.js",
     "admin": "npm run build:api && node dist/api/server/admin.js"
   },
