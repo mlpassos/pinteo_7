@@ -21,16 +21,20 @@ export class Turtle {
   forward(distance: number): void {
     const from = { x: this.x, y: this.y };
     const radians = (this.heading / 180) * Math.PI;
-    this.x += distance * Math.cos(radians);
-    this.y += distance * Math.sin(radians);
+    const x = this.x + distance * Math.cos(radians),
+      y = this.y + distance * Math.sin(radians);
+    if (!Number.isFinite(x) || !Number.isFinite(y))
+      throw new RangeError('Posição fora dos limites.');
     if (this.pen)
       this.emit({
         kind: 'line',
         from,
-        to: { x: this.x, y: this.y },
+        to: { x, y },
         width: this.width,
         color: this.color,
       });
+    this.x = x;
+    this.y = y;
   }
   /** Aplica comando geométrico ou configuração validada pelo interpretador. */
   execute(name: string, args: readonly number[]): void {
@@ -98,6 +102,8 @@ export class Turtle {
         this.color = [0, 0, 0];
         break;
       case 'clean':
+        this.emit({ kind: 'clear' });
+        break;
       case 'undo':
       case 'redo':
         break;

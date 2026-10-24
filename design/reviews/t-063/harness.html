@@ -1,0 +1,13 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Verificação do motor e Canvas — T-063</title>
+<style>body{font:16px system-ui;background:#fff8e8;color:#233b3b;margin:24px}button{font:inherit;padding:12px}#stage{position:relative;display:inline-block;border:6px solid #f47764;border-radius:12px;overflow:hidden;background:white}canvas{display:block}#sprite{width:32px;height:32px;pointer-events:none}pre{white-space:pre-wrap;max-width:900px}#status{font-weight:bold}</style>
+<h1>Motor Papert e Canvas real</h1><p>Harness técnico da T-063; não substitui o layout aprovado.</p><button id="stop">Parar execução</button> <span id="status">Pronto</span><p><span id="speed"></span></p><div id="stage"><canvas id="canvas" width="500" height="500"></canvas><img id="sprite" alt="Personagem"></div><pre id="report"></pre>
+<script type="module">
+import { LogoRunner } from '/src/application/runner/index.ts';
+import { createRenderer } from '/src/infrastructure/canvas/index.ts';
+const canvas=document.querySelector('#canvas'),sprite=document.querySelector('#sprite');
+const renderer=createRenderer(canvas,sprite),runner=new LogoRunner(undefined,{steps:10000000});
+let events=[],lastView,stopTarget=0;
+runner.subscribe(event=>{events.push(event);if(event.type==='draw'){lastView=event.turtle;renderer.apply(event.operations,event.turtle);}if(event.type==='state')document.querySelector('#status').textContent=event.status;});
+document.querySelector('#stop').onclick=()=>runner.stop();
+window.harness={runner,renderer,canvas,sprite,getEvents:()=>events,getView:()=>lastView,reset:()=>{runner.clear();events=[];},report:value=>{document.querySelector('#report').textContent=JSON.stringify(value,null,2);},label:value=>{document.querySelector('#speed').textContent=value;}};
+</script></html>

@@ -60,8 +60,8 @@ function tokenize(source: string): { tokens: Lexeme[]; comments: LogoComment[] }
       continue;
     }
     const patterns: readonly [Lexeme['kind'], RegExp][] = [
-      ['operator', /^(?:!=|<>|<=|>=|\+|-|\*|\/|%|<|>|=|\[|\]|\(|\)|to|end)/i],
-      ['word', /^[a-zA-Z\.]\w*\??/],
+      ['operator', /^(?:!=|<>|<=|>=|\+|-|\*|\/|%|<|>|=|\[|\]|\(|\)|to\b|end\b)/i],
+      ['word', /^[a-zA-Z][\w.]*\??/],
       ['variable', /^:[a-zA-Z]\w*/],
       ['number', /^\d+(?:\.\d+)?/],
       ['symbol', /^"[a-zA-Z]\w*/],
@@ -98,7 +98,10 @@ class LogoParser {
   constructor(
     private readonly tokens: readonly Lexeme[],
     private readonly end: number,
-  ) {}
+    signatures: ReadonlyMap<string, number>,
+  ) {
+    for (const [name, arity] of signatures) this.arities.set(name, arity);
+  }
   /** Consulta próximo token sem avançar. */
   private peek(): Lexeme | undefined {
     return this.tokens[this.cursor];
@@ -135,11 +138,22 @@ class LogoParser {
       );
     const token = this.take();
     let node: LogoNode;
-    if (token.kind === 'number')
-      node = { kind: 'number', value: Number(token.text), span: token.span };
-    else if (token.kind === 'symbol' || token.kind === 'variable')
+    if (token.kind === 'number') {
+      const value = Number(token.text);
+      if (!Number.isFinite(value)) throw new ParseFailure('Número fora dos limites.', token.span);
+      node = { kind: 'number', value, span: token.span };
+    } else if (token.kind === 'symbol' || token.kind === 'variable')
       node = { kind: token.kind, name: token.text.slice(1), span: token.span };
-    else if (token.text === '[' || token.text === '(') {
+    else if ((token.text === '-' || token.text === '+') && this.peek()?.kind === 'number') {
+      const literal = this.take();
+      if (!Number.isFinite(Number(literal.text)))
+        throw new ParseFailure('Número fora dos limites.', literal.span);
+      node = {
+        kind: 'number',
+        value: (token.text === '-' ? -1 : 1) * Number(literal.text),
+        span: { start: token.span.start, end: literal.span.end },
+      };
+    } else if (token.text === '[' || token.text === '(') {
       let name: Lexeme | undefined;
       if (token.text === '(' && this.peek()?.kind === 'word') name = this.take();
       const items = this.sequence(token.text === '[' ? ']' : ')');
@@ -165,7 +179,7 @@ class LogoParser {
       while (this.peek()?.kind === 'variable') parameters.push(this.take().text.slice(1));
       this.arities.set(name.text, parameters.length);
       const body = this.sequence('end');
-      if (body.some((item) => item.kind === 'define'))
+      if (body.some(containsDefinition))
         throw new ParseFailure('Você não pode ter um procedimento dentro do outro.', name.span);
       node = {
         kind: 'define',
@@ -190,6 +204,7 @@ class LogoParser {
     } else throw new ParseFailure(`Operador inesperado: ${token.text}`, token.span);
     if (
       token.kind !== 'operator' ||
+      node.kind === 'number' ||
       token.text === '[' ||
       token.text === '(' ||
       token.text === 'to'
@@ -214,13 +229,57 @@ class LogoParser {
 }
 
 /** Analisa sem executar; devolve fonte e comentários intactos ou diagnóstico localizado. */
-export function parseLogo(source: string): Result<ParsedLogo> {
+export function parseLogo(
+  source: string,
+  signatures: ReadonlyMap<string, number> = new Map(),
+): Result<ParsedLogo> {
+  if (utf8Length(source) > 20480)
+    return fail({ code: 'LOGO_SOURCE_LIMIT', message: 'A fonte excedeu o limite de 20 KiB.' });
   try {
     const { tokens, comments } = tokenize(source);
-    return succeed({ source, body: new LogoParser(tokens, source.length).sequence(), comments });
+    const known = new Map(signatures);
+    for (let i = 0; i < tokens.length; i++) {
+      if (tokens[i]?.text === 'to' && tokens[i + 1]?.kind === 'word') {
+        const name = tokens[i + 1]?.text;
+        if (name) {
+          let arity = 0;
+          while (tokens[i + 2 + arity]?.kind === 'variable') arity++;
+          known.set(name, arity);
+        }
+      }
+    }
+    return succeed({
+      source,
+      body: new LogoParser(tokens, source.length, known).sequence(),
+      comments,
+    });
   } catch (error) {
     if (error instanceof ParseFailure)
       return fail({ code: 'LOGO_SYNTAX', message: error.message, span: error.span });
     throw error;
+  }
+}
+
+/** Conta bytes UTF-8 sem IO, Node ou DOM, inclusive pares substitutos e caracteres isolados. */
+export function utf8Length(text: string): number {
+  let length = 0;
+  for (const char of text) {
+    const code = char.codePointAt(0) ?? 0;
+    length += code <= 0x7f ? 1 : code <= 0x7ff ? 2 : code <= 0xffff ? 3 : 4;
+  }
+  return length;
+}
+
+/** Detecta definições em qualquer corpo interno sem executar a árvore. */
+function containsDefinition(node: LogoNode): boolean {
+  switch (node.kind) {
+    case 'define':
+      return true;
+    case 'list':
+      return node.items.some(containsDefinition);
+    case 'call':
+      return node.args.some(containsDefinition);
+    default:
+      return false;
   }
 }

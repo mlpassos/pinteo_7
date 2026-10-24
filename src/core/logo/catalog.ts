@@ -74,7 +74,7 @@ export const commandCatalog: readonly CommandInfo[] = [
   { name: 'less?', arity: 2, aliases: ['lessp'], kind: 'command' },
   { name: 'greater?', arity: 2, aliases: ['greaterp'], kind: 'command' },
   { name: 'greaterequal?', arity: 2, aliases: ['greaterequalp'], kind: 'command' },
-  { name: 'lessequal?', arity: 2, aliases: ['greaterequalp'], kind: 'command' },
+  { name: 'lessequal?', arity: 2, aliases: ['lessequalp'], kind: 'command' },
   { name: 'array', arity: 1, aliases: [], kind: 'command' },
   { name: 'make', arity: 2, aliases: [], kind: 'command' },
   { name: 'global', arity: 1, aliases: [], kind: 'command' },
