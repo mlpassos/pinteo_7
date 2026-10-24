@@ -5,7 +5,10 @@
     "src/application/index.ts",
     "src/core/*/index.ts",
     "scripts/**/*.mjs",
-    "tests/**/*.test.ts"
+    "tests/**/*.test.ts",
+    "src/server/index.ts",
+    "src/server/main.ts",
+    "src/server/admin.ts"
   ],
   "project": ["src/**/*.{ts,tsx}", "tests/**/*.ts", "scripts/**/*.mjs", "*.ts", "*.mjs"],
   "ignoreExportsUsedInFile": false

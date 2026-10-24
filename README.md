@@ -15,7 +15,7 @@ Contato e sugestões: marciopassosbel [at] gmail [dot] com
 
 O projeto voltou a ser mantido em 2026 e está sendo refatorado aos poucos. Este repositório substitui o antigo `mlpassos/pinteo7`, que o GitHub bloqueou em 2019 por conter uma fonte comercial. Esta versão usa só fontes livres e personagens originais.
 
-O layout v6 foi aprovado por Márcio e integrado pelo PR #5 (`e7038fb`). A fundação TypeScript/React/Vite já está em desenvolvimento na T-062, com contratos e caracterização do Papert original. Motor novo, editor final e API ainda não estão integrados; produção não foi alterada.
+O layout v6 foi aprovado por Márcio e integrado pelo PR #5 (`e7038fb`). A fundação TypeScript/React/Vite foi integrada pelo PR #6 (`bea82feb`), com contratos e caracterização do Papert original. T-063 (motor), T-065 (API) e T-066 (interface) avançam em frentes separadas; a integração final ainda não está entregue. Produção não foi alterada.
 
 - [PRD](docs/PRD.md), [arquitetura](docs/ARQUITETURA.md) e [contratos](docs/CONTRATOS.md)
 - [Convenções](docs/CONVENCOES.md) e [regras para agentes](AGENTS.md)
@@ -50,6 +50,18 @@ A entrada temporária da fundação está em http://127.0.0.1:5177/. Não é a i
 O protótipo aprovado continua disponível com `python3 design/prototipo/preview.py` em http://127.0.0.1:8080/. Decisão visual: [LAYOUT](docs/LAYOUT.md). Playwright está configurado; E2E de produto será introduzido na T-066/T-067, sem teste trivial da tela de aviso para simular aceite.
 
 Preservação e comportamento real: [caracterização](docs/evidencias/t-062/legado.md). Os testes conferem hashes, executam os 34 exemplos no Papert original em VM com timeout efetivo e comparam a baseline. Regeneração de manifesto/baseline é operação explícita de manutenção, nunca parte de um teste.
+
+### API de compartilhamento (T-065)
+
+A API Node usa Hono e arquivos JSON/PNG privados, sem executar LOGO recebido. Após compilar, o processo escuta somente em loopback. Exemplo de desenvolvimento (dados fora do checkout):
+
+```sh
+PINTEO7_DATA_DIR=/tmp/pinteo7-dados-local PINTEO7_PUBLIC_ORIGIN=http://127.0.0.1:5177 npm run dev:api
+```
+
+`npm run build` gera `dist/web` e `dist/api` separadamente. Somente `dist/web` pode ser servido como arquivos públicos. `npm run build:api` compila o servidor; `npm run dev:api` compila e inicia, sem hot reload. Remoção e backup usam `npm run admin -- remove <UUID>` ou `npm run admin -- backup <diretório-absoluto-novo>`, com a API parada e as mesmas variáveis de configuração. Dados não acompanham rollback de código. Detalhes: [API e operação local](docs/evidencias/t-065/API.md).
+
+A UI da T-066 usa a porta5180 e proxy local para5178; ao integrá-la, configure a origem como `http://127.0.0.1:5180`. Não habilite confiança em proxy no desenvolvimento direto; na publicação Caddy deverá sobrescrever o IP encaminhado conforme o plano revisado.
 
 ## Como contribuir
 
