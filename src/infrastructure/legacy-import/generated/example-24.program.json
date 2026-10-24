@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nmake \"tamanho 4\nmake \"nome 4\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright divide 360 :nome\n end\nrepeat 200 [\nlado\nmake \"nome sum :nome 1\n] ",
+  "characterId": "tartaruga"
+}

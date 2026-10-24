@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nmake \"tam 50\nrepeat 12 [\nrepeat 4 [\nforward :tam\nright 90\nrepeat 3 [\nforward :tam\nleft 120\n]]left 30\n] ",
+  "characterId": "tartaruga"
+}

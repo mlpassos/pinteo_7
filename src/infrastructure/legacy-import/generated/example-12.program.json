@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nto procedimento\nrepeat 5 [\nforward 100\nright 72\n]end\nprocedimento\n ",
+  "characterId": "tartaruga"
+}

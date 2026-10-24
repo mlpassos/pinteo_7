@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nmake \"tamanho 75\nmake \"lados 8\nto poligonos\nrepeat :lados [\nforward :tamanho\nleft divide 360 :lados\n]end\npoligonos\n ",
+  "characterId": "tartaruga"
+}

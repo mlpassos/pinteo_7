@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nrepeat 360 [\nforward 1\nleft 1\n]repeat 359 [\nforward 1\nright 1\n]repeat 90 [\nforward 4\nleft 4\n] ",
+  "characterId": "tartaruga"
+}

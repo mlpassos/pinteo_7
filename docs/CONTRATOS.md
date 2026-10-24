@@ -1,6 +1,6 @@
 # Contratos de implementação
 
-Especificação de 23/10/2026, materializada na T-062 em src/core/{common,program,turtle}, src/application e src/shared. Motor, conversor e backend continuam sendo implementações futuras destas fronteiras. Ajustes de implementação são permitidos se preservarem PRD e consumidores, com alteração coordenada da documentação.
+Especificação de 23/10/2026, materializada na T-062 em src/core/{common,program,turtle}, src/application e src/shared. Motor/runner/Canvas foram materializados na T-063 e backend na T-065. T-064 materializa a conversão pura e a importação segura; T-066 materializa a interface. A integração completa dos serviços cabe à T-067. Ajustes de implementação são permitidos se preservarem PRD e consumidores, com alteração coordenada da documentação.
 
 ## 1. Tipos do programa
 
@@ -195,3 +195,10 @@ T-065 materializa limites adicionais do processo: até32 operações de disco pe
 
 
 `BodyTarget.index` identifica um encaixe entre irmãos na árvore **anterior à remoção**. Há length+1 encaixes; mover um item para índice posterior no mesmo corpo desconta a remoção uma única vez. A UI pode usar o mesmo destino para inserir ou mover; conversor valida e ajusta atomicamente, sem depender de DOM.
+
+
+## Materialização na T-064
+
+`core/program` publica `sourceToBlocks`, `editBlocks` e `blocksToSource` como funções puras compatíveis com `ConversionService`. Uma edição aplica patches na fonte e reanalisa o resultado antes de confirmar árvore/fonte/revisão juntos. A fonte sem edição retorna exatamente como recebida; comentários internos ambíguos causam recusa explícita. Chamadas sem argumentos podem referir procedimentos da sessão sem exigir definição no mesmo documento. Não há bloco genérico de código.
+
+A fronteira reconstrói dados recebidos, verifica IDs, ciclos, profundidade, orçamento e correspondência à fonte. A importação offline fica em `infrastructure/legacy-import`: CP7 vira dados inertes auditados contra o TXT canônico. Os 34 documentos e PNGs derivados têm manifesto; originais e hashes permanecem preservados. Os relatórios da T-064 descrevem a única divergência TXT/CP7 e os limites da comparação.

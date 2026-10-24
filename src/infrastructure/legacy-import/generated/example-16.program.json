@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nmake \"tam 2\nto ce\nrepeat 180 [\nforward :tam\nright 1\n]end\nleft 90\nce\npenup\nforward 20\npendown\nmake \"tam 1\nce\nright 180\nce\nright 90\nforward 230\nright 90\npenup\nforward 100\nright 90\npendown\nforward 230\n ",
+  "characterId": "tartaruga"
+}

@@ -61,7 +61,7 @@ function tokenize(source: string): { tokens: Lexeme[]; comments: LogoComment[] }
     }
     const patterns: readonly [Lexeme['kind'], RegExp][] = [
       ['operator', /^(?:!=|<>|<=|>=|\+|-|\*|\/|%|<|>|=|\[|\]|\(|\)|to\b|end\b)/i],
-      ['word', /^[a-zA-Z][\w.]*\??/],
+      ['word', /^(?:[a-zA-Z][\w.]*|\.\w*)\??/],
       ['variable', /^:[a-zA-Z]\w*/],
       ['number', /^\d+(?:\.\d+)?/],
       ['symbol', /^"[a-zA-Z]\w*/],

@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nsetx 200\nsety 200\nrepeat 8 [\nrepeat 5 [\nright 72\nforward 100\n]backward 20\nleft 45\n] ",
+  "characterId": "tartaruga"
+}

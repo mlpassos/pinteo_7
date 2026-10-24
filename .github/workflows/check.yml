@@ -20,6 +20,7 @@ jobs:
       - run: npm audit
       - run: npm run check
       - run: npm test
+      - run: node scripts/legacy/import-examples.mjs --check
       - run: npm run build
       - run: npm run docs
       - run: node scripts/check-artifact.mjs

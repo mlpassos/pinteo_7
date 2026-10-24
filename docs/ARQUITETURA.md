@@ -1,6 +1,6 @@
 # Arquitetura do refactor
 
-Status: direção aceita em 23/10/2026; contratos são especificação a materializar na T-062, não código existente. Layout v6 aprovado na T-061 e integrado pelo PR #5. A T-062 materializa os contratos e a fundação, antes das implementações. Complementa o PRD e substitui as escolhas conflitantes da pesquisa de setembro.
+Status: direção aceita em 23/10/2026; contratos são especificação a materializar na T-062, não código existente. Layout v6 aprovado na T-061 e integrado pelo PR #5. T-062 integrada materializou os contratos; T-063 entregou motor/runner/Canvas e T-065 a API. T-064 materializa conversão e importação segura, e T-066 materializa a UI; integração final permanece T-067. Complementa o PRD e substitui as escolhas conflitantes da pesquisa de setembro.
 
 ## 1. Estrutura e dependências
 

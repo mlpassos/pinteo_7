@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nmake \"r 20\nrepeat 3 [\nforward product :r 6\nleft 120\n]penup\nforward product :r 3\npendown\nleft 90\nforward product :r 5.19\npenup\nleft 180\nforward product :r 3.46\nleft 90\npendown\nrepeat 360 [\nforward divide :r 10\nright 1\n] ",
+  "characterId": "tartaruga"
+}

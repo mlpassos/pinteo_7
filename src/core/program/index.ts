@@ -77,8 +77,7 @@ export type Projection = Readonly<{
   comments: readonly CommentAnchor[];
 }>;
 
-/** Índice de inserção em um corpo; parentId nulo indica a raiz do programa. */
-/** Encaixe na árvore anterior à edição; mover no mesmo corpo ajusta índice após remoção. */
+/** Encaixe na árvore anterior à edição; parentId nulo indica a raiz; mover ajusta a remoção. */
 export type BodyTarget = Readonly<{ parentId: BlockId | null; index: number }>;
 
 /** Edição atômica; replace deve conservar a identidade do alvo. */
@@ -88,7 +87,7 @@ export type BlockAction =
   | Readonly<{ type: 'remove'; id: BlockId }>
   | Readonly<{ type: 'replace'; id: BlockId; block: Block }>;
 
-/** Contrato puro da conversão futura; nenhuma implementação parcial é exposta. */
+/** Porta pura da conversão integral; fonte e comentários são preservados ou a operação falha. */
 export interface ConversionService {
   /** Analisa sem executar; falha se qualquer trecho não puder ser representado. */
   sourceToBlocks(source: string, revision: number): Result<Projection>;
@@ -97,3 +96,6 @@ export interface ConversionService {
   /** Retorna a fonte exata sem edição; preserva os comentários quando editada. */
   blocksToSource(projection: Projection): Result<string>;
 }
+
+export { sourceToBlocks, blocksToSource } from './conversion.js';
+export { editBlocks } from './editing.js';
