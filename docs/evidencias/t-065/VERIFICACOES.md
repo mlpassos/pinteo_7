@@ -40,3 +40,12 @@ Não houve teste contra filesystem cheio fisicamente, falha elétrica, host púb
 A listagem verifica resumo e existência/tamanho de fonte/PNG; conteúdo JSON corrompido é diagnosticado ao abrir, sem omitir/apagar o original. Paginação não carrega todas as imagens/fontes, mas ainda percorre metadados da coleção; quota inicial e limite de fila tornam esse custo explícito.
 
 Auditoria completa/dependências, checks globais, revisão técnica do lote e PR/CI são responsabilidade do coordenador, com seus respectivos registros. Esta evidência não afirma aprovação de testes ainda inexistentes de frontend/conversão/motor, nem autorização de produção.
+
+
+## Validação global e revisão do coordenador
+
+No lote `c4e09c6`, `npm run check` passou (tipos, core sem DOM, lint zero avisos, Prettier, Knip). `npm test` aprovou146 testes em seis arquivos, incluindo53 da API. Build web/API separados, TypeDoc sem avisos, allowlist do artefato web e git diff --check passaram. Audit completo zero e assinaturas estão em DEPENDENCIAS.md. A entrada web deste PR permanece a fundação; não é aceite da interface final.
+
+Revisão dirigida examinou validação HTTP/socket, filesystem, quota, paginação e limites. Corrigidos: expansão do JSON ao escapar fonte, leitura de todas as imagens/fontes a cada página, fila de disco ilimitada e coerência de resumo obrigatório ao abrir. Não se alteraram originais nem se executou LOGO recebido. A semântica Node24 de cp com errorOnExist/force:false também foi conferida contra destino vazio já existente: recusado. Nenhum bloqueio técnico restante observado no lote.
+
+CI remota/merge serão registrados na fila com SHA e run efetivos; este texto não presume seu resultado.
