@@ -1,5 +1,6 @@
 {
   "entry": [
+    "src/ui/main.tsx",
     "src/shared/index.ts",
     "src/application/index.ts",
     "src/core/*/index.ts",
