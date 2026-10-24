@@ -10,7 +10,7 @@ Base: T-061 integrada em `e7038fb`, PR #5. V6 aprovada por Márcio com “Aceito
 | `npm audit` completo | Zero vulnerabilidades, incluindo devDependencies |
 | `npm audit signatures` | 239 assinaturas e 98 atestados verificados |
 | `npm run check` | Tipos strict, core sem DOM, ESLint tipado/hooks/JSDoc, Prettier e Knip aprovados |
-| `npm test` | 89 testes, cinco arquivos: 34 exemplos reais, patrimônio, semântica/seleção, contratos/schemas e fronteiras |
+| `npm test` | 93 testes, cinco arquivos: 34 exemplos reais, patrimônio, semântica/seleção, contratos/schemas e fronteiras |
 | `npm run build` | Entrada Vite/React gerada em dist/web, publicDir desativado |
 | `node scripts/check-artifact.mjs` | Apenas HTML e bundles allowlisted; sem PHP/CP7/árvore legada |
 | `npm run docs` | TypeDoc gerado em docs/reference, sem erros/avisos |
@@ -32,6 +32,8 @@ Os 129 arquivos preservados e as capturas integrais dos 34 exemplos permitem com
 Uma revisão técnica independente do lote encontrou imports por diretório contornando restrições de camada. A regra passou a cobrir diretório e descendentes; teste usa ESLint real para oito imports proibidos e um import puro permitido. Também se bloqueiam módulos externos no core, inclusive `fs` sem prefixo `node:`.
 
 A inspeção de navegador encontrou a entrada fora de web/ com URL incorreta e depois montagem React duplicada por autorreferência do Fast Refresh. Alias `/src` resolve o caminho da entrada; separar componente e bootstrap eliminou a execução dupla. Confirmação em contexto de navegador novo sem erros/avisos; não se ocultou o warning.
+
+A primeira execução Linux da CI (run 40057784330) encontrou diferenças trigonométricas da ordem de 1e-14 entre arquiteturas em três desenhos. A comparação passou a aceitar somente ruído numérico absoluto menor que 5e-10, mantendo estrutura, texto, ordem e tipos estritos. Quatro testes adicionais demonstram aceitação do ruído e rejeição de diferenças reais; as capturas originais não foram regeneradas. Também se proíbem eval, execução implícita de strings e Function no código novo.
 
 ## Limites
 

@@ -29,6 +29,29 @@ function readExamples(): { id: string; result: unknown }[] {
   });
 }
 
+/** Reconhece objetos JSON antes de ler propriedades de uma fixture externa. */
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+/** Converte somente números finitos em comparação absoluta subpixel (<5e-10).
+ * Estrutura, ordem, strings, chaves e demais tipos continuam sujeitos a toStrictEqual.
+ */
+function withSubpixelTolerance(value: unknown): unknown {
+  if (typeof value === 'number') {
+    if (!Number.isFinite(value)) throw new Error('Número não finito na baseline');
+    return expect.closeTo(value, 9);
+  }
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
+  if (Array.isArray(value)) return value.map((item: unknown) => withSubpixelTolerance(item));
+  if (isRecord(value)) {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [key, withSubpixelTolerance(item)]),
+    );
+  }
+  throw new Error('Valor não JSON na baseline');
+}
+
 const examples = readExamples();
 
 describe('patrimônio e Papert real', () => {
@@ -77,7 +100,7 @@ describe('patrimônio e Papert real', () => {
 
   it.each(examples)('reproduz desenho, saída, erros e tartaruga de $id', ({ id, result }) => {
     const source = readFileSync(`${root}compartilhados-code/${id}.txt`, 'utf8');
-    expect(runLegacy([{ kind: 'run', source }], 5000)).toEqual(result);
+    expect(runLegacy([{ kind: 'run', source }], 5000)).toStrictEqual(withSubpixelTolerance(result));
   });
 
   it('interrompe efetivamente loop síncrono sem desenho no timeout da VM', () => {
@@ -97,6 +120,57 @@ describe('patrimônio e Papert real', () => {
       'Velocidade inválida',
     );
     expect(() => runLegacy([], 0)).toThrow('Timeout inválido');
+  });
+});
+
+describe('comparação numérica portátil da baseline', () => {
+  const baseline = {
+    operations: [{ path: [22.171488964922183, 60.47371112087105], kind: 'line' }],
+    snapshots: [{ operations: 1, output: 'texto' }],
+  };
+
+  it('aceita somente ruído subpixel das operações trigonométricas entre arquiteturas', () => {
+    expect({
+      operations: [{ path: [22.17148896492219, 60.47371112087106], kind: 'line' }],
+      snapshots: [{ operations: 1, output: 'texto' }],
+    }).toStrictEqual(withSubpixelTolerance(baseline));
+  });
+
+  it('recusa diferenças geométricas acima de 1e-9', () => {
+    expect(() => {
+      expect({
+        ...baseline,
+        operations: [{ path: [22.171488964922183 + 2e-9, 60.47371112087105], kind: 'line' }],
+      }).toStrictEqual(withSubpixelTolerance(baseline));
+    }).toThrow();
+  });
+
+  it('recusa mudanças de contador, texto, ordem, tipo, comprimento ou chaves', () => {
+    const variants: unknown[] = [
+      { ...baseline, snapshots: [{ operations: 2, output: 'texto' }] },
+      { ...baseline, snapshots: [{ operations: 1, output: 'outro texto' }] },
+      {
+        ...baseline,
+        operations: [{ path: [60.47371112087105, 22.171488964922183], kind: 'line' }],
+      },
+      {
+        ...baseline,
+        operations: [{ path: ['22.171488964922183', 60.47371112087105], kind: 'line' }],
+      },
+      { ...baseline, operations: [] },
+      { ...baseline, extra: undefined },
+      { operations: baseline.operations },
+    ];
+    for (const variant of variants) {
+      expect(() => {
+        expect(variant).toStrictEqual(withSubpixelTolerance(baseline));
+      }).toThrow();
+    }
+  });
+
+  it('recusa valores externos que não são JSON numérico finito', () => {
+    expect(() => withSubpixelTolerance(Number.NaN)).toThrow('Número não finito');
+    expect(() => withSubpixelTolerance(undefined)).toThrow('Valor não JSON');
   });
 });
 

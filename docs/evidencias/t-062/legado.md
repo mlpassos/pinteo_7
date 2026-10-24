@@ -98,3 +98,11 @@ Tabela derivada das capturas completas; operação é uma chamada observada `str
 - Duas gerações consecutivas de `examples.json.gz` produziram SHA-256 idêntico: `82a6e590b0aa176f249480edf09628b4f70ce458f39db76cda31f8e4d8b3acf3`. Testes **não** regeneram o baseline.
 
 Os checks globais da fundação continuam sob responsabilidade do coordenador; esta seção atesta somente os comandos realmente executados nesta frente.
+
+## Compatibilidade numérica da CI — PR #6
+
+A primeira execução Linux x64 do PR #6 revelou três fixtures com diferenças da ordem de `1e-14` em coordenadas calculadas com seno/cosseno, comparadas ao macOS ARM64 da geração. Exemplo: `22.171488964922183` versus `22.17148896492219` e `60.47371112087105` versus `60.47371112087106`. A baseline original **não foi regenerada**.
+
+A comparação integral agora usa `toStrictEqual` com `expect.closeTo(numero, 9)` somente nas folhas numéricas finitas: tolerância absoluta menor que `5e-10`, mais restritiva que o teto de `1e-9`. Isso absorve diferenças de implementação de ponto flutuante entre arquiteturas sem arredondar ou substituir os dados registrados. Estrutura, ordem, comprimento, chaves (inclusive chaves extras com valor undefined), tipos, saída textual e erros continuam comparados estritamente.
+
+Quatro testes dedicados demonstram: aceitação dos dois deltas observados; rejeição de diferença geométrica de `2e-9`; rejeição de contador diferente, texto, ordem, tipo, comprimento e chaves diferentes; rejeição de NaN e dados não JSON. Resultado local após ajuste: **56 testes passaram**, `npm run typecheck`, `npm exec eslint -- tests/legacy` e `npm exec prettier -- --check tests/legacy` passaram. A nova execução Linux da CI deve ser acompanhada pelo coordenador; não é declarada aprovada por este resultado local.

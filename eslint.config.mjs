@@ -61,6 +61,9 @@ export default tseslint.config(
     plugins: { 'react-hooks': reactHooks, jsdoc },
     rules: {
       ...reactHooks.configs.flat.recommended.rules,
+      'no-eval': 'error',
+      'no-implied-eval': 'error',
+      'no-new-func': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
