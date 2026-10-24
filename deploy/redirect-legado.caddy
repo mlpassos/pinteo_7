@@ -1,0 +1,5 @@
+# Inserir DENTRO do bloco existente instadev.com.br, antes dos redir de
+# normalização. Não substituir o Caddyfile global por este fragmento.
+# Destino fixo: links legados chegam à entrada atual, sem reativar PHP/CP7.
+@pinteo7Legado path /pinteo7 /pinteo7/*
+redir @pinteo7Legado https://pinteo7.instadev.com.br/ 301

@@ -4,7 +4,7 @@ Leia também AGENTS.md do workspace pai. Comunicação, documentação e commits
 
 ## Estado e fontes
 
-Em 24/10/2026, motor, conversão/importação segura, API, UI e composição real estão integrados até T-067 (`ef680594`). A versão 1.0.0 foi registrada em `f844d71`; T-068 prepara aceite/release. O produto está pronto localmente e integrado; a publicação desta versão ainda não ocorreu e exige go específico da T-069.
+Em 24/10/2026, a versão 1.0.0 foi publicada em https://pinteo7.instadev.com.br/ após go explícito de Márcio na T-069. Código da release/tag: `85099a4cb5d7` (PR #12); pacote e evidências em `design/reviews/t-069/`. T-061–T-069 concluídas. `/pinteo7` e `/pinteo7/*` no domínio principal redirecionam 301 para a aplicação. Novas publicações continuam exigindo autorização aplicável.
 
 Fontes: [PRD](docs/PRD.md), [arquitetura](docs/ARQUITETURA.md), [contratos](docs/CONTRATOS.md), [convenções](docs/CONVENCOES.md), [guia de extensão](docs/COMANDOS.md), [ADR-0013](docs/adr/0013-refactor-enxuto-e-layout-primeiro.md) e [plano](docs/PLANO.md). O PRD é especificação de produto, não prova de testes executados. Pesquisa `docs/refatoracao/` é histórica; não sobrepõe decisões de outubro.
 

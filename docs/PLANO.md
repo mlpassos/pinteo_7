@@ -1,6 +1,6 @@
 # Plano de entrega e fila
 
-Atualizado em 24/10/2026. T-061 concluída: v6 aprovada por Márcio e integrada pelo PR #5 (`e7038fb`). T-062 integrada pelo PR #6 (`bea82feb`), CI Linux40058083365 aprovada. T-065 integrada pelo PR #7 (`ba3893df`), CI40058997348 aprovada. T-063 integrada pelo PR #8 (`6d1ef995`), CI40059684942 aprovada. T-066 integrada pelo PR #9 (`0130a153`), CI 40108087699 aprovada. T-064 integrada pelo PR #10 (`d1b483cf`), CI 40108427938 aprovada; T-067 integrada pelo PR #11 (`ef680594`), CI 40109848157 aprovada; T-068 fecha aceite e pacote local. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
+Atualizado em 24/10/2026. T-061 concluída: v6 aprovada por Márcio e integrada pelo PR #5 (`e7038fb`). T-062 integrada pelo PR #6 (`bea82feb`), CI Linux40058083365 aprovada. T-065 integrada pelo PR #7 (`ba3893df`), CI40058997348 aprovada. T-063 integrada pelo PR #8 (`6d1ef995`), CI40059684942 aprovada. T-066 integrada pelo PR #9 (`0130a153`), CI 40108087699 aprovada. T-064 integrada pelo PR #10 (`d1b483cf`), CI 40108427938 aprovada; T-067 integrada pelo PR #11 (`ef680594`), CI 40109848157 aprovada; T-068 integrada no PR #12 (`85099a4`), tag v1.0.0 e pacote final conferido; T-069 publicou e validou https://pinteo7.instadev.com.br/ após go explícito de Márcio. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
 
 ## Sequência
 
@@ -13,8 +13,8 @@ Atualizado em 24/10/2026. T-061 concluída: v6 aprovada por Márcio e integrada 
 | T-065 | API Node e compartilhamento seguro em arquivos | T-062 | done — PR #7 / ba3893df |
 | T-066 | Interface React, blocos e editor conforme protótipo | T-062 | done — PR #9 / 0130a153 |
 | T-067 | Integração funcional e retirada do legado do artefato | T-063, T-064, T-065, T-066 | done — PR #11 / ef680594 |
-| T-068 | Aceite final local, documentação e release preparada | T-067 | in-progress — candidata 1.0.0, QA limpa aprovada, pacote em fechamento |
-| T-069 | Publicação e validação externa, após go específico | T-068 | exige autorização de produção |
+| T-068 | Aceite final local, documentação e release preparada | T-067 | done — PR #12 / 85099a4, tag v1.0.0, pacote conferido |
+| T-069 | Publicação e validação externa, após go específico | T-068 | done — go explícito, HTTPS/API/redirect/backup validados |
 
 ```mermaid
 flowchart LR
@@ -64,3 +64,7 @@ PR curto por entrega; task pode ter poucos PRs para separar risco. Done exige cr
 T-068 prepara artefato, lista publicável, configuração/serviço, migração, backup e rollback localmente. T-069 após go reconfirma SSH, host, configuração e capacidade; cria usuário restrito se necessário, publica subdomínio e valida externamente sem afetar instadev.com.br. Sem banco novo. Dados ficam separados de releases; rollback não apaga obras novas.
 
 Estado de produção de 22/10 é histórico, não confirmação atual. Divergência material pede ajuste concreto; nunca aplicar configuração cega ou usar falta de acesso como evidência de sucesso. Meta completa apenas com publicação validada; antes disso registrar `pronto para publicar`. Prompt: [PROMPT-NOVA-SESSAO.md](PROMPT-NOVA-SESSAO.md).
+
+## Publicação efetiva — T-069
+
+Versão 1.0.0 publicada em 24/10/2026, código `85099a4cb5d7`, sem alteração de tag. [Relatório de produção](../design/reviews/t-069/RELATORIO.md): 34 exemplos, execução/parada/PNG/share/restart, HTTPS, redirecionamento 301, backup externo e recuperação conferidos. As regras de autorização acima continuam valendo para alterações futuras.
