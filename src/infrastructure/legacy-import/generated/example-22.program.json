@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "make \"tamanho 10\nmake \"nome 16\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright divide 360 :nome\n end\nrepeat :nome [\nlado\n] ",
+  "characterId": "tartaruga"
+}

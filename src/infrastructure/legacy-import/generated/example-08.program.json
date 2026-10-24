@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nmake \"tamanho 50\nmake \"lados 3\nto poligonoright\nrepeat :lados [\nforward :tamanho\nright divide 360 :lados\n] end\nto poligonoleft\nrepeat :lados [\nforward :tamanho\nleft divide 360 :lados\n] end\nrepeat 10 [\npoligonoright\npoligonoleft\nmake \"lados sum :lados 1\n] ",
+  "characterId": "tartaruga"
+}

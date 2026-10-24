@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nto circulo\nrepeat 36 [\nforward 1.2\nright 10\n] end\ncolor [255 38 26]\nrepeat 4 [\nrepeat 16 [\ncirculo\nright 10\n]left 10\nrepeat 180 [\nforward 1.2\nright 1\n]repeat 16 [\ncirculo\nleft 10\n]] ",
+  "characterId": "tartaruga"
+}

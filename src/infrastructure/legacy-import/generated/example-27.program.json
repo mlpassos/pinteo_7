@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nsetxy 200 400\nright 90\nmake \"tamanho 100\nrepeat 12 [\nforward :tamanho\nleft difference 180 75\nforward product :tamanho 2\nright 210\nforward product :tamanho 2\nleft difference 180 75\nforward :tamanho\nleft 30\n] ",
+  "characterId": "tartaruga"
+}

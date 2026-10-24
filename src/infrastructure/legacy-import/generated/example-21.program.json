@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "reset\nmake \"tamanho 50\nmake \"nrlados 6\nto poligonos\nrepeat :nrlados [\nforward :tamanho\nright divide 360 :nrlados\n]end\nsetxy 100 250\nrepeat 10 [\npoligonos\nmake \"nrlados sum :nrlados 5\n] ",
+  "characterId": "tartaruga"
+}

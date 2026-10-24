@@ -1,0 +1,5 @@
+{
+  "formatVersion": 1,
+  "source": "to desenho\nrepeat 4 [\nforward 100\nright 90\n] end\nreset\nsetxy 90 100\ndesenho\nsetxy 100 90\ndesenho\n ",
+  "characterId": "tartaruga"
+}

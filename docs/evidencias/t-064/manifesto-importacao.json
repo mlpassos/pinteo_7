@@ -1,0 +1,1286 @@
+{
+  "formatVersion": 1,
+  "canonicalSource": "TXT original preservado",
+  "characterPolicy": "tartaruga: os trios não persistem personagem",
+  "examples": [
+    {
+      "id": "example-01",
+      "originalId": "NomeDoAluno-02-07-2015-1435796325",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-02-07-2015-1435796325.txt",
+          "sha256": "089c3b30e2ebeb9ac3daa672ff7aefd334323753b20189da941ea92c859120a3",
+          "bytes": 162
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-02-07-2015-1435796325.cp7",
+          "sha256": "b5b8563dd8f3afe99c4034ff491250db82aef9524e484362a308fc3fd5540b78",
+          "bytes": 3847
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-02-07-2015-1435796325.png",
+          "sha256": "84f2c2a24904e3b757bcf573e9843bf1ba4da461cd40bb4f5becdaee655c4752",
+          "bytes": 112081
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-01.program.json",
+        "programSha256": "e43a782397a3a12e7f077382b5ae8dd93a49b93ef60b753902610744c551469c",
+        "sourceSha256": "089c3b30e2ebeb9ac3daa672ff7aefd334323753b20189da941ea92c859120a3",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-01.png",
+        "previewSha256": "d4ae730b342a0009f85d58e0473e2449a35d92eedf635774855b153e9500e901",
+        "previewBytes": 75598
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "lados",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "make \"lados 3\nmake \"tamanho 50\nto poligonos\nrepeat :lados [\nforward :tamanho\nright (360 / :lados)\n]\nend\nrepeat :tamanho [\npoligonos\nmake \"lados (:lados + 1)\n]"
+    },
+    {
+      "id": "example-02",
+      "originalId": "NomeDoAluno-02-08-2015-1438475611",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-02-08-2015-1438475611.txt",
+          "sha256": "45f1719e2f06be4688f77f82b249a3f11eb1db4985917704eb7c4274618c469a",
+          "bytes": 273
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-02-08-2015-1438475611.cp7",
+          "sha256": "8b7e8685d85cb32fd931bb18b8c8054c6762b12a48f46b46c4def49408e16628",
+          "bytes": 6297
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-02-08-2015-1438475611.png",
+          "sha256": "29fc75bb54d71d215798e3355aa2b2219075ac254d1364dd4691a11faee88810",
+          "bytes": 28698
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-02.program.json",
+        "programSha256": "e5d22fb521544dbe96df1054ef01caf04b3942ac7fa047d702223206d974491a",
+        "sourceSha256": "45f1719e2f06be4688f77f82b249a3f11eb1db4985917704eb7c4274618c469a",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-02.png",
+        "previewSha256": "8e1dcff0ce8df725968e727298192108b9fd71df1c2a01f024a2a23b7f2fe332",
+        "previewBytes": 21361
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "nome",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tamanho 4\nmake \"nome 4\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright (360 / :nome)\nend\ncolor [220 45 0]\nrepeat 200 [\nlado\nmake \"nome (:nome + 1)\n]"
+    },
+    {
+      "id": "example-03",
+      "originalId": "NomeDoAluno-02-08-2015-1438482509",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-02-08-2015-1438482509.txt",
+          "sha256": "d1018997ebc00903ac7278e4fe8df9e0c414986cad4a4d75259c837c594c752e",
+          "bytes": 167
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-02-08-2015-1438482509.cp7",
+          "sha256": "b5b8563dd8f3afe99c4034ff491250db82aef9524e484362a308fc3fd5540b78",
+          "bytes": 3847
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-02-08-2015-1438482509.png",
+          "sha256": "aae5724ff866fc8f3a8725af3912bc4d0ac5aa31589426262f2c87eb96c7fe5b",
+          "bytes": 24096
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-03.program.json",
+        "programSha256": "24c68feeb35f8c5a042dd4662714b90033ecefd975f3355a2a0e5c35915f69e3",
+        "sourceSha256": "d1018997ebc00903ac7278e4fe8df9e0c414986cad4a4d75259c837c594c752e",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-03.png",
+        "previewSha256": "62ee6749bdddabc01316ed4bc345eda7b8f45cc47c015cc56f928ed32dcc178e",
+        "previewBytes": 18383
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "lados",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "make \"lados 3\nmake \"tamanho 50\nto poligonos\nrepeat :lados [\nforward :tamanho\nright (360 / :lados)\n]\nend\nrepeat :tamanho [\npoligonos\nmake \"lados (:lados + 1)\n]"
+    },
+    {
+      "id": "example-04",
+      "originalId": "NomeDoAluno-02-08-2015-1438482584",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-02-08-2015-1438482584.txt",
+          "sha256": "14c57c00f0fda267947ee684becdffa003ca5c266477261c0fd007d755250134",
+          "bytes": 228
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-02-08-2015-1438482584.cp7",
+          "sha256": "67bb90b314ee58cb6598ed43674ead607ccba4fcf134771a6f6eda12b33b2a11",
+          "bytes": 5068
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-02-08-2015-1438482584.png",
+          "sha256": "aa0bb9941f935c42862fb9ab461d37d1727a94c4ec4dde3d2c3e1cc991a925b3",
+          "bytes": 9111
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-04.program.json",
+        "programSha256": "6de53cde68f22892375539a506de9d53bf0f724ff0acc9b60a73c18f0b6163b4",
+        "sourceSha256": "14c57c00f0fda267947ee684becdffa003ca5c266477261c0fd007d755250134",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-04.png",
+        "previewSha256": "409baecb4ab6b7e75f071c89eceeadcd0e225d2321ef243a30f47d1482f9a71b",
+        "previewBytes": 7038
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "nome",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "make \"tamanho 20\nmake \"nome 16\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright (360 / :nome)\nend\nrepeat :nome [\nlado\n]"
+    },
+    {
+      "id": "example-05",
+      "originalId": "NomeDoAluno-04-02-2016-1454642046",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-04-02-2016-1454642046.txt",
+          "sha256": "6b2a0d71beabf4622b0d76d60009036485a21290a81f4ab8ed9c4b4fd32b796e",
+          "bytes": 109
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-04-02-2016-1454642046.cp7",
+          "sha256": "85cc1a88c58af3eb56964c82e099646a452ea0cea3921566ee67d98a1a5525a3",
+          "bytes": 3119
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-04-02-2016-1454642046.png",
+          "sha256": "98dc9ec67f9b0e44d438552c6e90f72e977586940b22cd9fe07916916b57af44",
+          "bytes": 25801
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-05.program.json",
+        "programSha256": "2055e9dd6244e0560c1554196a3f547ea39d197c213546dd87ac1fc77ddc0fe4",
+        "sourceSha256": "6b2a0d71beabf4622b0d76d60009036485a21290a81f4ab8ed9c4b4fd32b796e",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-05.png",
+        "previewSha256": "50e566b3ed4fc7e70306b274899e71d7a4615e44a1e958e7aed4b2cf941cf097",
+        "previewBytes": 18571
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "tam"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tam 50\nrepeat 12 [\nrepeat 4 [\nforward :tam\nright 90\nrepeat 3 [\nforward :tam\nleft 120\n]\n]\nleft 30\n]"
+    },
+    {
+      "id": "example-06",
+      "originalId": "NomeDoAluno-04-02-2016-1454642081",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-04-02-2016-1454642081.txt",
+          "sha256": "fca8d616d7c118576ac7c65556c6113cf54a5352368d89413d5e10fc60d0a2f2",
+          "bytes": 161
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-04-02-2016-1454642081.cp7",
+          "sha256": "b5b8563dd8f3afe99c4034ff491250db82aef9524e484362a308fc3fd5540b78",
+          "bytes": 3847
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-04-02-2016-1454642081.png",
+          "sha256": "62007a36c3016673b6e4551bce31da7dd4f5a3c7fd3100273c2ec299726270c1",
+          "bytes": 115076
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-06.program.json",
+        "programSha256": "436d07e0fcaf522da642f41b3587a86ffc5ad881a22e312888902b95e8004cc0",
+        "sourceSha256": "fca8d616d7c118576ac7c65556c6113cf54a5352368d89413d5e10fc60d0a2f2",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-06.png",
+        "previewSha256": "85ad87b0f5925ea57ffd37bb5c3346757eb6454212f047389b36ba9e0f3bc993",
+        "previewBytes": 77997
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "lados",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "make \"lados 3\nmake \"tamanho 50\nto poligonos\nrepeat :lados [\nforward :tamanho\nright (360 / :lados)\n]\nend\nrepeat :tamanho [\npoligonos\nmake \"lados (:lados + 1)\n]"
+    },
+    {
+      "id": "example-07",
+      "originalId": "NomeDoAluno-05-07-2015-1436063124",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-05-07-2015-1436063124.txt",
+          "sha256": "763a6c85cbd3791b8d239c52822f940893da089564a8326fbe51d3a382f5ad33",
+          "bytes": 208
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-05-07-2015-1436063124.cp7",
+          "sha256": "67bb90b314ee58cb6598ed43674ead607ccba4fcf134771a6f6eda12b33b2a11",
+          "bytes": 5068
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-05-07-2015-1436063124.png",
+          "sha256": "aa0bb9941f935c42862fb9ab461d37d1727a94c4ec4dde3d2c3e1cc991a925b3",
+          "bytes": 9111
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-07.program.json",
+        "programSha256": "db892193defb3b46639037166a99f45c69017d27fd3cdeddfb4f39ffdda07c37",
+        "sourceSha256": "763a6c85cbd3791b8d239c52822f940893da089564a8326fbe51d3a382f5ad33",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-07.png",
+        "previewSha256": "409baecb4ab6b7e75f071c89eceeadcd0e225d2321ef243a30f47d1482f9a71b",
+        "previewBytes": 7038
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "nome",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "make \"tamanho 20\nmake \"nome 16\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright (360 / :nome)\nend\nrepeat :nome [\nlado\n]"
+    },
+    {
+      "id": "example-08",
+      "originalId": "NomeDoAluno-05-07-2015-1436067813",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-05-07-2015-1436067813.txt",
+          "sha256": "24d8b0c29b4af5fe7f00f41ba8250291fbb7136d2cb33058a1459a994415be27",
+          "bytes": 261
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-05-07-2015-1436067813.cp7",
+          "sha256": "2cdd5fa3d6d1bba9edc1e3fadebb70969ff8ca501c0bef8479a20f5c6e20438b",
+          "bytes": 6054
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-05-07-2015-1436067813.png",
+          "sha256": "61a1da862ec5e78d46941ace2e8764f67fd19dfdc254dfbdf4e53defc6227071",
+          "bytes": 36405
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-08.program.json",
+        "programSha256": "b46d53890e9c81c55bde7f708f8eab9d604f37ce0e46ec60ab17f7443dd3c8e7",
+        "sourceSha256": "24d8b0c29b4af5fe7f00f41ba8250291fbb7136d2cb33058a1459a994415be27",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-08.png",
+        "previewSha256": "9f06749f9d2abaa2e7394cd5472557dadf258100a32554764787cc8772a9c2b4",
+        "previewBytes": 25757
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "lados",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tamanho 50\nmake \"lados 3\nto poligonoright\nrepeat :lados [\nforward :tamanho\nright (360 / :lados)\n]\nend\nto poligonoleft\nrepeat :lados [\nforward :tamanho\nleft (360 / :lados)\n]\nend\nrepeat 10 [\npoligonoright\npoligonoleft\nmake \"lados (:lados + 1)\n]"
+    },
+    {
+      "id": "example-09",
+      "originalId": "NomeDoAluno-05-07-2015-1436068286",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-05-07-2015-1436068286.txt",
+          "sha256": "24d8b0c29b4af5fe7f00f41ba8250291fbb7136d2cb33058a1459a994415be27",
+          "bytes": 261
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-05-07-2015-1436068286.cp7",
+          "sha256": "2cdd5fa3d6d1bba9edc1e3fadebb70969ff8ca501c0bef8479a20f5c6e20438b",
+          "bytes": 6054
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-05-07-2015-1436068286.png",
+          "sha256": "61a1da862ec5e78d46941ace2e8764f67fd19dfdc254dfbdf4e53defc6227071",
+          "bytes": 36405
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-09.program.json",
+        "programSha256": "b46d53890e9c81c55bde7f708f8eab9d604f37ce0e46ec60ab17f7443dd3c8e7",
+        "sourceSha256": "24d8b0c29b4af5fe7f00f41ba8250291fbb7136d2cb33058a1459a994415be27",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-09.png",
+        "previewSha256": "9f06749f9d2abaa2e7394cd5472557dadf258100a32554764787cc8772a9c2b4",
+        "previewBytes": 25757
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "lados",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tamanho 50\nmake \"lados 3\nto poligonoright\nrepeat :lados [\nforward :tamanho\nright (360 / :lados)\n]\nend\nto poligonoleft\nrepeat :lados [\nforward :tamanho\nleft (360 / :lados)\n]\nend\nrepeat 10 [\npoligonoright\npoligonoleft\nmake \"lados (:lados + 1)\n]"
+    },
+    {
+      "id": "example-10",
+      "originalId": "NomeDoAluno-06-07-2015-1436151872",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-06-07-2015-1436151872.txt",
+          "sha256": "ec23c64a7ff161f080950e9d12dd25acce38cbba1240969be9ef6dc3b8f41704",
+          "bytes": 91
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-06-07-2015-1436151872.cp7",
+          "sha256": "c4d299a0c71fa12a4bc2bde298be4f9c25f367f518cd15dcb8915b997de79f60",
+          "bytes": 2616
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-06-07-2015-1436151872.png",
+          "sha256": "4eb667ffeb44a4cc3a998933379f1da41a45aebbc669d995d836d9dd0039766f",
+          "bytes": 6174
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-10.program.json",
+        "programSha256": "262ce3f81ac1a72e772f6b596823ae2885fff16a7d5016b8631f3fdf9d7fe3e1",
+        "sourceSha256": "ec23c64a7ff161f080950e9d12dd25acce38cbba1240969be9ef6dc3b8f41704",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-10.png",
+        "previewSha256": "d6e82348f01f0e318a927ee08f0b1a563c10e5a03f0948de0d35a0aa34b3bed5",
+        "previewBytes": 5702
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nsetx 100\nsety 200\nrepeat 8 [\nrepeat 4 [\nright 90\nforward 100\n]\nbackward 100\nleft 45\n]"
+    },
+    {
+      "id": "example-11",
+      "originalId": "NomeDoAluno-06-07-2015-1436152188",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-06-07-2015-1436152188.txt",
+          "sha256": "2017b0a8a35acd15330ec4fc8e21c0811359faac1b3764adb6e389e19c312422",
+          "bytes": 90
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-06-07-2015-1436152188.cp7",
+          "sha256": "fddecbdbb2c079c6a949f5638574be2723429b8661712e797eec3dca9bee92a3",
+          "bytes": 2614
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-06-07-2015-1436152188.png",
+          "sha256": "0bcee1c8d2d7f78a75ccde0b047745eea2033cb0e6624863ca7c20e8790e1bd7",
+          "bytes": 28290
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-11.program.json",
+        "programSha256": "92f32aca6f31062ed43907a6b2e5493b83154c447cef4b90b302709a073e870f",
+        "sourceSha256": "2017b0a8a35acd15330ec4fc8e21c0811359faac1b3764adb6e389e19c312422",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-11.png",
+        "previewSha256": "62152f379e07f5dba4fe5296eb69c7f947d1c6404395e05be076397917d975d0",
+        "previewBytes": 21724
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nsetx 200\nsety 200\nrepeat 8 [\nrepeat 5 [\nright 72\nforward 100\n]\nbackward 20\nleft 45\n]"
+    },
+    {
+      "id": "example-12",
+      "originalId": "NomeDoAluno-12-08-2015-1439431024",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-12-08-2015-1439431024.txt",
+          "sha256": "38ca7b958871c6aa63b3e08e934e84f97388f32506f2229b4e69747cf1216190",
+          "bytes": 73
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-12-08-2015-1439431024.cp7",
+          "sha256": "4f8723818e5b7a6bf2736d764a905842e7113acb548e32ca3ac9ae1ab4f891ec",
+          "bytes": 1747
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-12-08-2015-1439431024.png",
+          "sha256": "0d7d05911ac4107e39562e2998adcc0feca1041d43eebfd0cc080fe4fe49bd36",
+          "bytes": 6339
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-12.program.json",
+        "programSha256": "7f6f3d16f980e84eb65d07718f0b539db9450d9027a8ba760240baa82b293f05",
+        "sourceSha256": "38ca7b958871c6aa63b3e08e934e84f97388f32506f2229b4e69747cf1216190",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-12.png",
+        "previewSha256": "fb62c343e9da4f866131d6f2e5547a6a1361e84db2e52547feda6586697a2db6",
+        "previewBytes": 4681
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nto procedimento\nrepeat 5 [\nforward 100\nright 72\n]\nend\nprocedimento"
+    },
+    {
+      "id": "example-13",
+      "originalId": "NomeDoAluno-13-09-2015-1442151872",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-13-09-2015-1442151872.txt",
+          "sha256": "a1c587a762464c8cd64b3f887607d09a36d85a4d91160cefe7d95ebd980f2516",
+          "bytes": 100
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-13-09-2015-1442151872.cp7",
+          "sha256": "a08bbacc64154ffdbc206fa02cdab89ec6a7e3c82382ca7c6d57869625cd059a",
+          "bytes": 3322
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-13-09-2015-1442151872.png",
+          "sha256": "41e9c505b7cf66899f722879b5c06c22e373929168d2c492191005d7c0e3cbe6",
+          "bytes": 8790
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-13.program.json",
+        "programSha256": "a8f140b392061189b71f4603c6683f06457f56f72efd32223f596a4f89162a52",
+        "sourceSha256": "a1c587a762464c8cd64b3f887607d09a36d85a4d91160cefe7d95ebd980f2516",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-13.png",
+        "previewSha256": "afdf489b56f56391588d2586a841ad6419b0e6a0a29a95e05870f65a8c1b1564",
+        "previewBytes": 6666
+      },
+      "comparison": "different-ast",
+      "differences": [
+        {
+          "path": "body[4]",
+          "txt": null,
+          "cp7": {
+            "kind": "call",
+            "name": "sum",
+            "args": [
+              {
+                "kind": "number",
+                "value": 2
+              },
+              {
+                "kind": "number",
+                "value": 2
+              }
+            ]
+          }
+        }
+      ],
+      "resolution": "TXT original caracterizado preservado integralmente. Expressão solta existente apenas no CP7 permanece na auditoria; não é inventado bloco executável nem incorporado texto ausente do TXT.",
+      "bareVariables": [],
+      "orphanExpressions": [
+        "sum 2 2"
+      ],
+      "cp7Source": "reset\nrepeat 360 [\nforward 1\nleft 1\n]\nrepeat 359 [\nforward 1\nright 1\n]\nrepeat 90 [\nforward 4\nleft 4\n]\nsum 2 2"
+    },
+    {
+      "id": "example-14",
+      "originalId": "NomeDoAluno-21-10-2015-1445484650",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-21-10-2015-1445484650.txt",
+          "sha256": "08610a11a410486e5d3de95d89b0378628fabcd159de84a5f6b1579236dc62b4",
+          "bytes": 247
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-21-10-2015-1445484650.cp7",
+          "sha256": "1584650d5a7c0ef00bd840f84bab2dad308e3d0b5519fee2b025c5cf0248df98",
+          "bytes": 5968
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-21-10-2015-1445484650.png",
+          "sha256": "1893a0cbcb32c7890b2511e86048b8dcd935f99d339b5d3e8d9ae7deb3c80137",
+          "bytes": 29145
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-14.program.json",
+        "programSha256": "cf19246fb676d4f647077fad1358ba5f9ed9d1d21ae3d7f9d6716442c99c9300",
+        "sourceSha256": "08610a11a410486e5d3de95d89b0378628fabcd159de84a5f6b1579236dc62b4",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-14.png",
+        "previewSha256": "4dd51cce077113f2dc61283854774de122e7b9ae77cd8d3635e4e6f1580ceff5",
+        "previewBytes": 22806
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nsetxy 200 400\nto procedimento\nright 90\nrepeat 12 [\nforward :tamanho\nleft (180 - 75)\nforward (:tamanho * 2)\nright 210\nforward (:tamanho * 2)\nleft (180 - 75)\nforward :tamanho\nleft 30\n]\nend\nmake \"tamanho 100\nprocedimento"
+    },
+    {
+      "id": "example-15",
+      "originalId": "NomeDoAluno-24-10-2015-1445660804",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-24-10-2015-1445660804.txt",
+          "sha256": "656760e7686544a2f140567b704fdff3104d8a4543ef910febc066071f00e8e0",
+          "bytes": 149
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-24-10-2015-1445660804.cp7",
+          "sha256": "84ba44d002eeb6787d28c271e4d6867be289fd64d69f8056614cc324f333019f",
+          "bytes": 4590
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-24-10-2015-1445660804.png",
+          "sha256": "809f99794f841fbf75a1fd007878e7676f06a3e7a296f9e03435378b768ed7b9",
+          "bytes": 9620
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-15.program.json",
+        "programSha256": "f44e1ebf2531a3104703efc26f799915cd5b1a4c694e7b7453dab397a8b7d332",
+        "sourceSha256": "656760e7686544a2f140567b704fdff3104d8a4543ef910febc066071f00e8e0",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-15.png",
+        "previewSha256": "60f08b20c3c7ee881281e17fcb043317520da6201641a1249c2931f58067c12e",
+        "previewBytes": 7465
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "tam"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tam 2\nto ce\nrepeat 180 [\nforward :tam\nright 1\n]\nend\nleft 90\nce\npenup\nforward 20\npendown\nmake \"tam 1\nce\nright 180\nce\nright 90\nforward 230"
+    },
+    {
+      "id": "example-16",
+      "originalId": "NomeDoAluno-24-10-2015-1445661023",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-24-10-2015-1445661023.txt",
+          "sha256": "481c86321c8cd3cd27d92c3adbb74820c2b15af48f10e9f553af00690035b408",
+          "bytes": 205
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-24-10-2015-1445661023.cp7",
+          "sha256": "f38a71e74e3a309fb97e4d36b92b3512367f763ff0b5f7ddb1be91d99ffcf85e",
+          "bytes": 5984
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-24-10-2015-1445661023.png",
+          "sha256": "95077676934ef7404fd27487c027ddc219267660fd15b5f61aa46502baca0542",
+          "bytes": 9636
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-16.program.json",
+        "programSha256": "71a049b2a11f43de541af1f725fc27d125ac0baa06dd1553d823a310f96c0b0a",
+        "sourceSha256": "481c86321c8cd3cd27d92c3adbb74820c2b15af48f10e9f553af00690035b408",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-16.png",
+        "previewSha256": "a0f7b88613d8f19fc0685325ef3cd766755661c07e61c9165e822bbd2bf72c13",
+        "previewBytes": 7476
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "tam"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tam 2\nto ce\nrepeat 180 [\nforward :tam\nright 1\n]\nend\nleft 90\nce\npenup\nforward 20\npendown\nmake \"tam 1\nce\nright 180\nce\nright 90\nforward 230\nright 90\npenup\nforward 100\nright 90\npendown\nforward 230"
+    },
+    {
+      "id": "example-17",
+      "originalId": "NomeDoAluno-24-10-2015-1445661299",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-24-10-2015-1445661299.txt",
+          "sha256": "83ddf1b7fa9243ff4948355b95fa3b75451a1f2e659523f1d0d6977bb1cefd52",
+          "bytes": 382
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-24-10-2015-1445661299.cp7",
+          "sha256": "3b6bc29b07a8cd2050d5340f111443af0705bef701d6fd7ffd6d816113d2f48a",
+          "bytes": 10345
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-24-10-2015-1445661299.png",
+          "sha256": "3d8f1b872646a155581ffadacda62c00f8ce1cafa5c10568267c17fc1e4acd2b",
+          "bytes": 9710
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-17.program.json",
+        "programSha256": "98a2a4ad975a31e3c6f23ea4b0360ff1591b880343ec160a704d460cf1097098",
+        "sourceSha256": "83ddf1b7fa9243ff4948355b95fa3b75451a1f2e659523f1d0d6977bb1cefd52",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-17.png",
+        "previewSha256": "e0bea36b1aab8a62095f866ab06558dfef89d348abd81acff4b143a9b1991ab3",
+        "previewBytes": 7745
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "tam"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tam 2\nto ce\nrepeat 180 [\nforward :tam\nright 1\n]\nend\nleft 90\nce\npenup\nforward 20\npendown\nmake \"tam 1\nce\nright 180\nce\nright 90\nforward 230\nright 90\npenup\nforward 100\nright 90\npendown\nforward 230\nleft 90\npenup\nforward 50\npendown\nleft 90\nforward 230\nright 90\nforward 50\nbackward 50\nright 90\nforward 115\nleft 90\nforward 50\nbackward 50\nleft 270\nforward 115\nleft 90\nforward 50"
+    },
+    {
+      "id": "example-18",
+      "originalId": "NomeDoAluno-25-06-2015-1435205161",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-25-06-2015-1435205161.txt",
+          "sha256": "821a287be5be7764b36ab2ff622f437ed05f3ae79b852845ba1e0a514704c1f5",
+          "bytes": 98
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-25-06-2015-1435205161.cp7",
+          "sha256": "ac8ea17676d2001151ff5c52c234204662929b5a767cfd073ad0e5ebba44a08e",
+          "bytes": 2648
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-25-06-2015-1435205161.png",
+          "sha256": "282f4f9ad112dd66fe6373e6a3980c05922470f443d375731f1ed5e7140c6b4c",
+          "bytes": 1956
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-18.program.json",
+        "programSha256": "83b04fa30e0f74c392212f51e1bafd502f98dbadea060ad64846806b39011bb2",
+        "sourceSha256": "821a287be5be7764b36ab2ff622f437ed05f3ae79b852845ba1e0a514704c1f5",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-18.png",
+        "previewSha256": "cbb85f61c5e37d7ed78a4b20967a01979ab56391dc80531b6e0a99810b6095c1",
+        "previewBytes": 1778
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [],
+      "orphanExpressions": [],
+      "cp7Source": "to desenho\nrepeat 4 [\nforward 100\nright 90\n]\nend\nreset\nsetxy 90 100\ndesenho\nsetxy 100 90\ndesenho"
+    },
+    {
+      "id": "example-19",
+      "originalId": "NomeDoAluno-26-06-2015-1435282479",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-26-06-2015-1435282479.txt",
+          "sha256": "6b2a0d71beabf4622b0d76d60009036485a21290a81f4ab8ed9c4b4fd32b796e",
+          "bytes": 109
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-26-06-2015-1435282479.cp7",
+          "sha256": "27d7425a2a3e3ba44ece546aa2727877c9bf60cf603b9827a3b2825b364c1f0c",
+          "bytes": 3119
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-26-06-2015-1435282479.png",
+          "sha256": "c40241dc79fad0300e5263353e8a5ca14f6a1c686cffe4ce239a076e8ff4ae67",
+          "bytes": 22973
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-19.program.json",
+        "programSha256": "2055e9dd6244e0560c1554196a3f547ea39d197c213546dd87ac1fc77ddc0fe4",
+        "sourceSha256": "6b2a0d71beabf4622b0d76d60009036485a21290a81f4ab8ed9c4b4fd32b796e",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-19.png",
+        "previewSha256": "6cadfd30801023079a84ce0e2c06f6941241035dc9d6f4081bff1972e2a23615",
+        "previewBytes": 16556
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "tam"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tam 50\nrepeat 12 [\nrepeat 4 [\nforward :tam\nright 90\nrepeat 3 [\nforward :tam\nleft 120\n]\n]\nleft 30\n]"
+    },
+    {
+      "id": "example-20",
+      "originalId": "NomeDoAluno-29-08-2015-1440899804",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-29-08-2015-1440899804.txt",
+          "sha256": "071b4a6da204d481c8b4f569a27749d029294b6b09ad80eefb6bf67f2bcb3867",
+          "bytes": 122
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-29-08-2015-1440899804.cp7",
+          "sha256": "af4f3d64666a50701accd2a5ad587dfedb45ee273e68ea7076451daafacd033a",
+          "bytes": 2949
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-29-08-2015-1440899804.png",
+          "sha256": "909f4c97ac0aae1802ef39f6a5ca0034da622b024585a733b325b6a095de9830",
+          "bytes": 1837
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-20.program.json",
+        "programSha256": "1dcd1635b2e3e123941876ea26121c52cf97f9860c92c8331c91e6104898e609",
+        "sourceSha256": "071b4a6da204d481c8b4f569a27749d029294b6b09ad80eefb6bf67f2bcb3867",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-20.png",
+        "previewSha256": "d24010fccbf5dbfeaf867cb91ad3548b2f30f53dd35c45abff252e1ffea4056d",
+        "previewBytes": 1458
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "lados",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tamanho 75\nmake \"lados 8\nto poligonos\nrepeat :lados [\nforward :tamanho\nleft (360 / :lados)\n]\nend\npoligonos"
+    },
+    {
+      "id": "example-21",
+      "originalId": "NomeDoAluno-29-08-2015-1440901170",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-29-08-2015-1440901170.txt",
+          "sha256": "39a3297e3f1b01fafa64117563d60e3706a6df321cf986bb82db6de4381627bd",
+          "bytes": 185
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-29-08-2015-1440901170.cp7",
+          "sha256": "e501935aa18435f8bd7e5c23110fdbc8df99a5b5c60396527dd0d133a7b9b471",
+          "bytes": 4518
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-29-08-2015-1440901170.png",
+          "sha256": "346b0709c4a8d429b72644902a31e5255f48d4b92f5178dc8a8b3f9af2e8a84a",
+          "bytes": 44712
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-21.program.json",
+        "programSha256": "5512411e0ecf5c37c3e2bcff2145456397d241a42a1599ec68ddc93e694eaf6f",
+        "sourceSha256": "39a3297e3f1b01fafa64117563d60e3706a6df321cf986bb82db6de4381627bd",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-21.png",
+        "previewSha256": "1969327e160128d114198885a262746cd683282366187a30919745ba64589b0f",
+        "previewBytes": 34776
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "nrlados",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tamanho 50\nmake \"nrlados 6\nto poligonos\nrepeat :nrlados [\nforward :tamanho\nright (360 / :nrlados)\n]\nend\nsetxy 100 250\nrepeat 10 [\npoligonos\nmake \"nrlados (:nrlados + 5)\n]"
+    },
+    {
+      "id": "example-22",
+      "originalId": "NomeDoAluno-30-07-2015-1438221281",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438221281.txt",
+          "sha256": "0ce2af4d80d67a60150384f115a9400a575b56c8a057ec9f3fbe8de1e45c3f55",
+          "bytes": 208
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438221281.cp7",
+          "sha256": "024e69dec43d0dca8f0a58b98727bb5b59c0836e62188be2f686c2b0df15736f",
+          "bytes": 5102
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438221281.png",
+          "sha256": "a6d5332a1224e8afe825656cb1340b46fc7a102b40c355ee883d5797b26eca0f",
+          "bytes": 15696
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-22.program.json",
+        "programSha256": "1a934d5c3f0a5d4608a1b5cf4f6658f74708faecbe9da0d9c7e74a76b3b71b3b",
+        "sourceSha256": "0ce2af4d80d67a60150384f115a9400a575b56c8a057ec9f3fbe8de1e45c3f55",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-22.png",
+        "previewSha256": "9eed8ec98a00d291a6f8147d1d7f053d33c6d282d30c6e5270104b2acd37363a",
+        "previewBytes": 11524
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "nome",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "make \"tamanho 10\nmake \"nome 16\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright (360 / :nome)\nend\nrepeat :nome [\nlado\n]"
+    },
+    {
+      "id": "example-23",
+      "originalId": "NomeDoAluno-30-07-2015-1438221299",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438221299.txt",
+          "sha256": "45c565411a815574e9a15f776cad70d80c9ac266be3804640576dc51c1912ba7",
+          "bytes": 207
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438221299.cp7",
+          "sha256": "8451a7ba57efd4e28350be4ccafe77b83b05c7d266f43c85ec51673e19646642",
+          "bytes": 5080
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438221299.png",
+          "sha256": "cbe324cbf329d78f224ad891c4200e5d6b5235a77a00939fb901e13dc056dc4f",
+          "bytes": 18209
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-23.program.json",
+        "programSha256": "de7339f2384b3ea37a769c3a4593859f80977a548ba57c1959f019d593ccabbb",
+        "sourceSha256": "45c565411a815574e9a15f776cad70d80c9ac266be3804640576dc51c1912ba7",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-23.png",
+        "previewSha256": "dd346afc1c93225e1c0c75684f3196a6461d640a2918b3b8a4d634ff8c7a21c0",
+        "previewBytes": 13219
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "nome",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "make \"tamanho 5\nmake \"nome 16\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright (360 / :nome)\nend\nrepeat :nome [\nlado\n]"
+    },
+    {
+      "id": "example-24",
+      "originalId": "NomeDoAluno-30-07-2015-1438221675",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438221675.txt",
+          "sha256": "947652774148814f38831db7bff235bb28e58ad1569c0bc08ce7e977d8e6c6f4",
+          "bytes": 233
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438221675.cp7",
+          "sha256": "d99165ccc48a9f51ab723c6779ba3b0378b373e681d0fadf937676623e1d6231",
+          "bytes": 6058
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438221675.png",
+          "sha256": "a8d26db181882d752dd5186b3d21e631d462ca0dc678fc046fd9df6e24256147",
+          "bytes": 28165
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-24.program.json",
+        "programSha256": "8e331b6f731ac7bd7a4bba4d986b40a5bf3b67e94a61c67a70eeafb59faff5e7",
+        "sourceSha256": "947652774148814f38831db7bff235bb28e58ad1569c0bc08ce7e977d8e6c6f4",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-24.png",
+        "previewSha256": "d9b6c8ec782582d2024c4c3de61bdcefaf5520cc7666349431b45658e8249332",
+        "previewBytes": 20286
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "nome",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tamanho 4\nmake \"nome 4\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright (360 / :nome)\nend\nrepeat 200 [\nlado\nmake \"nome (:nome + 1)\n]"
+    },
+    {
+      "id": "example-25",
+      "originalId": "NomeDoAluno-30-07-2015-1438226945",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438226945.txt",
+          "sha256": "1639c16f18d6f8bdc4c1ece33887abd449208fe38d74023a9d77c7035329efa3",
+          "bytes": 60
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438226945.cp7",
+          "sha256": "f9e822dd3659172da56e91770fd87c4a8989728b42ed6ea6ee9edde56e9423f1",
+          "bytes": 1736
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438226945.png",
+          "sha256": "9ed91a9108cf0c8793412fa1946a5f48d7aa5085ad8fd111079e2b007f4a2307",
+          "bytes": 99548
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-25.program.json",
+        "programSha256": "55dbd9e0cad3672fd920b7362e5e68ba39c5d5af7e283aca01c66232c793e4ed",
+        "sourceSha256": "1639c16f18d6f8bdc4c1ece33887abd449208fe38d74023a9d77c7035329efa3",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-25.png",
+        "previewSha256": "af99253b086a60124ef3b6a131d24b9a33b0239855985ba2564ebc45b103b0a0",
+        "previewBytes": 70005
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nrepeat 36 [\nright 10\nrepeat 8 [\nforward 70\nleft 45\n]\n]"
+    },
+    {
+      "id": "example-26",
+      "originalId": "NomeDoAluno-30-07-2015-1438308881",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438308881.txt",
+          "sha256": "a405e828e0e416f2d1ba1639ac873c9a13d8f6f0e50723aa046bfecd06c243f8",
+          "bytes": 225
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438308881.cp7",
+          "sha256": "2c908f36dd950d19d51029d4feba4c483d00eb85e913145df2a35324482fc0ec",
+          "bytes": 6298
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438308881.png",
+          "sha256": "a99349335d9ff60c29f8d7f6cdd6f5a120192e79c59598b1ddf778095a80e023",
+          "bytes": 11794
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-26.program.json",
+        "programSha256": "4dccd415f7ea2cf24e96af8dcd35d999f6f888dc23b8548106e5e39e014e66e0",
+        "sourceSha256": "a405e828e0e416f2d1ba1639ac873c9a13d8f6f0e50723aa046bfecd06c243f8",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-26.png",
+        "previewSha256": "700c6b56053856f393c107856d715c6dc5599f5448cb759eaff25a833fbb5367",
+        "previewBytes": 8661
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "r"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"r 20\nrepeat 3 [\nforward (:r * 6)\nleft 120\n]\npenup\nforward (:r * 3)\npendown\nleft 90\nforward (:r * 5.19)\npenup\nleft 180\nforward (:r * 3.46)\nleft 90\npendown\nrepeat 360 [\nforward (:r / 10)\nright 1\n]"
+    },
+    {
+      "id": "example-27",
+      "originalId": "NomeDoAluno-30-07-2015-1438309387",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438309387.txt",
+          "sha256": "6f5f165faf40beb732aa9dc1395dc414f4d294a061547f3175880a568709cbde",
+          "bytes": 213
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438309387.cp7",
+          "sha256": "3457d2acac446373909b24d26eff3855037c839551145353b6927bf537b9d1d5",
+          "bytes": 5189
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438309387.png",
+          "sha256": "1893a0cbcb32c7890b2511e86048b8dcd935f99d339b5d3e8d9ae7deb3c80137",
+          "bytes": 29145
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-27.program.json",
+        "programSha256": "cc99de8ad1cb3992ac95233ab13f792414a4d7636cee62ea7f6eb6a619801a67",
+        "sourceSha256": "6f5f165faf40beb732aa9dc1395dc414f4d294a061547f3175880a568709cbde",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-27.png",
+        "previewSha256": "4dd51cce077113f2dc61283854774de122e7b9ae77cd8d3635e4e6f1580ceff5",
+        "previewBytes": 22806
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nsetxy 200 400\nright 90\nmake \"tamanho 100\nrepeat 12 [\nforward :tamanho\nleft (180 - 75)\nforward (:tamanho * 2)\nright 210\nforward (:tamanho * 2)\nleft (180 - 75)\nforward :tamanho\nleft 30\n]"
+    },
+    {
+      "id": "example-28",
+      "originalId": "NomeDoAluno-30-07-2015-1438309701",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438309701.txt",
+          "sha256": "08610a11a410486e5d3de95d89b0378628fabcd159de84a5f6b1579236dc62b4",
+          "bytes": 247
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438309701.cp7",
+          "sha256": "1584650d5a7c0ef00bd840f84bab2dad308e3d0b5519fee2b025c5cf0248df98",
+          "bytes": 5968
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438309701.png",
+          "sha256": "1893a0cbcb32c7890b2511e86048b8dcd935f99d339b5d3e8d9ae7deb3c80137",
+          "bytes": 29145
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-28.program.json",
+        "programSha256": "cf19246fb676d4f647077fad1358ba5f9ed9d1d21ae3d7f9d6716442c99c9300",
+        "sourceSha256": "08610a11a410486e5d3de95d89b0378628fabcd159de84a5f6b1579236dc62b4",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-28.png",
+        "previewSha256": "4dd51cce077113f2dc61283854774de122e7b9ae77cd8d3635e4e6f1580ceff5",
+        "previewBytes": 22806
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nsetxy 200 400\nto procedimento\nright 90\nrepeat 12 [\nforward :tamanho\nleft (180 - 75)\nforward (:tamanho * 2)\nright 210\nforward (:tamanho * 2)\nleft (180 - 75)\nforward :tamanho\nleft 30\n]\nend\nmake \"tamanho 100\nprocedimento"
+    },
+    {
+      "id": "example-29",
+      "originalId": "NomeDoAluno-30-07-2015-1438310893",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438310893.txt",
+          "sha256": "17c0327f09dd756666c2f900aae01aa0548a252ec05e9cf6b822f42f9ca3ee9a",
+          "bytes": 188
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438310893.cp7",
+          "sha256": "3929f381704080e862a7144de75e652c69b4df72968217949ff3df4d288506ab",
+          "bytes": 5134
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438310893.png",
+          "sha256": "d5b52d2253d28924a6bc44bc9a670d2f636d49a3a212e587a18927a84f92ad15",
+          "bytes": 10947
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-29.program.json",
+        "programSha256": "4ef4d9bf10d0bc238843ff18a2f592304cdc914ed035f147d8f467c17802626a",
+        "sourceSha256": "17c0327f09dd756666c2f900aae01aa0548a252ec05e9cf6b822f42f9ca3ee9a",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-29.png",
+        "previewSha256": "44862a20b02763d37287e74535bf4c8e85d6575caf7ff822c808a2ec293545e4",
+        "previewBytes": 8728
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nto circulo\nrepeat 36 [\nforward 1.2\nright 10\n]\nend\ncolor [255 38 26]\nrepeat 4 [\nrepeat 16 [\ncirculo\nright 10\n]\nleft 10\nrepeat 180 [\nforward 1.2\nright 1\n]\nrepeat 16 [\ncirculo\nleft 10\n]\n]"
+    },
+    {
+      "id": "example-30",
+      "originalId": "NomeDoAluno-30-07-2015-1438310909",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438310909.txt",
+          "sha256": "17c0327f09dd756666c2f900aae01aa0548a252ec05e9cf6b822f42f9ca3ee9a",
+          "bytes": 188
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438310909.cp7",
+          "sha256": "ab42bd05415ff3927bc2e72774cc2d8ad36eb371af4190739d776fbd6b332e25",
+          "bytes": 5125
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438310909.png",
+          "sha256": "d5b52d2253d28924a6bc44bc9a670d2f636d49a3a212e587a18927a84f92ad15",
+          "bytes": 10947
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-30.program.json",
+        "programSha256": "4ef4d9bf10d0bc238843ff18a2f592304cdc914ed035f147d8f467c17802626a",
+        "sourceSha256": "17c0327f09dd756666c2f900aae01aa0548a252ec05e9cf6b822f42f9ca3ee9a",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-30.png",
+        "previewSha256": "44862a20b02763d37287e74535bf4c8e85d6575caf7ff822c808a2ec293545e4",
+        "previewBytes": 8728
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nto circulo\nrepeat 36 [\nforward 1.2\nright 10\n]\nend\ncolor [255 38 26]\nrepeat 4 [\nrepeat 16 [\ncirculo\nright 10\n]\nleft 10\nrepeat 180 [\nforward 1.2\nright 1\n]\nrepeat 16 [\ncirculo\nleft 10\n]\n]"
+    },
+    {
+      "id": "example-31",
+      "originalId": "NomeDoAluno-30-07-2015-1438311209",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438311209.txt",
+          "sha256": "b4586ad0548e5f90fe11fbfea96078708f6f4290834cac56605dc21a9b1f5c0c",
+          "bytes": 151
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-30-07-2015-1438311209.cp7",
+          "sha256": "b9efc8fc40076306e5206162c394f3ed237af717f48f1ad3a72bbb42e7430b42",
+          "bytes": 3489
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-30-07-2015-1438311209.png",
+          "sha256": "6ae10d7138440ae9455e3188171a92c6339d839f9fabf2f99a5b82349409be24",
+          "bytes": 2969
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-31.program.json",
+        "programSha256": "b1f97ad250d3cae1a329ae7255ef5da35c976b865a551432db7926670a258467",
+        "sourceSha256": "b4586ad0548e5f90fe11fbfea96078708f6f4290834cac56605dc21a9b1f5c0c",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-31.png",
+        "previewSha256": "67f651cbacd0a336625e28d26b602c53e1b950c23c8475ee6e3e693ffa674c8e",
+        "previewBytes": 2253
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "lados",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"lados 8\nmake \"tamanho 100\nto poligonos\nrepeat :lados [\nforward :tamanho\nright (360 / :lados)\n]\nend\ncolor [35 175 0]\nsetx 150\npoligonos"
+    },
+    {
+      "id": "example-32",
+      "originalId": "NomeDoAluno-31-08-2015-1441074535",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-31-08-2015-1441074535.txt",
+          "sha256": "36b84872a6c125778234e4c250425846dfbae7349ab2e5a73ff1656c605d43e9",
+          "bytes": 249
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-31-08-2015-1441074535.cp7",
+          "sha256": "8b7e8685d85cb32fd931bb18b8c8054c6762b12a48f46b46c4def49408e16628",
+          "bytes": 6297
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-31-08-2015-1441074535.png",
+          "sha256": "69daf21fe5f6e7af5bd1bc09aca035ee968b88402b5fadee99f33061656ba05f",
+          "bytes": 5727
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-32.program.json",
+        "programSha256": "e5728f780a994b4180bd8c66ef2574b71dec88c9db379b8d16debf738c7dfa46",
+        "sourceSha256": "36b84872a6c125778234e4c250425846dfbae7349ab2e5a73ff1656c605d43e9",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-32.png",
+        "previewSha256": "377f29df59ad99944a75520275a3b61695420dfad6f1ead57131cf1e092b5172",
+        "previewBytes": 4306
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "nome",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tamanho 4\nmake \"nome 4\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright (360 / :nome)\nend\ncolor [220 45 0]\nrepeat 200 [\nlado\nmake \"nome (:nome + 1)\n]"
+    },
+    {
+      "id": "example-33",
+      "originalId": "NomeDoAluno-31-08-2015-1441074676",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-31-08-2015-1441074676.txt",
+          "sha256": "ad707085f1e0136b6a4d73b52e093c4029bb0adf2425c77cecfdce1ab028e52d",
+          "bytes": 246
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-31-08-2015-1441074676.cp7",
+          "sha256": "1584650d5a7c0ef00bd840f84bab2dad308e3d0b5519fee2b025c5cf0248df98",
+          "bytes": 5968
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-31-08-2015-1441074676.png",
+          "sha256": "1893a0cbcb32c7890b2511e86048b8dcd935f99d339b5d3e8d9ae7deb3c80137",
+          "bytes": 29145
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-33.program.json",
+        "programSha256": "d5f6eec64c2d6d062c3b15ea97e9e2db179891f1f8df8d6aefe6b72e84f55cde",
+        "sourceSha256": "ad707085f1e0136b6a4d73b52e093c4029bb0adf2425c77cecfdce1ab028e52d",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-33.png",
+        "previewSha256": "4dd51cce077113f2dc61283854774de122e7b9ae77cd8d3635e4e6f1580ceff5",
+        "previewBytes": 22806
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nsetxy 200 400\nto procedimento\nright 90\nrepeat 12 [\nforward :tamanho\nleft (180 - 75)\nforward (:tamanho * 2)\nright 210\nforward (:tamanho * 2)\nleft (180 - 75)\nforward :tamanho\nleft 30\n]\nend\nmake \"tamanho 100\nprocedimento"
+    },
+    {
+      "id": "example-34",
+      "originalId": "NomeDoAluno-31-08-2015-1441074840",
+      "originals": [
+        {
+          "path": "compartilhados-code/NomeDoAluno-31-08-2015-1441074840.txt",
+          "sha256": "36b84872a6c125778234e4c250425846dfbae7349ab2e5a73ff1656c605d43e9",
+          "bytes": 249
+        },
+        {
+          "path": "compartilhados-code/NomeDoAluno-31-08-2015-1441074840.cp7",
+          "sha256": "8b7e8685d85cb32fd931bb18b8c8054c6762b12a48f46b46c4def49408e16628",
+          "bytes": 6297
+        },
+        {
+          "path": "compartilhados/NomeDoAluno-31-08-2015-1441074840.png",
+          "sha256": "909f4c97ac0aae1802ef39f6a5ca0034da622b024585a733b325b6a095de9830",
+          "bytes": 1837
+        }
+      ],
+      "destination": {
+        "programFile": "src/infrastructure/legacy-import/generated/example-34.program.json",
+        "programSha256": "e5728f780a994b4180bd8c66ef2574b71dec88c9db379b8d16debf738c7dfa46",
+        "sourceSha256": "36b84872a6c125778234e4c250425846dfbae7349ab2e5a73ff1656c605d43e9",
+        "previewFile": "src/infrastructure/legacy-import/generated/example-34.png",
+        "previewSha256": "d24010fccbf5dbfeaf867cb91ad3548b2f30f53dd35c45abff252e1ffea4056d",
+        "previewBytes": 1458
+      },
+      "comparison": "equivalent-ast",
+      "differences": [],
+      "resolution": "TXT original preservado integralmente; CP7 confirma a mesma AST após aliases, variáveis dos slots e infixos serem normalizados.",
+      "bareVariables": [
+        "nome",
+        "tamanho"
+      ],
+      "orphanExpressions": [],
+      "cp7Source": "reset\nmake \"tamanho 4\nmake \"nome 4\nto lado\nforward :tamanho\nleft 90\nforward :tamanho\nright 90\nforward :tamanho\nright 90\nforward :tamanho\nleft 90\nforward :tamanho\nright (360 / :nome)\nend\ncolor [220 45 0]\nrepeat 200 [\nlado\nmake \"nome (:nome + 1)\n]"
+    }
+  ]
+}
