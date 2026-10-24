@@ -1,0 +1,15 @@
+{
+  "first": {
+    "status": 0,
+    "output": "Migração: 34 importados, 0 já presentes, 34 conferidos."
+  },
+  "second": {
+    "status": 0,
+    "output": "Migração: 0 importados, 34 já presentes, 34 conferidos."
+  },
+  "listStatus": 200,
+  "total": 34,
+  "privateManifest": true,
+  "lockReleased": true,
+  "productionChanged": false
+}

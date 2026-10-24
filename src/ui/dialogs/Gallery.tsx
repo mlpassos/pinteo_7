@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ShareStore } from '../../application/index.js';
-import type { ProgramDocument, SharePage } from '../../shared/index.js';
-import { programDocumentSchema, sharePageSchema } from '../../shared/index.js';
+import type { ShareEntry, SharePage } from '../../shared/index.js';
+import { shareEntrySchema, sharePageSchema } from '../../shared/index.js';
 
 /** Galeria paginada mantém erros locais e nunca troca programa em requisição cancelada. */
 export function Gallery({
@@ -9,7 +9,7 @@ export function Gallery({
   load,
 }: {
   store: ShareStore | undefined;
-  load: (document: ProgramDocument) => void;
+  load: (entry: ShareEntry) => Promise<void>;
 }) {
   const [page, setPage] = useState<SharePage | null>(null);
   const [error, setError] = useState('');
@@ -57,12 +57,12 @@ export function Gallery({
         setError(result.diagnostics.map((d) => d.message).join(' '));
         return;
       }
-      const parsed = programDocumentSchema.safeParse(result.value.program);
+      const parsed = shareEntrySchema.safeParse(result.value);
       if (!parsed.success) {
         setError('O programa compartilhado é inválido. Seu rascunho foi preservado.');
         return;
       }
-      load(parsed.data);
+      await load(parsed.data);
     } catch {
       if (mounted.current) setError('Falha ao abrir. Seu rascunho foi preservado.');
     } finally {

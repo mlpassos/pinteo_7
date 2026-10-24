@@ -9,15 +9,28 @@ export function Stage({
   runner,
   character,
   ready,
+  preview = null,
 }: {
   factory: ((canvas: HTMLCanvasElement) => Renderer) | undefined;
   runner: Runner | undefined;
   character: ProgramDocument['characterId'];
   ready: (renderer: Renderer | null) => void;
+  preview?: Blob | null;
 }) {
   const surface = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
+  const previewImage = useRef<HTMLImageElement>(null);
   const sprite = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    const image = previewImage.current;
+    if (!preview || !image) return;
+    const url = URL.createObjectURL(preview);
+    image.src = url;
+    return () => {
+      image.removeAttribute('src');
+      URL.revokeObjectURL(url);
+    };
+  }, [preview]);
   const onReady = useEffectEvent(ready);
   useEffect(() => {
     const target = canvas.current;
@@ -70,6 +83,13 @@ export function Stage({
     <div className="stage-wrap">
       <div ref={surface} className="stage" aria-label="Palco de desenho, 500 por 500 unidades">
         <canvas ref={canvas} width={500} height={500} aria-label="Desenho do programa LOGO" />
+        {preview && (
+          <img
+            ref={previewImage}
+            className="shared-preview"
+            alt="Desenho compartilhado, sem executar o programa"
+          />
+        )}
         <img
           ref={sprite}
           className="stage-character"

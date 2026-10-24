@@ -3,11 +3,12 @@ import '@fontsource/nunito/latin-600.css';
 import '@fontsource/nunito/latin-700.css';
 import '@fontsource/nunito/latin-800.css';
 import nunitoLicense from '@fontsource/nunito/LICENSE?raw';
-import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useEffectEvent, useLayoutEffect, useReducer, useRef, useState } from 'react';
 import type { Block, BlockAction, BlockId, BodyTarget, Projection } from '../core/program/index.js';
 import { createBlockId } from '../core/program/index.js';
-import type { ProgramDocument } from '../shared/index.js';
-import { CHARACTER_IDS, programDocumentSchema } from '../shared/index.js';
+import type { Result } from '../core/common/index.js';
+import type { ProgramDocument, ShareEntry } from '../shared/index.js';
+import { CHARACTER_IDS, programDocumentSchema, shareEntrySchema } from '../shared/index.js';
 import type { Renderer, Speed } from '../application/index.js';
 import {
   CHARACTER_NAMES,
@@ -29,11 +30,12 @@ import { Modal } from './dialogs/Modal.js';
 import { Gallery } from './dialogs/Gallery.js';
 import { Share } from './dialogs/Share.js';
 import { readPreferences, writePreferences } from './preferences.js';
+import { loadPreview } from './preview.js';
 import './workspace.css';
 
 const firstDocument: ProgramDocument = {
   formatVersion: 1,
-  source: '; Minha primeira ideia\nrepeat 4 [forward 100 right 90]\n',
+  source: '',
   characterId: 'tartaruga',
 };
 type DialogName = 'characters' | 'gallery' | 'share' | 'help' | 'replace' | null;
@@ -43,29 +45,42 @@ export function App({
   services,
   initialDocument = firstDocument,
   environmentLabel,
+  initialMode = 'code',
+  initialShare,
 }: {
   services?: UiServices;
   initialDocument?: ProgramDocument;
   environmentLabel?: string;
+  initialMode?: 'visual' | 'code';
+  initialShare?: { id: string; response: Promise<Result<ShareEntry>> };
 }) {
   const [preferences] = useState(readPreferences);
-  const [state, dispatch] = useReducer(
-    workspaceReducer,
-    {
-      ...initialDocument,
-      characterId:
-        initialDocument === firstDocument ? preferences.characterId : initialDocument.characterId,
-    },
-    (document) => ({ ...initialWorkspace(document), speed: preferences.speed }),
-  );
+  const [baseline] = useState(() => ({
+    ...initialDocument,
+    characterId:
+      initialDocument === firstDocument ? preferences.characterId : initialDocument.characterId,
+  }));
+  const [state, dispatch] = useReducer(workspaceReducer, baseline, (document) => {
+    const initial = { ...initialWorkspace(document), speed: preferences.speed };
+    if (initialMode !== 'visual' || !services) return initial;
+    const result = services.conversion.sourceToBlocks(document.source, 0);
+    return result.ok ? { ...initial, mode: 'visual' as const, projection: result.value } : initial;
+  });
   const [category, setCategory] = useState<number | null>(null);
   const [pending, setPending] = useState<PaletteItem | BlockId | null>(null);
   const [dialog, setDialog] = useState<DialogName>(null);
-  const [replacement, setReplacement] = useState<ProgramDocument | null>(null);
+  const [replacement, setReplacement] = useState<{
+    document: ProgramDocument;
+    preview: Blob | null;
+  } | null>(null);
   const [sound, setSound] = useState(preferences.sound);
   const [message, setMessage] = useState('');
   const [renderer, setRenderer] = useState<Renderer | null>(null);
   const [busy, setBusy] = useState(false);
+  const [preview, setPreview] = useState<Blob | null>(null);
+  const [shareLoading, setShareLoading] = useState(Boolean(initialShare));
+  const [shareError, setShareError] = useState('');
+  const openVersion = useRef(0);
   const audio = useRef<HTMLAudioElement | null>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const suppressedClick = useRef(0);
@@ -111,6 +126,48 @@ export function App({
   useEffect(() => {
     writePreferences({ characterId: state.document.characterId, speed: state.speed, sound });
   }, [state.document.characterId, state.speed, sound]);
+
+  const initialLoaded = useEffectEvent((entry: ShareEntry, image: Blob) => {
+    setShareLoading(false);
+    setShareError('');
+    if (state.revision !== 0 || state.document.characterId !== baseline.characterId) {
+      setReplacement({ document: entry.program, preview: image });
+      setDialog('replace');
+    } else acceptDocument(entry.program, image);
+  });
+  useEffect(() => {
+    if (!initialShare) return;
+    let current = true;
+    /** Consulta a montagem após fronteiras assíncronas sem capturar um valor antigo. */
+    function isCurrent() {
+      return current;
+    }
+    void initialShare.response
+      .then(async (result) => {
+        if (!isCurrent()) return;
+        if (!result.ok) {
+          setShareLoading(false);
+          setShareError(result.diagnostics.map((d) => d.message).join(' '));
+          return;
+        }
+        const parsed = shareEntrySchema.safeParse(result.value);
+        if (!parsed.success || parsed.data.id !== initialShare.id)
+          throw new Error('O link retornou uma obra inválida. Seu rascunho foi preservado.');
+        const image = await loadPreview(parsed.data.previewUrl);
+        if (isCurrent()) initialLoaded(parsed.data, image);
+      })
+      .catch(() => {
+        if (current) {
+          setShareLoading(false);
+          setShareError(
+            'Não foi possível abrir o compartilhado. Seu rascunho foi preservado. Abra a galeria para tentar novamente.',
+          );
+        }
+      });
+    return () => {
+      current = false;
+    };
+  }, [initialShare]);
 
   /** Mensagem temporária sem capturar foco ou apagar diagnósticos persistentes. */
   function announce(text: string) {
@@ -178,6 +235,7 @@ export function App({
       previousRevision: state.revision,
     });
     setPending(null);
+    announce(action.type === 'remove' ? 'Bloco removido.' : 'Programa atualizado.');
     if (action.type === 'remove') dispatch({ type: 'select', id: null });
     playSound(action.type === 'remove');
     return true;
@@ -217,21 +275,44 @@ export function App({
       document.querySelector<HTMLButtonElement>('.palette-list button')?.focus(),
     );
   }
+  /** Confirma um documento e seu desenho juntos, sem executar o texto recebido. */
+  function acceptDocument(document: ProgramDocument, image: Blob | null) {
+    services?.runner.clear();
+    setPreview(image);
+    dispatch({ type: 'load', document });
+    setDialog(null);
+    setPending(null);
+  }
   /** Abrir/novo pede decisão explícita antes de substituir fonte não vazia. */
-  function requestDocument(document: ProgramDocument) {
+  function requestDocument(document: ProgramDocument, image: Blob | null = null) {
     const parsed = programDocumentSchema.safeParse(document);
     if (!parsed.success) {
       announce('Documento inválido. Seu rascunho foi preservado.');
       return;
     }
     if (state.document.source.length > 0 && state.document.source !== document.source) {
-      setReplacement(parsed.data);
+      setReplacement({ document: parsed.data, preview: image });
       setDialog('replace');
-    } else {
-      services?.runner.clear();
-      dispatch({ type: 'load', document: parsed.data });
-      setDialog(null);
+    } else acceptDocument(parsed.data, image);
+  }
+  /** Busca prévia limitada antes de trocar obra; fechar o diálogo cancela a aplicação tardia. */
+  async function openShared(entry: ShareEntry) {
+    const version = ++openVersion.current;
+    try {
+      const parsed = shareEntrySchema.safeParse(entry);
+      if (!parsed.success) throw new Error('Obra inválida.');
+      const image = await loadPreview(parsed.data.previewUrl);
+      if (version === openVersion.current) requestDocument(parsed.data.program, image);
+    } catch {
+      if (version === openVersion.current)
+        announce('Não foi possível abrir a prévia. Seu rascunho e desenho foram preservados.');
     }
+  }
+  /** O PNG público validado permanece exportável até uma nova execução ou limpeza. */
+  function exportDrawing(): Promise<Blob> {
+    if (preview) return Promise.resolve(preview);
+    if (renderer) return renderer.exportPng();
+    return Promise.reject(new Error('Palco indisponível.'));
   }
   /** Executa fonte integral atual; seleção visual nunca altera o programa implicitamente. */
   function run() {
@@ -242,15 +323,17 @@ export function App({
       return;
     }
     const result = services.runner.start(state.document.source, state.speed);
-    if (result.ok) dispatch({ type: 'run' });
-    else dispatch({ type: 'diagnostics', diagnostics: result.diagnostics });
+    if (result.ok) {
+      setPreview(null);
+      dispatch({ type: 'run' });
+    } else dispatch({ type: 'diagnostics', diagnostics: result.diagnostics });
   }
   /** Exporta somente o palco; falhas não modificam código, desenho ou seleção. */
   async function download() {
     if (!renderer || busy) return;
     setBusy(true);
     try {
-      const blob = await renderer.exportPng();
+      const blob = await exportDrawing();
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
@@ -353,6 +436,16 @@ export function App({
           <p className="integration-banner" role="status">
             {environmentLabel ??
               'Interface em integração — motor, conversor e compartilhamento ainda não conectados.'}
+          </p>
+        )}
+        {shareLoading && (
+          <p className="integration-banner" role="status">
+            Carregando compartilhado, sem executar o programa…
+          </p>
+        )}
+        {shareError && (
+          <p className="notice error" role="alert">
+            {shareError}
           </p>
         )}
         <section className="command-dock" aria-label="Comandos">
@@ -583,6 +676,7 @@ export function App({
                 disabled={!services}
                 onClick={() => {
                   services?.runner.clear();
+                  setPreview(null);
                   dispatch({ type: 'clear-session' });
                 }}
               >
@@ -620,6 +714,7 @@ export function App({
               factory={services?.createRenderer}
               runner={services?.runner}
               character={state.document.characterId}
+              preview={preview}
               ready={setRenderer}
             />
             <div className="character-bar">
@@ -724,6 +819,7 @@ export function App({
           <Modal
             title={title}
             close={() => {
+              openVersion.current++;
               setDialog(null);
               setReplacement(null);
             }}
@@ -745,9 +841,13 @@ export function App({
                 ))}
               </div>
             )}
-            {dialog === 'gallery' && <Gallery store={services?.shares} load={requestDocument} />}
+            {dialog === 'gallery' && <Gallery store={services?.shares} load={openShared} />}
             {dialog === 'share' && (
-              <Share store={services?.shares} renderer={renderer} document={state.document} />
+              <Share
+                store={services?.shares}
+                exportPng={renderer || preview ? exportDrawing : null}
+                document={state.document}
+              />
             )}
             {dialog === 'help' && (
               <>
@@ -826,8 +926,7 @@ export function App({
                     className="primary"
                     onClick={() => {
                       if (replacement) {
-                        services?.runner.clear();
-                        dispatch({ type: 'load', document: replacement });
+                        acceptDocument(replacement.document, replacement.preview);
                       }
                       setReplacement(null);
                       setDialog(null);

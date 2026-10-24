@@ -186,18 +186,41 @@ export class FileShareRepository implements ShareRepository {
 
   /** Persiste fonte, resumo e PNG antes do único rename que torna a obra visível. */
   async create(program: ProgramDocument, png: Buffer): Promise<Result<ShareEntry>> {
+    return this.createImported(program, png, {
+      id: randomUUID(),
+      createdAt: new Date().toISOString(),
+    });
+  }
+
+  /** Publica identidade reservada pela migração offline; nunca substitui um UUID existente. */
+  async createImported(
+    program: ProgramDocument,
+    png: Buffer,
+    identity: Readonly<{ id: string; createdAt: string }>,
+  ): Promise<Result<ShareEntry>> {
+    const checked = shareEntrySchema.safeParse({
+      ...identity,
+      previewUrl: `/api/v1/shares/${identity.id}/preview.png`,
+      program,
+    });
+    if (!checked.success)
+      return serverFailure('INVALID_DOCUMENT', 'O registro reservado para importação é inválido.');
     return this.exclusive(async () => {
-      const id = randomUUID();
-      const staging = join(this.directory, `.staging-${id}`);
-      const entry: ShareEntry = {
-        id,
-        createdAt: new Date().toISOString(),
-        previewUrl: `/api/v1/shares/${id}/preview.png`,
-        program,
-      };
+      const { id } = checked.data;
+      const staging = join(this.directory, `.staging-${id}-${randomUUID()}`);
+      const entry: ShareEntry = checked.data;
       const json = Buffer.from(JSON.stringify(entry));
       const metadata = Buffer.from(JSON.stringify(summary(entry)));
       try {
+        try {
+          await lstat(join(this.directory, id));
+          return serverFailure(
+            'IMPORT_CONFLICT',
+            'A identidade reservada já existe e não será sobrescrita.',
+          );
+        } catch (error) {
+          if (!hasErrorCode(error, 'ENOENT')) throw error;
+        }
         if ((await this.measure()) + json.length + metadata.length + png.length > this.quotaBytes) {
           return serverFailure(
             'QUOTA_EXCEEDED',

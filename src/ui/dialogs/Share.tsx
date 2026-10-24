@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import type { ShareStore, Renderer } from '../../application/index.js';
+import type { ShareStore } from '../../application/index.js';
 import type { ProgramDocument } from '../../shared/index.js';
 import { programDocumentSchema, shareEntrySchema } from '../../shared/index.js';
 
 /** Erros de rede ficam no diálogo; o documento e o desenho não são modificados. */
 export function Share({
   store,
-  renderer,
+  exportPng,
   document,
 }: {
   store: ShareStore | undefined;
-  renderer: Renderer | null;
+  exportPng: (() => Promise<Blob>) | null;
   document: ProgramDocument;
 }) {
   const [busy, setBusy] = useState(false);
@@ -29,7 +29,7 @@ export function Share({
   }
   /** Só o gesto explícito confirma criação pública; tentar novamente usa o mesmo rascunho. */
   async function share() {
-    if (!store || !renderer || busy) return;
+    if (!store || !exportPng || busy) return;
     if (!programDocumentSchema.safeParse(document).success) {
       setMessage('O programa deve ter no máximo 20 KiB em UTF-8. Seu rascunho foi preservado.');
       return;
@@ -37,7 +37,7 @@ export function Share({
     setBusy(true);
     setMessage('');
     try {
-      const png = await renderer.exportPng();
+      const png = await exportPng();
       if (!isActive()) return;
       const result = await store.create(document, png);
       if (!isActive()) return;
@@ -69,7 +69,7 @@ export function Share({
         Seu código e desenho ficarão <strong>públicos</strong>. Qualquer pessoa com o link poderá
         abri-los. Não inclua informações pessoais.
       </p>
-      {(!store || !renderer) && (
+      {(!store || !exportPng) && (
         <p className="notice">Compartilhamento aguardando integração dos serviços.</p>
       )}
       <p role="status">{message}</p>
@@ -88,7 +88,7 @@ export function Share({
       <div className="dialog-actions">
         <button
           className="primary"
-          disabled={!store || !renderer || busy || Boolean(url)}
+          disabled={!store || !exportPng || busy || Boolean(url)}
           onClick={() => {
             void share();
           }}

@@ -1542,3 +1542,35 @@ dialog dd {
   max-height: 320px;
   overflow: auto;
 }
+
+.shared-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: white;
+}
+.stage:has(.shared-preview) .stage-character {
+  display: none;
+}
+
+/* Papel/grade só na apresentação: canvas e PNG continuam sem essa camada. */
+.stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(#739a781a 1px, transparent 1px),
+    linear-gradient(90deg, #739a781a 1px, transparent 1px);
+  background-size: 25px 25px;
+}
+.stage-panel .execution-meta,
+.stage-panel .speed {
+  color: #160c08;
+}
+.stage-panel .output {
+  background: #fff4d8;
+  color: #54321f;
+}
