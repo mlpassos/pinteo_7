@@ -189,3 +189,6 @@ As três assinaturas de conversão acima formam a interface `ConversionService`;
 
 
 A integração T-063/T-066 acrescenta `Runner.clear()` e `Runner.setSpeed()` como operações explícitas. Limpar coordena cancelamento e reinício dentro do dono da sessão, evitando que UI limpe apenas o canvas e deixe variáveis antigas. Velocidade atua no agendamento, sem reconstruir tartaruga. O documento fonte não pertence ao runner.
+
+
+`BodyTarget.index` identifica um encaixe entre irmãos na árvore **anterior à remoção**. Há length+1 encaixes; mover um item para índice posterior no mesmo corpo desconta a remoção uma única vez. A UI pode usar o mesmo destino para inserir ou mover; conversor valida e ajusta atomicamente, sem depender de DOM.
