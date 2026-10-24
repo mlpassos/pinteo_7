@@ -22,6 +22,10 @@ export interface Runner {
   start(source: string, speed: Speed): Result<void>;
   /** Cancela execução e desenho pendentes, invalidando callbacks anteriores. */
   stop(): void;
+  /** Cancela e reinicia ambiente, tinta e saída; documento fonte pertence ao chamador. */
+  clear(): void;
+  /** Troca somente o ritmo, mantendo ambiente, desenho e coordenadas. */
+  setSpeed(speed: Speed): void;
   /** Observa eventos ordenados; retorna a função de desinscrição do observador. */
   subscribe(listener: (event: RunEvent) => void): () => void;
   /** Libera agendamentos e assinaturas associados à instância. */

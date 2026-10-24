@@ -117,6 +117,10 @@ export interface Runner {
   start(source: string, speed: Speed): Result<void>;
   /** Cancela execução e desenho pendentes; nunca apaga a fonte. */
   stop(): void;
+  /** Reinicia ambiente, tartaruga, tinta e saída, preservando a fonte externa. */
+  clear(): void;
+  /** Muda somente agendamento, sem reiniciar sessão ou modificar geometria. */
+  setSpeed(speed: Speed): void;
   /** Observa eventos ordenados; devolve uma função de desinscrição. */
   subscribe(listener: (event: RunEvent) => void): () => void;
   /** Libera agendamentos e assinaturas. */
@@ -182,3 +186,6 @@ Request body limitado também no proxy. Origem pública configurada; CORS same-o
 `core/common` expõe Result/Diagnostic/Span/RGB e helpers `succeed`/`fail` (falha exige pelo menos um diagnóstico). `core/program` expõe tipos e fábrica `createBlockId(unknown): Result<BlockId>`: 1–128 caracteres ASCII alfanuméricos/hífen/sublinhado, iniciando com alfanumérico, sem normalização. IDs não são gerados aleatoriamente no core; unicidade/parentesco serão validados pelo editor.
 
 As três assinaturas de conversão acima formam a interface `ConversionService`; nenhuma função vazia ou conversão parcial é publicada na fundação. Portas de aplicação estão em application/index.ts. Schemas Zod em shared/index.ts validam envelope estrito, UTF-8 (não número de caracteres), 21 personagens, UUID/página/limites e vínculo da URL relativa de prévia ao mesmo UUID. Validação estrutural de base64 não afirma que o conteúdo é PNG válido: essa validação e reencode são obrigação da T-065.
+
+
+A integração T-063/T-066 acrescenta `Runner.clear()` e `Runner.setSpeed()` como operações explícitas. Limpar coordena cancelamento e reinício dentro do dono da sessão, evitando que UI limpe apenas o canvas e deixe variáveis antigas. Velocidade atua no agendamento, sem reconstruir tartaruga. O documento fonte não pertence ao runner.
