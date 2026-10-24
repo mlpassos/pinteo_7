@@ -1,0 +1,9 @@
+package-lock.json
+docs/evidencias/
+design/
+js/
+styles/
+compartilhados/
+images/
+
+tests/fixtures/legacy/originals/

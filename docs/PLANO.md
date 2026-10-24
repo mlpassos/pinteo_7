@@ -1,13 +1,13 @@
 # Plano de entrega e fila
 
-Atualizado em 23/10/2026. T-061: v6 aprovada por Márcio (mensagem “Aceito”), com integração em andamento. T-062 elegível após essa integração. Demais tasks não iniciadas. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
+Atualizado em 23/10/2026. T-061 concluída: v6 aprovada por Márcio e integrada pelo PR #5 (`e7038fb`). T-062 em andamento na base integrada. Demais tasks não iniciadas. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
 
 ## Sequência
 
 | Task | Entrega | Depende de | Situação inicial |
 |---|---|---|---|
-| T-061 | Protótipo de layout/UX com mocks e decisão de Márcio | nenhuma | v6 aprovada; integração em andamento |
-| T-062 | Fundação, contratos, caracterização e CI | T-061 | aguardando layout aprovado |
+| T-061 | Protótipo de layout/UX com mocks e decisão de Márcio | nenhuma | done — PR #5 / e7038fb |
+| T-062 | Fundação, contratos, caracterização e CI | T-061 | in-progress — fundação e caracterização |
 | T-063 | Papert tipado, tartaruga, canvas e runner seguro | T-062 | aguardando fundação |
 | T-064 | Conversão bidirecional e importação dos 34 exemplos | T-063 | aguardando parser estável |
 | T-065 | API Node e compartilhamento seguro em arquivos | T-062 | paralelizável com motor/UI |

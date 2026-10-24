@@ -1,0 +1,7 @@
+reset
+repeat 36 [
+right 10
+repeat 8 [
+forward 70
+left 45
+]] 

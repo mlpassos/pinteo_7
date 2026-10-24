@@ -1,0 +1,11 @@
+reset
+make "tam 50
+repeat 12 [
+repeat 4 [
+forward :tam
+right 90
+repeat 3 [
+forward :tam
+left 120
+]]left 30
+] 

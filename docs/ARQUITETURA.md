@@ -1,6 +1,6 @@
 # Arquitetura do refactor
 
-Status: direção aceita em 23/10/2026; contratos são especificação a materializar na T-062, não código existente. Layout é validado antes na T-061. Complementa o PRD e substitui as escolhas conflitantes da pesquisa de setembro.
+Status: direção aceita em 23/10/2026; contratos são especificação a materializar na T-062, não código existente. Layout v6 aprovado na T-061 e integrado pelo PR #5. A T-062 materializa os contratos e a fundação, antes das implementações. Complementa o PRD e substitui as escolhas conflitantes da pesquisa de setembro.
 
 ## 1. Estrutura e dependências
 

@@ -1,0 +1,15 @@
+{
+  "entryPoints": [
+    "src/core/common/index.ts",
+    "src/core/program/index.ts",
+    "src/core/turtle/index.ts",
+    "src/application/index.ts",
+    "src/shared/index.ts"
+  ],
+  "out": "docs/reference",
+  "name": "Pinte o 7 — referência dos contratos",
+  "readme": "none",
+  "excludeInternal": true,
+  "treatWarningsAsErrors": true,
+  "validation": { "notExported": true, "invalidLink": true, "notDocumented": false }
+}

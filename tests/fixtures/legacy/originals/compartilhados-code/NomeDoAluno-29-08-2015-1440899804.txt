@@ -1,0 +1,10 @@
+reset
+make "tamanho 75
+make "lados 8
+to poligonos
+repeat :lados [
+forward :tamanho
+left divide 360 :lados
+]end
+poligonos
+ 

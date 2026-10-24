@@ -1,0 +1,8 @@
+reset
+to procedimento
+repeat 5 [
+forward 100
+right 72
+]end
+procedimento
+ 

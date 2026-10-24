@@ -1,6 +1,6 @@
 # Contratos de implementação
 
-Especificação de 23/10/2026. Estes exemplos descrevem fronteiras; não são código implementado. T-062 deve materializar e verificar os contratos antes de dividir trabalho de motor, UI e backend. Ajustes de implementação são permitidos se preservarem PRD e consumidores, com alteração coordenada da documentação.
+Especificação de 23/10/2026, materializada na T-062 em src/core/{common,program,turtle}, src/application e src/shared. Motor, conversor e backend continuam sendo implementações futuras destas fronteiras. Ajustes de implementação são permitidos se preservarem PRD e consumidores, com alteração coordenada da documentação.
 
 ## 1. Tipos do programa
 
@@ -176,3 +176,9 @@ Request body limitado também no proxy. Origem pública configurada; CORS same-o
 5. Falha durante edição visual: fonte e projeção anteriores intactas, sem estado intermediário salvo.
 6. Programa carregado por API segue exatamente a mesma análise, sem confiar em conteúdo por vir do próprio servidor.
 7. Importação dos 34 CP7 conserva conteúdo original e produz relatório de equivalência com TXT; HTML malicioso não é executado nem copiado para a interface.
+
+## Materialização na T-062
+
+`core/common` expõe Result/Diagnostic/Span/RGB e helpers `succeed`/`fail` (falha exige pelo menos um diagnóstico). `core/program` expõe tipos e fábrica `createBlockId(unknown): Result<BlockId>`: 1–128 caracteres ASCII alfanuméricos/hífen/sublinhado, iniciando com alfanumérico, sem normalização. IDs não são gerados aleatoriamente no core; unicidade/parentesco serão validados pelo editor.
+
+As três assinaturas de conversão acima formam a interface `ConversionService`; nenhuma função vazia ou conversão parcial é publicada na fundação. Portas de aplicação estão em application/index.ts. Schemas Zod em shared/index.ts validam envelope estrito, UTF-8 (não número de caracteres), 21 personagens, UUID/página/limites e vínculo da URL relativa de prévia ao mesmo UUID. Validação estrutural de base64 não afirma que o conteúdo é PNG válido: essa validação e reencode são obrigação da T-065.
