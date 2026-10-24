@@ -1,0 +1,1237 @@
+[
+  {
+    "name": "@hono/node-server",
+    "version": "2.1.5",
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/honojs/node-server.git",
+      "type": "git"
+    },
+    "engines": {
+      "node": ">=20"
+    },
+    "peerDependencies": {
+      "hono": "^4 || ^5.0.0-0"
+    },
+    "scripts": {
+      "lint": "eslint src test",
+      "test": "vitest",
+      "build": "tsdown --external hono",
+      "watch": "tsdown --watch",
+      "format": "prettier --check \"src/**/*.{js,ts}\" \"test/**/*.{js,ts}\"",
+      "release": "np --no-publish",
+      "lint:fix": "eslint src test --fix",
+      "postbuild": "publint",
+      "typecheck": "tsc --noEmit",
+      "format:fix": "prettier --write \"src/**/*.{js,ts}\" \"test/**/*.{js,ts}\"",
+      "prerelease": "pnpm run build && pnpm run test --run"
+    },
+    "dist": {
+      "shasum": "273db93e8bfb44ef361e55f3d00048013668aa09",
+      "tarball": "https://registry.npmjs.org/@hono/node-server/-/node-server-2.1.5.tgz",
+      "fileCount": 29,
+      "integrity": "sha512-MgP/I06GdvsilDspMk/qmRzpk8LOUStP6jFAbSRi40W09DhoyUn+Mj7eyKICPqeYKybOjVFLVIAQzvu1bfIa7Q==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDTzd+sg8Qxvw9TtyTB/H60+CqUCVCvlhiibfEYI/HKRwIgJKYppdQ99BAL2svSwSJRLhbaS44YFcQbWGGxqAsW1GY=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@hono%2fnode-server@2.1.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 138339
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/colour",
+    "version": "1.1.0",
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/lovell/colour.git",
+      "type": "git"
+    },
+    "engines": {
+      "node": ">=18"
+    },
+    "peerDependencies": null,
+    "scripts": {
+      "test": "node --test",
+      "build": "npm run build:cjs && npm run build:dts",
+      "build:cjs": "esbuild node_modules/color/index.js --bundle --platform=node --outfile=color.cjs",
+      "build:dts": "dts-bundle-generator ./dts-src.ts -o index.d.ts --project tsconfig.build.json --external-inlines color --external-inlines color-convert --export-referenced-types=false"
+    },
+    "dist": {
+      "shasum": "b0c2c2fa661adf75effd6b4964497cd80010bb9d",
+      "tarball": "https://registry.npmjs.org/@img/colour/-/colour-1.1.0.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==",
+      "signatures": [
+        {
+          "sig": "MEYCIQD6AY7tLHXJZeSw5K5akdAatr7AgGCBGmG0ODy3GkUdAAIhAOnO7hhphsCcK7xbcj/uyTRaXpj/EdAXyKRQdCEmURKq",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fcolour@1.1.0",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 73264
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-darwin-arm64",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/darwin-arm64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "b1e0276d4e9bf26a7fde7b2adcbe076c71015fc2",
+      "tarball": "https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-QRUlFQ0WxvdWyqqG/WtI3iupfD5rBzmCHXSdPsY91sAtVtTo7Q4cb6zOccZ3gqEqkr0f1As1ehLqmEpDsRf+lg==",
+      "signatures": [
+        {
+          "sig": "MEQCIC1v6p9wvbWzZo/E9VsMYaVhtgN/2wSJ3Fqgyd/4RWdEAiB3+fVEASiA1/Ik5ubhd5hnJCSC7MSbuO+DDmS9MnVqqA==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQD0rJizeUKDYrmxnmSQD9nBYa0PxjXTVCuDkzlof5EG0wIgW0pG79yLo3bl5w6+F2l/dR00a6edaid+1rCvxKfSo2A=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-darwin-arm64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 292231
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-darwin-x64",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/darwin-x64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "bff811f9610ef322415e87f7551fd5d773122928",
+      "tarball": "https://registry.npmjs.org/@img/sharp-darwin-x64/-/sharp-darwin-x64-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-+BR255RhDlpygUpOc/Jdt1nT6DQ3XG/ERo5wbcdOf5Q320dKtPCKPLR1LJs9VGXRaMa8l1uUa0tkCNOXiAxZUw==",
+      "signatures": [
+        {
+          "sig": "MEYCIQDurPbc4BMpRabOpLy+05KAcEn+HEXBk4ClnK7boRxpzQIhAIztQBX3Xp9LSvqTpeTGg7LsuDJgaTnZrwj0NornjUA+",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIGtxvbtwdM0YIvyKDvd1HWqv3qFL6a/MkxMdfLnH39kkAiB85CMPuAQ8BfJQk9FeKF5gdDTV0cSzcgSbO26RTHGcxQ==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-darwin-x64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 267259
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-freebsd-wasm32",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/freebsd-wasm32"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "53b6041958608afa2f5f08323091101407e99086",
+      "tarball": "https://registry.npmjs.org/@img/sharp-freebsd-wasm32/-/sharp-freebsd-wasm32-0.35.5.tgz",
+      "fileCount": 9,
+      "integrity": "sha512-Y/z91nEZ4uIBX5X3nfTovjU9lHNKFYbL2lpHCLVNmXQK03VIZvXBBt0KxbPGp2SdGSF+2mQU4e+hQaWOt86iAw==",
+      "signatures": [
+        {
+          "sig": "MEQCIB7Vlzyp/702mVtVKYRB6mkJPYSL/ALlvYETrBG97mJsAiBJ+6ThRxSM1CJc28mh1VInH1bB9/b5lH5iiMO6axKk8Q==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIFsgsigayh2wWYc2s4zi4MMNBDatUWOVf0bZ5ABls4/XAiEAnJrAIJ67yTszxRV0+6SjmyzAYAjE22TcUkyxiJXT7/4=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-freebsd-wasm32@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 12416
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-darwin-arm64",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/darwin-arm64"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "f29cbba302384f9a08bdb04d14c57b5cf71da4a4",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-5R89nBYiRdUlSWJxPhO+GVtaXzXSxKnRu/xqMn3KTA3L9EB9Oy/P+Nn2f2vlhPuUdy/Zusb2DarbyTpGCfEDuw==",
+      "signatures": [
+        {
+          "sig": "MEYCIQDfTeimYEwNXdvBwEDWLSNiaFKTrshjKqMKQuwF5LUmbwIhAPILBsr/9cn3ZDd7evZ+dB5vllGZOSJrOUJCy3z88jtV",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQCOp96soJEeNa2MSRg8ofmjnR6ZqEsDIEmSt3wwmooj+AIgOzEkUhy+5Qh9VhVXwe4tgK2fG47b7aeCiHhdbZt/9H4=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-darwin-arm64@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 18243502
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-darwin-x64",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/darwin-x64"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "527f52721a89dd75614663aef87162a781739bab",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-darwin-x64/-/sharp-libvips-darwin-x64-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-iR2OKH80yi0U+dUplyh3/xdpFvps6YkCwsXenIJxqxR1v9o+xtKTGbS9H7cps+2Vxjc8B1j96p75NmTGjIhtpQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIQCNMzgqUhSQKxUbRiWMhYd6hEd1wCGkrqLRLEU1pWSMGQIgcyzhKs7crjLpYRA87UgyliRX7PbjgloGHBpkxE8M918=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIBK+EeDCFl9TxHU0BygKwmuUGeYEtcjXKOXNxRO34ykyAiB2OHoDl76sH0EONg16Rv1N67JUIEgE6Q4AtoqWrcauNw==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-darwin-x64@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 20381445
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-linux-arm",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/linux-arm"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "f5ecd8ebb63690e580438e308ce73015b49516a8",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linux-arm/-/sharp-libvips-linux-arm-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-LmRtTsOHuvM2+wlO2Db37dx5MiZhB0FvSunciw48YjdOkZz9KAiRbm8ujeMOA1INqmei5NapFxYEK1D1ZSidmw==",
+      "signatures": [
+        {
+          "sig": "MEUCIHomv7XI7wrJNrqQSvISkm4lktyBOcv6ps1EA3OAkITpAiEAu98Yb6oGQAXbpF2+hZYjH91kJHRTljOwPkd9MljjP6k=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQCxlvmddm26l4kbVc7h+9VGS+iDIKMyWjBPyFPhgK3PTQIgZoRHhi4v6Ei8q0FAWcvw03JNTSbafvRMQCjbgkXvTCk=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-linux-arm@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 15012679
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-linux-arm64",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/linux-arm64"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "78c11c6b0a4b4045c72dacacdec3b10f3e521349",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linux-arm64/-/sharp-libvips-linux-arm64-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-Y3dgX/6lE2QhQb+Gxy0WZxfg9MEm/JBjamZpS2IklP7xIQoKN4hzAm7KcMVGtaVDt3neE9OKBC7vAfonA/Lr1A==",
+      "signatures": [
+        {
+          "sig": "MEYCIQCcMkFB3kh9nxmM8zzaq29JxG6qO9A+QWrOL98t2V4kCAIhANDhYib+3jAzrFwr7fFuonbuNaZz3ZFps18KZoapTQq/",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQCphfc5qVez1aW2pvB9U7/4aIoK9xDBEJ0YQD4e+QELxQIgJ86Uz3s5V93vdiZozcQX72w/EsnYEk6EvXa8eYZwOE8=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-linux-arm64@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 18336518
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-linux-ppc64",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/linux-ppc64"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "b66a4d25bd042eff66c8076b1e4bd99c6d19246e",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linux-ppc64/-/sharp-libvips-linux-ppc64-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-Le6boB8Tai0Nis+gIxIpKx68UDVVIqdR8Tin5Yf1z2LJJQLDJvCDRqRu+jC2qCoD+eIomonmOwB4smBRxfVpYQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIBrHlD2pLOBxykjnXw8M7Oynr78C7pVx4xMAMiZSTgGLAiEAucCVvoqGVCYC9qzT7mazOM3jaYhOUvBeiO+MElgxLBY=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIF9yU/Hk5bP+n1YVVYjrc6DxLbm9acF1G+DhcJoOLtznAiEAqf1F2BX+dQhJbw+HAn3nJ+oil5S4aqWimFYtfXGCiKQ=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-linux-ppc64@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 19646632
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-linux-riscv64",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/linux-riscv64"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "9dee8b3fd801c0ff5d6083d6558d3c89b8dedc1b",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linux-riscv64/-/sharp-libvips-linux-riscv64-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-aHkkIEHPRdQEegJN20MLmGtxYD9R2wQr3Cwpddnu5+YKMt6Uzax7S9h5gpZTo8wyrGuZSlfQ63OevL5mTyOC7Q==",
+      "signatures": [
+        {
+          "sig": "MEYCIQDUvzu0/iEvuTf5ceOHVqMNruPr353wdM9iNYnuCJi2HQIhAONHAwWnwWlK9+e7iYZLo9s3S4cVYV6XE2y6LCOJzX4S",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQDyJ9qkEEWEaeEvfq9TRa/cgKbi+BvCIe2Pvz75+CxrsAIhAMP9jFMnhWTwETq2GpnH4AG6yc8TyiPuDJoTQxERQx/t",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-linux-riscv64@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 15148964
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-linux-s390x",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/linux-s390x"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "55a80f118f9ffd7653d20cefde41fca6ba0241e2",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linux-s390x/-/sharp-libvips-linux-s390x-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-ra/mB6MikESDUO7Yg+Mi95bFBb9GsObURuhnOv3OqknjGe9sZrG8tCe9q0xSIGrtLgvgw0gKnFWcK4blSgQOuQ==",
+      "signatures": [
+        {
+          "sig": "MEYCIQCNiOiZr9n1LlHKQFcsd0asANt8/3r94sZksDnqiXeK1QIhAOUBT56rSJ+J/jlwLVY7mVIBgGpyVvlPXv/62agWtJah",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQDWRQ8YU+hS8QA/FuV1q2Ivb/4xqn4z4L/IDy/xrV+DjQIgP4d9TpFXInpXzILWBPUbJltvI0NxNw0ha42zQiDjlIg=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-linux-s390x@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 17356521
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-linux-x64",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/linux-x64"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "a0de3840ae386476eb4045d6d2b056a8062c548b",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-GJ//SSXbnwSDes02umB3nDJLFcQzw8a18V8fyhqr6tV515tOEMdImjjxj1AoafMRz56F3PHgftnj1QEKSU1zkw==",
+      "signatures": [
+        {
+          "sig": "MEQCIGcagVdTLlDmtEsBxoB8FO24+y3xqz0FKrJ1tqOq+uchAiA4GQph8r812JFQ8mrjhRot8HlZQcz7kYnvFqjhqEZcJQ==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQC/Kff86PTSy67lvv3bT2RF4Vs9UEFFgHtfn2j7iY6TBgIgBZj5cYF0UIeXXhLgrmuGjS3ZcrRmTCbX/vKipev/zVc=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-linux-x64@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 18711101
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-linuxmusl-arm64",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/linuxmusl-arm64"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "420f2418eaec33cef4346e43d96a7864bb3fcbb4",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-arm64/-/sharp-libvips-linuxmusl-arm64-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-hvulFwtjUcagsis6BBxHwGFwWoNZjgYmULGVrZcyfNbjA8hKILbRxGg15/7w5HDyXHXUos/j6baAWqnCyQ2DWA==",
+      "signatures": [
+        {
+          "sig": "MEYCIQD7SLt1BGg+HysfdcUdL73WAG9B48K0yfn/SmrdCl46QwIhAMXYDDNKUv6POIy2P1/tnDkS8U5XdJ/b+kD/DkTgk0v+",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIFYBfKtUn5idqVp50JF24z7AhSoVYXLPkXSjv69iTlCpAiAZG2JjM9lzQnAZnMpaTABPIV5zD0csXkfT50gapxcdxA==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-linuxmusl-arm64@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 18724575
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-libvips-linuxmusl-x64",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp-libvips.git",
+      "type": "git",
+      "directory": "npm/linuxmusl-x64"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "eb5696f7fa521f5f7f3d962fd9ade41deeba6a51",
+      "tarball": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.3.4.tgz",
+      "fileCount": 6,
+      "integrity": "sha512-6zXKeE/p39I1AmA3cJG35eyBGNqNddLnUXjhwBnsGjFPWqf5VKkDBEqaEkPDoTEtkxwi2vv8Tcr2mDyP4So7Fg==",
+      "signatures": [
+        {
+          "sig": "MEUCIAXxmV9NUz/mKPVrFqjBWXGqs2Ff7mnezWY0TuSkdtCXAiEAkkiel2qm5628L72gmbMjBtn5y5BoVg/updZDIKkvSJk=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQDpQ7N9BlEBSIT2XzWyPaVnvqvGeyi4xrKY1v7JfJZyTgIgd1/+Ghe9xHaGIIPGOTqXGPooaIG6TgwfYxz0GCQ9/K8=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-linuxmusl-x64@1.3.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 18922966
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-linux-arm",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/linux-arm"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "950645b8695c200bfdb3c6eccf17c32c26968c23",
+      "tarball": "https://registry.npmjs.org/@img/sharp-linux-arm/-/sharp-linux-arm-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-LEaXK2WdXVK5ykcw0buWyPMsmLLL2vpHLD6yrNSW+JGEL3BZPA4tpKN6iaMc4AxTTAoaX/sU1rOL51lcIz48ZQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIBVtHUMYQL8K7Zpn8IZGmhkkkzkxHcBYnFFtD53HRigzAiEAgE3B97turv5QQMZqKFHU0fTBhZNdFf81qfGgm5UX9hc=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQCP7X0/su+MbGe0g+PBjUFWSRPmRrcXRU7N/WIuMUXHzgIgYUNgVNRdFohIKVIuzh1s/YgLWGtUSL7CaJN8Vw1YcmY=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-linux-arm@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 219904
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-linux-arm64",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/linux-arm64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "ffaea1b88310b5bc40de48859a7f8f01d07e5e99",
+      "tarball": "https://registry.npmjs.org/@img/sharp-linux-arm64/-/sharp-linux-arm64-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-LYVx5JTsOM2CBzmxreh+nl64/3H6Xb09iSLknqH47z2T2DFFxDeFLP5y4dJwe6H7uGQlHPyEEtIqyo3DYsRwdQ==",
+      "signatures": [
+        {
+          "sig": "MEQCICr+vuEKls8bpXDH3unwI8fIdIDBU/C3PUeNRe0207/HAiAN70mViDJ+9nHaUs3YFOg+lV6w6k3yYCunofSJ5ttrLw==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQCKXtDTMzyr5v8A1dgjMphmSPS+MsrwNB0ljj1dRFoqxgIhALABRBYlrV66o7aoh+TJDpKBy8MkhhhvcPi/vhxXFb/7",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-linux-arm64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 542174
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-linux-ppc64",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/linux-ppc64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "af60c7db090411f7af2df2bc1aa764b93b6b8add",
+      "tarball": "https://registry.npmjs.org/@img/sharp-linux-ppc64/-/sharp-linux-ppc64-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-QVxAAq8evVRI9ia2vqgwrmWucn5Dfv+JdWzj75pD8omHLPSP7f8p20O8jxzjCcuCEQEOtYOZUmX1hkiZ0kdevA==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDuQARij1My7DKMPcElJqOllAnIPIgnCOXr3wqx1HAvmwIgZkoZwijtXRNDymVZPp0xbhKhVjjj7TImFyQdvOxVX1U=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQCe0uv6zGFs7Brbg8b1NNc0vg/FfzKJSdYiqPSxx4uQZwIhANXD4nHprB5ujGDLEm49RvAAL/qelnUxwZP55nMCbsnl",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-linux-ppc64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 344708
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-linux-riscv64",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/linux-riscv64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "afcd42ac0592330fbf4fff5904574e0e049ba0a4",
+      "tarball": "https://registry.npmjs.org/@img/sharp-linux-riscv64/-/sharp-linux-riscv64-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-LtdreXguaavKODPIfzJ4kffx7UNt1omwtK0rch4EBbbSTXPnxWmYSayXdLJw0fJzQ97kHt1gL/yh4tvU+nCyRQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIQCwlr2K686MxqagFmkDIhOYY00+g8XtEVXdsxmfKa+WogIgPdNa0BMavpU1Jt6kA/lngyqCKRAHMBRa0P9VXcx8yu8=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIDz/G0iZ7REu8FB+wnRxHHKz3lpwDI0+3cTpITLZjniGAiEA30zV+km/osC+AG77TlsX7naJ+A4+VYhNQV7CUXDdHBg=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-linux-riscv64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 221634
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-linux-s390x",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/linux-s390x"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "092e584a8f36f2f90ba98652d6f45432edea87cb",
+      "tarball": "https://registry.npmjs.org/@img/sharp-linux-s390x/-/sharp-linux-s390x-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-UZasTOFiYzotTsGOCu42BfUzP6Tu6Do/947iRm1RsLKvlllxwGcn4RN27LibGWceix4Y+Pmw3jsnTcCQIgWjqA==",
+      "signatures": [
+        {
+          "sig": "MEQCIB5DPBDBVDUyWVTxXWVwEzi2Pwot9NT1NuORb3pBrCJ9AiA1L8msunooT1XoNoUHq++UbmozehkDT3NsfBRBj2ev/w==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIH01GPdkJrytY57XGOoSdvXHT3PGicUXAoUcw2bj4CVFAiEA+C7GBdC4wcc7qaDAwve3hZy4LpDoNlQF6TxYRp4cd2U=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-linux-s390x@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 270844
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-linux-x64",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/linux-x64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "f624f6b98c6579084b9fb363d7cb83e2315de79c",
+      "tarball": "https://registry.npmjs.org/@img/sharp-linux-x64/-/sharp-linux-x64-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-SxFtLTeJInhAA9Q836kux2vZNeOBQEx658qvbboZScr0wIARym3IcGmW7KpVD5sbVg0Ojy+udFQdayYIZyoNog==",
+      "signatures": [
+        {
+          "sig": "MEQCIAq10Orkq6NFhzQLGl4+1L0XLJQaU4G8bFTXC0N2LLd0AiBCUII4AkY0IuteLjn/+70Lr4t1kU6EzqJLdHyNTN+KPA==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIHnipOrjLwgEWZyKaI1YbedaAhY1dFkrvLdCw3EnfAkbAiEArbASHzt7tyxFXwW06u9SvmnRzqAM7k4VG8rNK6lETgE=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-linux-x64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 427138
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-linuxmusl-arm64",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/linuxmusl-arm64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "92d0904211086d10bd3c929de715dd8a81fa7268",
+      "tarball": "https://registry.npmjs.org/@img/sharp-linuxmusl-arm64/-/sharp-linuxmusl-arm64-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-9HbMclmI1zlNkFRs3z9/eBtDjfD0sGlrX1z6b1qwmiFY5ElDLh4BC0LPBdVp7z1DXFiKlIcznf+ZlsuZzLxQqg==",
+      "signatures": [
+        {
+          "sig": "MEQCIF+5MGU+t+5YwhRnPUP25NONL9an9FjvjumHIoYhyE1hAiAiun3+34blgJGFa5bT9H/VDfUauE7ROJ0faGQ2esGyuA==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIBEXCTtgFUA4cZOe/6D7caX5ljpCVzqHfUJNxemB5u4rAiBa3ILNp/CAr0H0TQDh31HDFwUQksX7I9RcNEVWLe91yA==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-linuxmusl-arm64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 341907
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-linuxmusl-x64",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/linuxmusl-x64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "1d146eab6dfcdc6429f29b032b8bc3f0180b6d80",
+      "tarball": "https://registry.npmjs.org/@img/sharp-linuxmusl-x64/-/sharp-linuxmusl-x64-0.35.5.tgz",
+      "fileCount": 5,
+      "integrity": "sha512-4KOphqB035HrVdqLZfCgMzzERrQkkzOwRhl4OAkRO1YCldbaFjySXMaK534Mo0V+LndnlJk+sbUyLeU0ULyD1A==",
+      "signatures": [
+        {
+          "sig": "MEQCIC24pbw4TyBxDF2o1pAmQObtC5rZm1162zEC7ntJOcaAAiBhlTibXyBmJEmKDMiSPhQo5QzglJT6WtaQo2yKYA6q5A==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIDSu95nyhsmFTTNKWNybUD34fCJhNEAhQB3lqP9WpXzwAiBta3Fhp1aly/fMsDCwmdLaipclZc4C9td65lyyo+Es/A==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-linuxmusl-x64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 313375
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-wasm32",
+    "version": "0.35.5",
+    "license": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/wasm32"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "5369559c3a4c32e08ce92b6ffba2434175a45a62",
+      "tarball": "https://registry.npmjs.org/@img/sharp-wasm32/-/sharp-wasm32-0.35.5.tgz",
+      "fileCount": 7,
+      "integrity": "sha512-Ptsga1su4tQx+LLF1ECS9U6nz5kmrXKo6XVbtR48Ke3ZRxxgaWBu7IDtEe1quo8hiupwm6WFqxVlXaSf7IINGQ==",
+      "signatures": [
+        {
+          "sig": "MEUCIQCD0EdTUxgQGmTtCiRlmBtS+sELqrGyjhslGauBvZSZ9QIgYhbE9fqRMNlBB1+xRcpff/J83xZDW7VMEmZHRlop+yY=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIDtRkuE4yOGLPN5stkwVNIlk8I41QDoAmPLb67Z75TyNAiEA76yw6jAtPd57PfCnkXuSNKM7wOHZ27qqpabtWV3sz5Y=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-wasm32@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 9325870
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@emnapi/runtime",
+    "version": "1.11.3",
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/toyobayashi/emnapi.git",
+      "type": "git"
+    },
+    "engines": null,
+    "peerDependencies": null,
+    "scripts": {
+      "build": "node ./script/build.js"
+    },
+    "dist": {
+      "shasum": "84257ae3b0531eb2aec1ffa23d70700da007ba95",
+      "tarball": "https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.11.3.tgz",
+      "fileCount": 17,
+      "integrity": "sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==",
+      "signatures": [
+        {
+          "sig": "MEQCIB8A6N45bbXcp+oCyg560JsxZlXWVB8fwK5VAa/ADK9bAiBEO4lqKOqBLwDnBG1rsLEdgC8Sv8IJASoDzfctkpE8dA==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEQCIFka0RlVA92mx6qxeVux6yN5HO9D4CR8vbjFclJK8XY9AiAKJNuRwkSXbFgIchdNrSsUxeb3Fc0JotO0frWMJ+e7eg==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@emnapi%2fruntime@1.11.3",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 436901
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-webcontainers-wasm32",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/webcontainers-wasm32"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "3674eddf41eb85d0e92896d7da01ca00310256b9",
+      "tarball": "https://registry.npmjs.org/@img/sharp-webcontainers-wasm32/-/sharp-webcontainers-wasm32-0.35.5.tgz",
+      "fileCount": 9,
+      "integrity": "sha512-hfhF/FmoQyTUkA0bIKFOtw536BQSeBMe6BF6QyWlrPxT754+TFLaZ7sKKTfvvM0yJgKgaYTwnFCIZ/GuDw5SUA==",
+      "signatures": [
+        {
+          "sig": "MEUCIAgx0ydhmWtpTdYF7/80vw40PWdoYKze4tEG+JXzu9bUAiEAwQyLgjrATguAAZsuJRBgYi73acm81V2Pa3NnSDv6EZg=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIQC47y4v4U9ydzzdZ3m/Yox3E+K+/qYeYL1y9qaDHVAJrwIgfkJWTme6WBRdqhWXmfzEfA0ahmSd5RaYAXFYP05SnVk=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-webcontainers-wasm32@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 12446
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-win32-arm64",
+    "version": "0.35.5",
+    "license": "Apache-2.0 AND LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/win32-arm64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "e3c94326eb0a46ade843b84cf50a3917b79d323f",
+      "tarball": "https://registry.npmjs.org/@img/sharp-win32-arm64/-/sharp-win32-arm64-0.35.5.tgz",
+      "fileCount": 8,
+      "integrity": "sha512-X4t7g+7ZA5DKblCBEXGjUqqemj4vczING/5viFwAL8h4N3qYeyjwdCvRLHi4EdOUI+2Z7UFlp1VM+p/AuEtm6Q==",
+      "signatures": [
+        {
+          "sig": "MEUCIADUfD53wS4dENVu+HRsEEUhVeO0uQfPgMKMnvLPywe9AiEAx1hyjqL0JJ1v4qUbMnzJ9RJ3gZgZeAl9+ie1I0HDq/8=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIFHOIU8UwfTuojmeaurlt9msZfN8dq00ZflLv5dKTBx5AiEAiraZhekycZ38B56s9hQJBd4skc6S25RQ77Yy32ylz4I=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-win32-arm64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 17022003
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-win32-ia32",
+    "version": "0.35.5",
+    "license": "Apache-2.0 AND LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/win32-ia32"
+    },
+    "engines": {
+      "node": "^20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "cc5dac453dc3500aac2e63f182b952af0d437bc1",
+      "tarball": "https://registry.npmjs.org/@img/sharp-win32-ia32/-/sharp-win32-ia32-0.35.5.tgz",
+      "fileCount": 8,
+      "integrity": "sha512-5Zm82LoBc43nhwNybZlG7Y1KO//Zhsn306fQl29ZOuStHLGTo3BWL83q3cznX0poxSAMuYL1On/BHBxkBeKr6A==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDthLe5QKJrCn5OFxONFSMAzjcH/V1iltuktmuPjj2rnQIgPTxpWYXqg5G2KkkhxPQBpJHotOd2nm/NwTcbksmX7y8=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEUCIBWz8kHKb/GYkhso+iI730JZHCC2mFiohNf8YtHpAfpSAiEA6EwJGfqZGJWKVd63gqTDzPDKYbzYFJGEz9s1qXfab1I=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-win32-ia32@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 19132473
+    },
+    "deprecated": null
+  },
+  {
+    "name": "@img/sharp-win32-x64",
+    "version": "0.35.5",
+    "license": "Apache-2.0 AND LGPL-3.0-or-later",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git",
+      "directory": "npm/win32-x64"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": null,
+    "dist": {
+      "shasum": "1785356b8cb396e58430e03865281280acb818b1",
+      "tarball": "https://registry.npmjs.org/@img/sharp-win32-x64/-/sharp-win32-x64-0.35.5.tgz",
+      "fileCount": 8,
+      "integrity": "sha512-x76eH0vEiHlcMQu8Y8IenntaACtddpT6W0wmXtWrnKcnKI7ME5DdgqhAD6SEWOEl1v2zDvkZDhFA9KnURwpfqg==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDO5rAMzWpfjvDN3Fqzf2JCUrHDbtm26SJJNFppmrJ/5QIgFdPbrj0NETUt4J/Hd5DcLkjENctxtgx7YMBieaXat/0=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQDIzuHFJTRwrB+dIHTTK3ZuKg8sPseL6iy1xJB7ilNTtQIhANjruDOot3R4vC2z2KKQlR8cUR5zqlAO1XtBdgSQjVwi",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-win32-x64@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 19812379
+    },
+    "deprecated": null
+  },
+  {
+    "name": "hono",
+    "version": "4.13.13",
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/honojs/hono.git",
+      "type": "git"
+    },
+    "engines": {
+      "node": ">=16.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": {
+      "lint": "vp lint src runtime-tests build perf-measures benchmarks adapters",
+      "test": "tsc -p tsconfig.spec.json && vp test --run",
+      "build": "pnpm run remove-dist && vp pack && pnpm run copy:package.cjs.json && publint",
+      "check": "vp check",
+      "watch": "pnpm run remove-dist && vp pack --watch && pnpm run copy:package.cjs.json",
+      "format": "vp fmt --check \"src/**/*.{js,ts,tsx}\" \"runtime-tests/**/*.{js,ts,tsx}\" \"build/**/*.{js,ts,tsx}\" \"perf-measures/**/*.{js,ts,tsx}\" \"benchmarks/**/*.{js,ts,tsx}\" \"adapters/**/*.{js,ts,tsx}\"",
+      "release": "np --no-publish",
+      "coverage": "vp test --run --coverage",
+      "lint:fix": "vp lint --fix src runtime-tests build perf-measures benchmarks adapters",
+      "test:all": "pnpm run test && pnpm run test:deno && pnpm run test:bun",
+      "test:bun": "bun test --jsx-import-source ../../src/jsx runtime-tests/bun",
+      "check:fix": "vp check --fix",
+      "test:deno": "deno test --allow-read --allow-env --allow-write --allow-net -c runtime-tests/deno/deno.json runtime-tests/deno && deno test --no-lock -c runtime-tests/deno-jsx/deno.precompile.json runtime-tests/deno-jsx && deno test --no-lock -c runtime-tests/deno-jsx/deno.react-jsx.json runtime-tests/deno-jsx",
+      "test:node": "vp test --run --project node",
+      "format:fix": "vp fmt \"src/**/*.{js,ts,tsx}\" \"runtime-tests/**/*.{js,ts,tsx}\" \"build/**/*.{js,ts,tsx}\" \"perf-measures/**/*.{js,ts,tsx}\" \"benchmarks/**/*.{js,ts,tsx}\" \"adapters/**/*.{js,ts,tsx}\"",
+      "prerelease": "pnpm run test:deno && pnpm run build",
+      "test:watch": "vp test --watch",
+      "remove-dist": "rm -rf dist",
+      "test:fastly": "vp test --run --project fastly",
+      "test:workerd": "vp test --run --project workerd",
+      "test:adapters": "pnpm -r --filter \"./adapters/*\" run test",
+      "build:adapters": "pnpm -r --filter \"./adapters/*\" run build",
+      "release:adapter": "node ./build/release-adapter.ts",
+      "editorconfig-checker": "editorconfig-checker",
+      "copy:package.cjs.json": "cp ./package.cjs.json ./dist/cjs/package.json && cp ./package.cjs.json ./dist/types/package.json"
+    },
+    "dist": {
+      "shasum": "8dd5459ce4aa44b3e297f0b350f86b0f6d4a79f0",
+      "tarball": "https://registry.npmjs.org/hono/-/hono-4.13.13.tgz",
+      "fileCount": 574,
+      "integrity": "sha512-CQ46U0ZkAGmbT/4UxdzzGJpacP2IeKgY4a5/tOI9AABbpOMfK739wfDXmv1usCk+3RkKj1hQy4/fjhiwa2xlrA==",
+      "signatures": [
+        {
+          "sig": "MEUCIQDQW/7Z3HMLQgGNqSSwemJy66IscH7JyllqA4lKCb+2gwIgQSJHaMqWW+/+fNbe037TufEO5NoMMYuujT98zzUqqLg=",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/hono@4.13.13",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 1294526
+    },
+    "deprecated": null
+  },
+  {
+    "name": "sharp",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "repository": {
+      "url": "git+https://github.com/lovell/sharp.git",
+      "type": "git"
+    },
+    "engines": {
+      "node": ">=20.9.0"
+    },
+    "peerDependencies": null,
+    "scripts": {
+      "lint": "npm run lint-cpp && npm run lint-js && npm run lint-types && npm run lint-publish",
+      "test": "npm run lint && npm run test-unit",
+      "build": "node install/build.js",
+      "clean": "rm -rf src/build/ test/fixtures/output.*",
+      "lint-js": "biome lint",
+      "lint-cpp": "cpplint --quiet src/*.h src/*.cc",
+      "test-leak": "./test/leak/leak.sh",
+      "test-unit": "node --experimental-test-coverage test/unit.mjs",
+      "build:dist": "node scripts/build.mjs",
+      "docs-build": "node docs/build.mjs",
+      "docs-serve": "cd docs && npm start",
+      "lint-types": "tsd --files ./test/types/sharp.test-d.{cts,mts}",
+      "docs-publish": "cd docs && npm run build && npx firebase-tools deploy --project pixelplumbing --only hosting:pixelplumbing-sharp",
+      "lint-publish": "publint --strict",
+      "package-release-notes": "node npm/release-notes.js",
+      "package-wasm-wrappers": "node npm/wasm-wrappers.js",
+      "package-from-local-build": "node npm/from-local-build.js"
+    },
+    "dist": {
+      "shasum": "43fb539872ec5f53cc7162eb850dbf6514692fbf",
+      "tarball": "https://registry.npmjs.org/sharp/-/sharp-0.35.5.tgz",
+      "fileCount": 47,
+      "integrity": "sha512-Ywn4OnzGukp7CDMrp08RQ50YKmuwG47brZgIVPTvBaaAfQlRlygrRqSrxdCiL9M+LlzLBiJ68IR1QqvzHyjC7g==",
+      "signatures": [
+        {
+          "sig": "MEYCIQCyo1+tlBV7a2cmC8I84ARsUqvoaq+mx3W0/6VAa9nYqQIhAKtWlbR8qYS2H2IkE4lauEeV7TxILFTO0u9eFy0Q9IMU",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "sig": "MEYCIQCLF9gSVuxlR9XSVusRLR+gKnSG05ojWaD3C+ne9L4uJgIhAPnnnMqW+1wcolOGQeXmk5qBoWsvJqs+OQjJRFLEIIrW",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/sharp@0.35.5",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 962168
+    },
+    "deprecated": null
+  }
+]

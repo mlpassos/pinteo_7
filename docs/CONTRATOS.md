@@ -117,6 +117,10 @@ export interface Runner {
   start(source: string, speed: Speed): Result<void>;
   /** Cancela execução e desenho pendentes; nunca apaga a fonte. */
   stop(): void;
+  /** Reinicia ambiente, tartaruga, tinta e saída, preservando a fonte externa. */
+  clear(): void;
+  /** Muda somente agendamento, sem reiniciar sessão ou modificar geometria. */
+  setSpeed(speed: Speed): void;
   /** Observa eventos ordenados; devolve uma função de desinscrição. */
   subscribe(listener: (event: RunEvent) => void): () => void;
   /** Libera agendamentos e assinaturas. */
@@ -159,7 +163,7 @@ Reducer: `sourceChanged`, `switchModeRequested`, `blockActionRequested`, `charac
 | GET `/api/v1/shares/:id/preview.png` | UUID válido | PNG reencodado, tipo fixo, `nosniff` |
 | GET `/api/health` | nenhuma | 200 `{status:"ok"}`, sem detalhes internos |
 
-Erro JSON: `{error:{code:string,message:string}}`; mensagens legíveis em pt-BR, sem stack/path interno. Códigos HTTP: 400 dados/ID/cursor inválidos; 404 inexistente; 413 tamanho; 415 tipo; 422 PNG/documento inválido; 429 frequência; 503 quota/armazenamento indisponível; 500 falha inesperada. Método não permitido retorna 405. Listagem nunca revela diretórios, arquivos temporários ou caminhos físicos.
+Erro JSON: `{error:{code:string,message:string}}`; mensagens legíveis em pt-BR, sem stack/path interno. Códigos HTTP: 400 dados/ID/cursor inválidos; 403 origem estrangeira; 404 inexistente; 405 método; 413 tamanho; 415 tipo; 422 PNG/documento inválido; 429 frequência; 503 quota/ocupação/armazenamento indisponível; 500 falha inesperada. Método não permitido retorna 405. Listagem nunca revela diretórios, arquivos temporários ou caminhos físicos.
 
 Limites iniciais: corpo JSON até 3 MiB; PNG decodificado até 2 MiB e 2048×2048; fonte UTF-8 até 20 KiB; personagem da allowlist; propriedades desconhecidas rejeitadas. Valores finitos, strings limitadas e formato conhecido. LOGO sintaticamente inválido pode ser salvo como texto (rascunho); backend não o executa. Cliente avisa ao abrir/rodar.
 
@@ -182,3 +186,9 @@ Request body limitado também no proxy. Origem pública configurada; CORS same-o
 `core/common` expõe Result/Diagnostic/Span/RGB e helpers `succeed`/`fail` (falha exige pelo menos um diagnóstico). `core/program` expõe tipos e fábrica `createBlockId(unknown): Result<BlockId>`: 1–128 caracteres ASCII alfanuméricos/hífen/sublinhado, iniciando com alfanumérico, sem normalização. IDs não são gerados aleatoriamente no core; unicidade/parentesco serão validados pelo editor.
 
 As três assinaturas de conversão acima formam a interface `ConversionService`; nenhuma função vazia ou conversão parcial é publicada na fundação. Portas de aplicação estão em application/index.ts. Schemas Zod em shared/index.ts validam envelope estrito, UTF-8 (não número de caracteres), 21 personagens, UUID/página/limites e vínculo da URL relativa de prévia ao mesmo UUID. Validação estrutural de base64 não afirma que o conteúdo é PNG válido: essa validação e reencode são obrigação da T-065.
+
+
+A integração T-063/T-066 acrescenta `Runner.clear()` e `Runner.setSpeed()` como operações explícitas. Limpar coordena cancelamento e reinício dentro do dono da sessão, evitando que UI limpe apenas o canvas e deixe variáveis antigas. Velocidade atua no agendamento, sem reconstruir tartaruga. O documento fonte não pertence ao runner.
+
+
+T-065 materializa limites adicionais do processo: até32 operações de disco pendentes (incluindo ativa), duas criações de imagem sem fila e uma única instância sob trava exclusiva. O resumo privado summary.json é publicado no mesmo rename de program.json/preview.png; evita carregar fonte/imagens para paginar, sem mudar DTOs públicos. Código inesperado de erro é registrado sem conteúdo recebido ou caminhos.
