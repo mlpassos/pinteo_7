@@ -1,0 +1,18 @@
+reset
+make "tamanho 50
+make "lados 3
+to poligonoright
+repeat :lados [
+forward :tamanho
+right divide 360 :lados
+] end
+to poligonoleft
+repeat :lados [
+forward :tamanho
+left divide 360 :lados
+] end
+repeat 10 [
+poligonoright
+poligonoleft
+make "lados sum :lados 1
+] 

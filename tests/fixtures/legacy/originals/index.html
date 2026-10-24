@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>Pinte o 7 - Protótipo de Sistema Interativo de Programação Visual integrável ao Moodle</title>
+	<meta charset="utf-8" />
+	<meta name="robots" content="index,follow" />
+    <meta name="keywords" content="ensino, programação, computadores, infantojuvenil, jovem, criança, adolescente, aprendizado" />
+	<meta name="description" content="Sistema Interativo para o ensino de Programação para o Público Infantojuvenil"/>
+	<meta name="author" content="Márcio Passos" />
+	<!-- <link rel="shortcut icon" href="" type="image/x-icon"/> -->
+	<!-- <link rel="icon" href="" type="image/x-icon" /> -->
+
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
+
+	<!-- CodeMirror, add-ons, and Logo-specific highlighting -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/addon/runmode/runmode.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/addon/edit/closebrackets.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/addon/edit/matchbrackets.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/addon/display/placeholder.min.js"></script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.css">
+	
+	<script src="cm/logo.js"></script>
+
+	<link rel="stylesheet" href="cm/logo.css">
+
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/home.css?v=2">
+	<link rel="stylesheet" type="text/css" href="css/icomoon.css?v=3">
+	<link rel="stylesheet" type="text/css" href="css/papert.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
+	<link rel="stylesheet" type="text/css" href="css/redmond/jquery-ui-1.10.4.custom.min.css">
+	<link rel="stylesheet" type="text/css" href="css/playr.css">
+
+	<script type="text/javascript" src="js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+	 <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script> 
+	<!-- <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script> -->
+	<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+
+    <script type="text/javascript" src="js/playr.js"></script>
+    <script type="text/javascript" src="js/turtle.js"></script>
+	<script type="text/javascript" src="js/parser.js"></script>
+	<script type="text/javascript" src="js/logo.js"></script>
+	<script type="text/javascript" src="js/init.js"></script>
+	<script type="text/javascript" src="js/pinteo7.js"></script>
+	<!--<link rel="stylesheet" href="styles/default.css">
+	<script src="highlight.pack.js"></script>-->
+	<style type="text/css">
+		.ui-tooltip, .arrow:after {
+          background: #0064FF;
+          border: 1px solid rgba(250,250,250,1);
+	  	}
+		.ui-tooltip {
+		  padding: 5px 10px;
+		  color: white;
+		  border-radius: 5px;
+		  font: bold 12px "Nunito",Georgia, Sans-Serif;
+		  text-transform: uppercase;
+		  box-shadow: 0 0 8px rgba(0,0,0,.3);
+		}
+		.arrow {
+		  width: 70px;
+		  height: 16px;
+		  overflow: hidden;
+		  position: absolute;
+		  left: 50%;
+		  margin-left: -35px;
+		  bottom: -16px;
+		}
+		.arrow.top {
+		  top: -16px;
+		  bottom: auto;
+		}
+		.arrow.left {
+		  left: 20%;
+		}
+		.arrow:after {
+		  content: "";
+		  position: absolute;
+		  left: 20px;
+		  top: -20px;
+		  width: 25px;
+		  height: 25px;
+		  box-shadow: 6px 5px 9px -9px black;
+		  -webkit-transform: rotate(45deg);
+		  -moz-transform: rotate(45deg);
+		  -ms-transform: rotate(45deg);
+		  -o-transform: rotate(45deg);
+		   tranform: rotate(45deg);
+		}
+		.arrow.top:after {
+		  bottom: -20px;
+		  top: auto;
+		}
+		.ui-dialog .ui-dialog-title .ui-icon {
+		  float: left;
+		  margin-right: 4px;
+		}
+		.ui-button-text-only .ui-button-text {
+		 padding: .4em 1em;
+		 font-size: 12px;
+		}
+	</style>
+<!-- GOOGLE ANALYTICS -->
+<script>
+  // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  // ga('create', 'UA-36735638-5', 'auto');
+  // ga('send', 'pageview');
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68656926-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+	<header id="header" class="header ">
+		<nav class="navigation">
+			<!-- ## MENU PRINCIPAL ## -->
+			<ul class="menu">
+				<!-- ## MOVIMENTOS ##-->
+				<li class="menu-item">
+					<a id="movimentos" href="#" title="Movimentos" class="principal principal-active menu-link btn btn-medium icon-gamecursor">
+						<!-- <span class="icon-gamecursor"></span>  -->
+						Movimentos
+					</a>&nbsp;
+				</li>
+				<!-- ## PERSONAGEM ##-->
+				<li class="menu-item">
+					<a id="personagem" href="#" title="Personagem" class="principal menu-link btn btn-medium icon-user">
+						<!-- <span class="icon-smile"></span>  -->
+						Personagem
+					</a>&nbsp;
+				</li>
+				<!-- ## CONTROLE ##-->
+				<li class="menu-item">
+					<a id="controle" href="#" title="Repetir, ensinar" class="principal menu-link btn btn-medium icon-repeatone">
+						<!-- <span class="icon-repeatone"></span>  -->
+						Controle
+					</a>&nbsp;
+				</li>
+				<!-- ## PROCEDIMENTOS ##-->
+				<li class="menu-item">
+					<a id="procedimentos" href="#" title="Criar procedimentos" class="principal menu-link btn btn-medium icon-record">
+						<!-- <span class="icon-repeatone"></span>  -->
+						Procedimentos
+					</a>&nbsp;
+				</li>
+				<!-- ## DADOS ##-->
+				<li class="menu-item">
+					<a id="dados" href="#" title="Variáveis" class="principal menu-link btn btn-medium icon-archive">
+						<!-- <span class="icon-archive"></span>  -->
+						Dados
+					</a>&nbsp;
+				</li>
+				<!-- ## OPERADORES -->
+				<li class="menu-item">
+					<a id="operadores" href="#" title="Operadores" class="principal menu-link btn btn-medium icon-plus">
+						<!-- <span class="icon-pen"></span>  -->
+						Operadores
+					</a>&nbsp;
+				</li>
+				<!-- ## CANETA -->
+				<li class="menu-item">
+					<a id="caneta" href="#" title="Desenho, cores" class="principal menu-link btn btn-medium icon-pen">
+						<!-- <span class="icon-pen"></span>  -->
+						Desenho
+					</a>&nbsp;
+				</li>
+			</ul>	
+			<!-- ## DESENHO ## -->
+			<ul id="sub-menu-caneta" class="sub-menu">
+				<li class="sub-menu-item">
+					<a id="pendown" href="#" data-name="Escrever" title="Escrever com a caneta" class="funcao-solta menu-link">
+						<!-- <span class="icon-handpointdown"></span> -->
+						use a caneta
+					</a>
+				</li>
+
+				<li class="sub-menu-item">
+					<a id="penup" href="#" data-name="Escrever" title="Soltar a caneta" class="funcao-solta menu-link">
+						<!-- <span class="icon-handdrag"></span> -->
+						levante a caneta
+					</a>
+				</li>
+				
+				<li class="sub-menu-item">
+					<a id="reset" href="#" data-name="Reiniciar" title="Limpa a tela e volta a posição inicial" class="funcao-solta menu-link">
+						<!-- <span class="icon-eraser"></span> -->
+						apague tudo
+					</a>
+				</li>
+
+				<li class="sub-menu-item item-color">
+					<a id="color" href="#" data-name="Escolher a cor" title="Qual a cor do traço?" class="funcao-solta menu-link">
+						<!-- <span class="icon-color"></span> -->
+						cor do traço
+					</a>&nbsp;
+					<input type="color" title="Qual a cor do traço?" id="valor_color" class="valor">
+				</li>
+				
+				<!-- ## VOLTAR ##-->
+				<li class="sub-menu-item">
+					<a href="#"  title="Voltar ao menu principal" class="voltar menu-link btn btn-medium icon-back">
+						<!-- <span class="icon-multiply"></span> -->
+						voltar
+					</a>
+				</li>
+			</ul>
+			<!-- ## MOVIMENTOS ## -->
+			<ul id="sub-menu-movimentos" class="sub-menu">
+				<li class="sub-menu-item">
+					<a id="forward" href="#" data-name="Mover para esquerda" title="Mover para frente" class="funcao-movimento menu-link">
+						<!-- <span class="icon-up"></span>  -->
+						para frente <div class="numeromenu">valor</div>
+						<!-- <span class="icon-up"></span> -->
+					</a>
+					<input title="Quantos passos?" id="valor_forward" class="valor" placeholder="0" size="2" value="valor">
+				</li>
+				<!-- ## MOVER PARA DIREITA ##-->
+				<li class="sub-menu-item">
+					<a id="backward" href="#" data-name="Mover para direita" title="Mover para trás" class="funcao-movimento menu-link">
+						<!-- <span class="icon-down"></span>  -->
+						para trás <div class="numeromenu">valor</div>
+					</a>
+					<input title="Quantos passos?" id="valor_backward" class="valor" placeholder="0" size="2" value="valor">	
+				</li>
+				<!-- ## MOVER PARA CIMA ##-->
+				<li class="sub-menu-item">
+					<a id="left" href="#" data-name="Girar X graus para esquerda" title="Girar X graus para esquerda" class="funcao-movimento menu-link">
+						<!-- <span class="icon-undo"></span> -->
+						girar <div class="numeromenu">graus</div> a esquerda
+					</a>
+					<input title="Quantos graus?" id="valor_left" class="valor" placeholder="0" size="2" value="graus">	
+				</li>
+				<!-- ## MOVER PARA BAIXO ##-->
+				<li class="sub-menu-item">
+					<a id="right" href="#" data-name="Girar X graus para direita" title="Girar X graus para direita" class="funcao-movimento menu-link">
+						<!-- <span class="icon-redo"></span> -->
+						girar <div class="numeromenu">graus</div> a direita
+					</a>
+					<input title="Quantos graus?" id="valor_right" class="valor" placeholder="0" size="2" value="graus">	
+				</li>
+				<!-- ## IR PARA X ##-->
+				<li class="sub-menu-item">
+					<a id="setx" href="#" data-name="Ir para X" title="Ir para X" class="funcao-movimento menu-link">
+						<!-- <span class="icon-buttonx"></span> -->
+						ir para <div class="numeromenu">posX</div>
+					</a>
+					<input title="Onde?" id="valor_setx" class="valor" placeholder="0" size="5" value="posX">	
+				</li>
+				<!-- ## IR PARA Y ##-->
+				<li class="sub-menu-item">
+					<a id="sety" href="#" data-name="Ir para Y" title="Ir para Y" class="funcao-movimento menu-link">
+						<!-- <span class="icon-buttony"></span> -->
+						ir para <div class="numeromenu">posY</div>
+					</a>
+					<input title="Onde?" id="valor_sety" class="valor" placeholder="0" size="5" value="posY">	
+				</li>
+				<!-- ## IR PARA XY ##-->
+				<li class="sub-menu-item">
+					<a id="setxy" href="#" data-name="Ir para X Y" title="Ir para X Y" class="funcao-movimento menu-link">
+						<!-- <span class="icon-buttonx"></span> -->
+						<!-- <span class="icon-buttony"></span> -->
+						ir para <div class="numeromenu">posX</div>&nbsp;
+						<div class="numeromenu">posY</div>
+					</a>
+					<input title="Onde?" id="valor_setxy" class="valor" placeholder="X Y" value="posX posY" size="10">	
+				</li>
+			</ul>
+			<!-- ## CONTROLE ## -->
+			<ul id="sub-menu-controle" class="sub-menu">
+				<li class="sub-menu-item">
+					<a id="repeat" href="#" data-name="Repetir" title="Repetir quantas vezes?" class="funcao-repeat menu-link">
+						repetir <div class="numeromenu">valor</div> vezes
+						<!-- <span class="icon-repeat"></span> -->
+					</a>&nbsp;
+					<input title="Quantas vezes?" id="valor_repeat" class="valor" placeholder="0" size="2" value="valor">
+				</li>
+			</ul>
+			<!-- ## PROCEDIMENTOS ## -->
+			<ul id="sub-menu-procedimentos" class="sub-menu">
+				<li class="sub-menu-item">
+					<a id="to" href="#" data-name="Procedimento" title="Criar Procedimento" class="funcao-procedimento menu-link">
+						defina <div class="numeromenu">procedimento</div>
+						<!-- <span class="icon-braces"></span> -->
+					</a>&nbsp;
+					<input title="Qual o nome do procedimento?" id="valor_to" class="valor" size="15" value="procedimento">
+				</li>
+				<li class="sub-menu-item" style='position:relative;'>
+					<a id="call" href="#" data-name="Chamada de procedimento" title="Chamar Procedimento" class="funcao-call menu-link">
+						<!-- <span class="icon-pin"></span> -->
+						Chamar procedimento
+					</a>&nbsp;
+					<input title="Qual o nome do procedimento?" id="valor_call" class="valor" placeholder="nome do procedimento" size="15">
+					<ul class="lista-procedimentos">
+						<!-- <li class="lista-procedimentos-item"></li> -->
+					</ul>
+				</li>
+			</ul>
+			<!-- ## DADOS ## -->
+			<ul id="sub-menu-dados" class="sub-menu">
+				<li class="sub-menu-item">
+					<a id="make" href="#" data-name="Criar variável" title="Criar variável" class="funcao-make menu-link">
+						<!-- <span class="icon-lightbulb"></span> -->
+						variável <div class="numeromenu">nome</div>
+					</a>
+					&nbsp;
+					<input title="Qual o nome da sua variável?" id="valor_make" class="valor" value="nome" size="10">
+				</li>
+				<!-- <li class="sub-menu-item">
+					<a id="callvar" href="#" data-name="Utilizar variável" title="Utilizar variável" class="funcao-make menu-link btn btn-medium ">
+						<span class="icon-lightbulb"></span>
+					</a>
+					&nbsp;
+					<input title="Qual o nome da sua variável?" id="valor_callvar" class="valor" placeholder="0" size="10">
+				</li> -->
+				<!-- ## VOLTAR ##-->
+			</ul>
+			<!-- ## OPERADORES ## -->
+			<ul id="sub-menu-operadores" class="sub-menu">
+				<li class="sub-menu-item">
+					<a id="sum" href="#" data-name="Somar" title="Somar" class="funcao-operadores menu-link">
+						<!-- <span class="icon-lightbulb"></span> -->
+						<div class="numeromenu">&nbsp;</div> + <div class="numeromenu">&nbsp;</div>
+					</a>
+					&nbsp;
+					<input title="Qual o nome da sua variável?" id="valor_sum" class="valor" value="valor1 valor2" size="10">
+				</li>
+				<li class="sub-menu-item">
+					<a id="difference" href="#" data-name="Diminuir" title="Diminuir" class="funcao-operadores menu-link">
+						<!-- <span class="icon-lightbulb"></span> -->
+						<div class="numeromenu">&nbsp;</div> - <div class="numeromenu">&nbsp;</div>
+					</a>
+					&nbsp;
+					<input title="Qual o nome da sua variável?" id="valor_difference" class="valor" value="valor1 valor2" size="10">
+				</li>
+				<li class="sub-menu-item">
+					<a id="product" href="#" data-name="Multiplicar" title="Multiplicar" class="funcao-operadores menu-link">
+						<!-- <span class="icon-lightbulb"></span> -->
+						<div class="numeromenu">&nbsp;</div> * <div class="numeromenu">&nbsp;</div>
+					</a>
+					&nbsp;
+					<input title="Qual o nome da sua variável?" id="valor_product" class="valor" value="valor1 valor2" size="10">
+				</li>
+				<li class="sub-menu-item">
+					<a id="divide" href="#" data-name="Dividir" title="Dividir" class="funcao-operadores menu-link">
+						<!-- <span class="icon-lightbulb"></span> -->
+						<div class="numeromenu">&nbsp;</div> / <div class="numeromenu">&nbsp;</div>
+					</a>
+					&nbsp;
+					<input title="Qual o nome da sua variável?" id="valor_divide" class="valor" value="valor1 valor2" size="10">
+				</li>
+				
+				<!-- <li class="sub-menu-item sub-menu-item-comparacao">
+					<a id="less" href="#" data-name="Criar variável" title="Criar variável" class="funcao-comparacao menu-link">
+					
+						<div class="numero numeromenu">&nbsp;</div> <div class="numero numeromenu">&nbsp;</div>
+					</a>
+					&nbsp;
+					
+				</li>
+				<li class="sub-menu-item sub-menu-item-comparacao">
+					<a id="equal" href="#" data-name="Criar variável" title="Criar variável" class="funcao-comparacao menu-link">
+						
+						<div class="numero numeromenu">&nbsp;</div> = <div class="numero numeromenu">&nbsp;</div>
+					</a>
+					&nbsp;
+					
+				</li>
+				<li class="sub-menu-item sub-menu-item-comparacao">
+					<a id="greater" href="#" data-name="Criar variável" title="Criar variável" class="funcao-comparacao menu-link">
+						
+						<div class="numero numeromenu">&nbsp;</div> > <div class="numero numeromenu">&nbsp;</div>
+					</a>
+					&nbsp;
+					
+				</li> -->
+			</ul>
+			<!-- ## PERSONAGEM ## -->
+			<ul id="sub-menu-personagem" class="sub-menu">
+				<li class="sub-menu-item">
+					<a id="personagem-escolher" href="#" data-name="Personagem " title="Mudar o personagem" class="funcao-movimento menu-link icon-smile">
+						<!-- <span class="icon-smile"></span> -->
+						escolher personagem
+					</a>
+					
+				</li>
+			</ul>
+		</nav>
+		<div class="site-logo">
+			<!-- <img width="60" height="60" src="http://marciopassos.com/drafts/git/pinteo7/images/icon-aluno.png" alt="logo do prototipo pinte o 7" title="Pipo Pinte o 7"> -->
+		</div>	
+	</header>	
+	<div class="wrapper cf">
+		<form id="input" action="/" method="post" onSubmit="this.img.value = canvas.toDataURL().replace('data:image/png;base64,','')">
+			<div id="content" class="content cf">
+				<div class="inner">
+			        <div id="oldcode"></div>
+			        <div style="margin-bottom:10px;">
+			        	<textarea title="comece aqui..." placeholder="Digite aqui seu código..." name="code" id="code" rows="80" cols="20"></textarea>
+			        	<ol id="codeblocks" class="codeblocks-list">
+					      <li class="placeholder">Crie os blocos clicando nos botões do menu acima.</li>
+					    </ol>
+			        </div>
+			        <div style="clear:both;margin-top:10px;position:absolute;bottom:30px;left:15px;">
+				        <!-- <a title="Executar" href='#' id='lento' class="executar btn btn-medium btn-noshadow"><span>Lento</span></a>
+				        <a title="Executar"  href='#' id='normal' class="executar btn btn-medium btn-noshadow"><span>Normal</span></a>
+				        <a title="Executar"  href='#' id='rapido' class="executar btn btn-medium btn-noshadow"><span>Rápido</span></a> -->
+				        <a title="Executar" href='#' id='lento' class="executar btn btn-medium btn-noshadow icon-play2">&nbsp;Lento</a>
+				        <a title="Executar"  href='#' id='normal' class="executar btn btn-medium btn-noshadow icon-play2">&nbsp;Normal</a>
+				        <a title="Executar"  href='#' id='rapido' class="executar btn btn-medium btn-noshadow icon-play2">&nbsp;Rápido</a>
+				        <!-- <a id="stop" title="Parar execução" class="parar btn btn-medium btn-noshadow"><span>Parar</span></a> -->
+				        <a title="Modo"  href='#' id='blocos' class="blocksmode btn btn-medium btn-noshadow icon-joystickarcade">&nbsp;CLI</a>
+				        <a title="Exibir ajuda"  href='#' id='ajuda' class="ajuda btn btn-medium btn-noshadow icon-info">&nbsp;Ajuda</a>
+				        <!-- <a title="Responder"  href='#' id='responder' class="ajuda btn btn-medium btn-noshadow"><span>Responder</span></a> -->
+				        <input type="hidden" name="img" />
+			        </div>
+
+			    </div>
+			 </div>
+				<div id="left-content">
+					<div class="inner">
+						<div id="textOutput"></div>
+					    <div id="turtle">
+						   	<embed width="20" height="20" id='sprite' src="images/personagens/rato.png"/>
+					    </div>
+					    <canvas id="canvas" width="500" height="500">
+					    	Seu navegador não suporta o elemento "canvas". Atualize para a versão mais recente e volte aqui... =)
+					    </canvas>
+					    <span style="float: left; margin-top: 10px;">
+			   			    <a id="like" title="Compartilhar no site do Pinte o 7" style="position:relative;margin-right:5px;" class="btn btn-medium btn-noshadow icon-thumbup">
+			   			    	<!-- <span class="" style="position:absolute;top:12px;left:0;margin-rigth:10px;"></span> -->
+			   			    	Compartilhar
+			   			    </a>
+			   			    <a id="save" style="position:relative;" title="Gravar seu desenho no computador" onClick="document.location.href = canvas.toDataURL().replace('image/png', 'image/octet-stream')" class="btn btn-medium btn-noshadow icon-save">
+			   			    	<!-- <span class="" style="position:absolute;top:12px;left:0;margin-rigth:10px;"></span> -->
+			   			    	Gravar como PNG
+			   			    </a>
+					    </span>
+					    <span style="position:relative;float: right;margin-left: auto; margin-right: 20px;margin-bottom:50px;">
+						    <a id="limparTela" title="Limpar a tela e reiniciar memória" onClick="clearcanvas();" class="btn btn-medium btn-noshadow icon-eraser">
+						    	<!-- <span class="" style="position:absolute;top:12px;left:-2px;margin-rigth:10px;"></span> -->
+						    	Reiniciar
+						    </a>
+					    </span>
+					</div>
+				</div>
+		</form>
+	</div>
+	<div class="footer">
+		<!-- h2 id="blocks-mostrar" class="btn btn-medium" title="Exibir" style="width:40px;display:block;margin:10px;">Blocos</h2>
+		<ul class="blocks">
+		</ul> -->
+		<a id="compartilhados-mostrar" href="#" title="Exibir" class="btn btn-medium" style="width:98px;display:block;margin:10px;font-family: 'Nunito', Georgia;">Compartilhados</a>
+		<ul class="compartilhados">
+		</ul>
+	</div>
+	<div id="compartilhando">
+	</div>
+	<div id="video">
+		<!-- <video width="770" height="400" controls>
+		  <source src="videos/p7-demo-v4.mp4" type="video/mp4">
+		  Seu navegador não suporta videos, infelizmente. Que tal atualizar? :)
+		</video> -->
+		<!-- <iframe width="770" height="400" src="https//www.youtube.com/watch?v=pH0dhCmrxWs" allowfullscreen></iframe> -->
+		<video width="770" height="400" class="playr_video">
+			<source src="videos/blockprog.mp4" type="video/mp4">
+		    <!-- <track kind="subtitles" label="Português" srclang="en" src="legendas/pt-br.vtt" default/> -->
+		  Seu navegador não suporta videos, infelizmente. Que tal atualizar? :)
+		</video>
+	</div>
+	<div class="demo">
+		<!-- <video width="770" height="400" class="playr_video">
+			<source src="videos/p7-demo-blockly.mp4" type="video/mp4">
+		    <track kind="subtitles" label="Português" srclang="en" src="legendas/pt-br.vtt" default/>
+		  Seu navegador não suporta videos, infelizmente. Que tal atualizar? :)
+		</video> -->
+	</div>
+	<div id="exemplo">
+		<p>Olá,</p>
+		<!-- <p>Carreguei um programa exemplo para você começar.</p> -->
+		<p>Um exemplo de programa foi carregado para você começar.</p>
+		<!-- <p>Execute-o no modo LENTO.</p> -->
+		<!-- <p>Fique a vontade para apagar tudo e recomeçar.</p> -->
+		<p>Boa diversão.</p>
+	</div>
+	<div class="latest">
+		<div class="inner">
+			<ul class="latest-list">
+				<li class="latest-list-item"><span class="icon-checkmark"></span> Encaixes, Sons, e Cores por Funcionalidade</li>
+				<li class="latest-list-item"><span class="icon-checkmark"></span> Valores e Variáveis ajustáveis e arrastáveis</li>
+				<li class="latest-list-item"><span class="icon-checkmark"></span> Texto dos blocos em Português</li>
+				<li class="latest-list-item"><span class="icon-checkmark"></span> Compartilhamento do Código em Blocos</li>
+			</ul>
+			<p>*<em>vídeo com legenda disponível em português</em></p>
+		</div>
+	</div>
+	<div id='personagem-menu'>
+		<ul class="extra-menu">
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Tartaruga" data-src="tartaruga.png">
+					<img src="images/personagens/tartaruga.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Jabuti" data-src="jabuti.png">
+					<img src="images/personagens/jabuti.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Joaninha" data-src="joaninha.png">
+					<img src="images/personagens/joaninha.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Rato" data-src="rato.png">
+					<img src="images/personagens/rato.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Fantasma azul" data-src="fantasma-azul.png">
+					<img src="images/personagens/fantasma-azul.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Fantasma rosa" data-src="fantasma-rosa.png">
+					<img src="images/personagens/fantasma-rosa.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Fantasma laranja" data-src="fantasma-laranja.png">
+					<img src="images/personagens/fantasma-laranja.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Fantasma verde" data-src="fantasma-verde.png">
+					<img src="images/personagens/fantasma-verde.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Boto" data-src="boto.png">
+					<img src="images/personagens/boto.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Muiraquitã verde" data-src="muiraquita-verde.png">
+					<img src="images/personagens/muiraquita-verde.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Muiraquitã jade" data-src="muiraquita-jade.png">
+					<img src="images/personagens/muiraquita-jade.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Muiraquitã dourado" data-src="muiraquita-dourado.png">
+					<img src="images/personagens/muiraquita-dourado.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Foguete" data-src="foguete.png">
+					<img src="images/personagens/foguete.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Disco voador" data-src="disco-voador.png">
+					<img src="images/personagens/disco-voador.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Nave estrela" data-src="nave-estrela.png">
+					<img src="images/personagens/nave-estrela.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Robô quadrado" data-src="robo-quadrado.png">
+					<img src="images/personagens/robo-quadrado.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Robô redondo" data-src="robo-redondo.png">
+					<img src="images/personagens/robo-redondo.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Astronauta" data-src="astronauta.png">
+					<img src="images/personagens/astronauta.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Onça" data-src="onca.png">
+					<img src="images/personagens/onca.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Arara" data-src="arara.png">
+					<img src="images/personagens/arara.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+			<li class="extra-menu-item">
+				<a class="extra-menu-item-link" href="#" title="Capivara" data-src="capivara.png">
+					<img src="images/personagens/capivara.png" class="extra-menu-icon" alt="imagem do personagem">
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="help">
+		<pre style="word-wrap: break-word; white-space: pre-wrap;">
+Guia rápido para a Linguagem LOGO (tradução em andamento):
+
+Guia de referência rápida ao LOGO:
+
+As coisas devem funcionar tanto em caixa alta como em caixa baixa.
+
+Tipos:
+
+PALAVRAS:          FW BW ....
+NÚMEROS:        0, 0.1, 20
+LISTAS:          [1 2 3 5]
+SÍMBOLOS:        "foo "bar
+VARIÁVEIS:      :foo :bar 
+FUNÇÕES: COMMAND arg arg arg ...
+                (COMMAND arg arg arg ...)
+
+Comandos disponíveis:
+
+RESET           Limpa a tela, move o personagem pra posição inicial.
+
+
+Movimentos:
+
+FORWARD n       Move o personagem para frente n pixels
+FW n    
+
+BACKWARD n      Move o personagem para trás n pixels
+
+RIGHT n         Move o personagem para esquerda ou direita em n graus
+RT n
+LEFT n
+LT n
+
+SETX x          Ajustas as coordenadas do personagem nas posições X, Y ou X Y
+SETY y
+SETXY x y
+
+HOME            Move o personagem para a posição inicial.
+
+
+Desenho:
+
+CLEARSCREEN     Limpa a tela
+CLEAR
+CS
+
+CIRCLE r        Desenha um círculo de raio r ao redor do personagem
+
+ARC r d         Desenha um arco de raio r por d graus
+
+PENUP           Levanta a caneta (para de desenhar)
+PU
+PENDOWN         Desce a caneta (volta a desenhar)
+PD
+
+COLOR [r g b]   Mudar a cor da caneta (código rgb = red green blue / 0 a 255)
+
+PENWIDTH w      Muda a grossura da caneta
+
+
+Texto:
+
+PRINT "foo          Imprime na tela "foo"
+PR "foo
+PRINT ["foo "bar]   Imprime na tela "foo bar"
+PR ["foo "bar]
+
+CLEARTEXT           Limpa o texto impresso anteriormente
+CT
+
+
+Operações Matemáticas:
+
+:: SOMA ::              :: MULTIPLICAÇÃO ::
+
+1 + 2                   1 * 2
+SUM 1 2                 PRODUCT 1 2
+(SUM 1 2 3 ...)         (PRODUCT 1 2 3 ...)
+
+:: DIFERENÇA ::         :: DIVISÃO ::
+
+1 - 2                   1 / 2
+DIFFERENCE 1 2          DIVIDE 1 2
+
+
+:: MÓDULO ::
+
+1 % 2
+MOD 1 2
+
+RANDOM n        Retorna um inteiro em [0,n)
+RAND n
+
+RERANDOM s      Modifica o valor do incremento aleatório
+SRAND s
+
+
+:: ALGUNS EXEMPLOS ::
+
+() INT n
+() ROUND n
+() POWER e m
+() EXP n
+() LN n
+() LOG10 n
+
+:: TRIGONOMETRIA ::
+
+SIN, COS
+RADSIN,RADCOS
+
+ARCTAN
+RADARCTAN
+
+:: LISTAS ::
+
+* Estas funcionalidades podem apresentar instabilidade a qualquer momento.
+
+FIRST, HEAD             Retorna o primeiro item em uma lista
+BUTFIRST, TAIL          Retorna todos menos o primeiro item em uma lista
+LAST                    Retorna o último item em uma lista
+BUTLAST                 Retorna todos os itens menos o último em uma lista
+
+FPUT item list  Retorna uma nova lista com o item na frente
+LPUT item list  Retorna uma nova lista com o item por trás
+
+ITEM index list                 Busca o item indexado (get)
+SETITEM index list value        Grava o item indexado (set)
+
+EMPTY? list     Returna true se a lista estiver vazia
+EMPTYP list 
+
+:: OPERADORES LÓGICOS E DE COMPARAÇÃO ::
+
+:: IGUALDADE
+
+1 = 1
+EQUAL? 1 1
+EQUALP 1 1
+
+:: MENOR
+
+1 < 2                1 <= 2
+LESS? 1 2               LESSEQUAL? 1 2
+LESSP 1 2               LESSEQUALP 1 2
+
+:: MAIOR
+
+2 > 1                2 > 1
+GREATER? 2 1            GREATEREQUAL? 2 1
+GREATERP 2 1            GREATEREQUALP 2 1
+
+:: LÓGICOS
+
+AND TRUE FALSE          OR FALSE TRUE
+
+:: OPERAÇÕES CONDICIONAIS (E SE...) ::
+
+:: SE CONDIÇÃO EXISTIR FAÇA...
+IF COND [IF_TRUE] 
+IF 2 > 1 [FW 100]
+
+:: SE CONDIÇÃO FAÇA ISSO SE NÃO AQUILO
+
+IFELSE COND [IF_TRUE] [IF_FALSE]
+IFELSE 2 > 1 [FW 100 RT 90] [BW 100 LT 90]
+
+
+:: BUSCAR E MODIFICAR ::
+
+:: X = 1
+
+Set x to 1:             make "x 1
+
+:: SOMAR N E X
+
+Adding :n to :x         :n + :x
+
+:: ATRIBUIR A X A SOMA DE N + X
+
+Setting :x to :n + :x   make "x :x + :n
+
+:: REPETIÇÕES ::
+
+REPEAT n [COMMANDOS ...]
+
+STOP    - Parar a repetição atual ou função.
+
+OUTPUT f  - Retornar f.
+OP f
+
+
+:: DEFININDO E CHAMANDO
+
+:: CRIA A FUNÇÃO FOO QUE RECEBE OS ARGUMENTOS ARG1, ARG2
+:: TODA FUNÇÃO TEM UM CORPO BODY (COMANDOS) E UM FIM (END)
+
+TO FOO :ARG1 :ARG2 BODY END
+
+:: PARA CRIAR UMA FUNÇÃO QUE DESENHA UM QUADRADO E RECEBE O TAMANHO DESSE QUADRADO COMO ARGUMENTO
+
+TO QUADRADO :tamanho
+REPEAT 4 [FW :tamanho RT 90]
+END
+
+:: DESENHA UM QUADRADO DE TAMANHO 10
+
+QUADRADO :10
+
+:: PARA CRIAR UMA FUNÇÃO QUE DESENHA UM POLÍGONO QUE RECEBE O TAMANHO E O NÚMERO DE LADOS COMO ARGUMENTOS
+
+TO POLYGONO :tamanho :lados
+REPEAT :sides [FW :tamanho RT 360/:lados]
+END
+
+POLYGONO 5 10
+
+Nota: Funções recursivas são suportadas.
+		</pre>
+	</div>
+</body>
+</html>

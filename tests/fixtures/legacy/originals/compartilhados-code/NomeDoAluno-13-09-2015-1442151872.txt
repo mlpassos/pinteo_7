@@ -1,0 +1,11 @@
+reset
+repeat 360 [
+forward 1
+left 1
+]repeat 359 [
+forward 1
+right 1
+]repeat 90 [
+forward 4
+left 4
+] 

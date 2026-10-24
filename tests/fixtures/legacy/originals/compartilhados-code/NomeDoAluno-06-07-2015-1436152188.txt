@@ -1,0 +1,10 @@
+reset
+setx 200
+sety 200
+repeat 8 [
+repeat 5 [
+right 72
+forward 100
+]backward 20
+left 45
+] 

@@ -1,1 +1,10 @@
 .DS_Store
+
+# Refactor — ferramentas e artefatos reproduzíveis
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+docs/reference/
+.vite/

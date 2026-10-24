@@ -1,0 +1,13 @@
+reset
+make "tamanho 50
+make "nrlados 6
+to poligonos
+repeat :nrlados [
+forward :tamanho
+right divide 360 :nrlados
+]end
+setxy 100 250
+repeat 10 [
+poligonos
+make "nrlados sum :nrlados 5
+] 

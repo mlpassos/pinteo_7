@@ -1,0 +1,11 @@
+{
+  "entry": [
+    "src/shared/index.ts",
+    "src/application/index.ts",
+    "src/core/*/index.ts",
+    "scripts/**/*.mjs",
+    "tests/**/*.test.ts"
+  ],
+  "project": ["src/**/*.{ts,tsx}", "tests/**/*.ts", "scripts/**/*.mjs", "*.ts", "*.mjs"],
+  "ignoreExportsUsedInFile": false
+}

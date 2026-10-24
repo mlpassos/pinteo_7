@@ -1,0 +1,48 @@
+{
+  "name": "npm",
+  "version": "11.19.1",
+  "license": "Artistic-2.0",
+  "repository": {
+    "url": "git+https://github.com/npm/cli.git",
+    "type": "git"
+  },
+  "engines": {
+    "node": "^20.17.0 || >=22.9.0"
+  },
+  "scripts": {
+    "lint": "node . run eslint",
+    "snap": "tap",
+    "test": "tap",
+    "eslint": "eslint \"**/*.{js,cjs,ts,mjs,jsx,tsx}\"",
+    "lintfix": "node . run eslint -- --fix",
+    "prepack": "node . run build -w docs",
+    "dumpconf": "env | grep npm | sort | uniq",
+    "licenses": "npx licensee --production --errors-only",
+    "lint-all": "node . run lint --workspaces --include-workspace-root --if-present",
+    "postlint": "template-oss-check",
+    "posttest": "node . run lint",
+    "test-all": "node . run test --workspaces --include-workspace-root --if-present",
+    "resetdeps": "node scripts/resetdeps.js",
+    "dependencies": "node scripts/bundle-and-gitignore-deps.js && node scripts/dependency-graph.js",
+    "test:nocolor": "CI=true tap -Rclassic",
+    "rp-pull-request": "node scripts/update-authors.js",
+    "template-oss-apply": "template-oss-apply --force"
+  },
+  "dist": {
+    "shasum": "19984947ed6b8b1e0c794ceadb0a848cc5585128",
+    "tarball": "https://registry.npmjs.org/npm/-/npm-11.19.1.tgz",
+    "fileCount": 1943,
+    "integrity": "sha512-ztsxKxt/kkIaAs+2i0GU6I+DRmUdrNasxTZKJe9TCdSjKxlhah/4r/hl5ygMD6XAg1qZ9c2TNomR4qgOydp10g==",
+    "signatures": [
+      {
+        "sig": "MEUCIQDsGhppMNV7j0XH5Tz4eKaPE6x2AzT8NLY8pncJ1hnnuwIgMdFUdG/csKoKid7QE1r+QcO7BCXRhoEUS6CDjdfDmRM=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEQCIDzoojn1A7nuQ5k/LUgsmXRlEdyK/Wwr4GHmdeYwbc5RAiBGPyVG5PcH1hKQHxPUa3NBUcoWhAazcqPYuOA4+0P+1Q==",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 12223891
+  }
+}

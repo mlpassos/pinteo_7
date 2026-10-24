@@ -1,0 +1,17 @@
+reset
+setxy 200 400
+to procedimento
+right 90
+repeat 12 [
+forward :tamanho
+left difference 180 75
+forward product :tamanho 2
+right 210
+forward product :tamanho 2
+left difference 180 75
+forward :tamanho
+left 30
+]end
+make "tamanho 100
+procedimento
+ 

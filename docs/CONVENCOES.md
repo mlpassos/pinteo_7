@@ -42,7 +42,7 @@ Sem dependência de Zustand, Motion, router, PostgreSQL, ORM ou Redis nesta base
 
 ## Comandos a disponibilizar na T-062
 
-Estes comandos são requisitos futuros; ainda não existem no checkout legado:
+T-062 disponibiliza os comandos da fundação. `dev:api` só será introduzido com API na T-065; E2E de produto começa na T-066/T-067. Não declarar testes ausentes como aprovados:
 
 | Comando | Verificação |
 |---|---|

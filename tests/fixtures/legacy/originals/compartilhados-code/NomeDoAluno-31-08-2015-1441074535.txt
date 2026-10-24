@@ -1,0 +1,20 @@
+reset
+make "tamanho 4
+make "nome 4
+to lado
+forward :tamanho
+left 90
+forward :tamanho
+right 90
+forward :tamanho
+right 90
+forward :tamanho
+left 90
+forward :tamanho
+right divide 360 :nome
+end
+color [220 45 0]
+repeat 200 [
+lado
+make "nome sum :nome 1
+] 
