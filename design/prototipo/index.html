@@ -7,19 +7,16 @@
   <a class="brand" href="./" aria-label="Pinte o 7, início"><span class="brand-mark">7<span>✦</span></span><span>Pinte o <b>7</b><small>IMAGINE. PROGRAME. DESENHE.</small></span></a>
   <nav aria-label="Principal"><button data-dialog="gallery" aria-label="Abrir galeria">▦ <span>Galeria</span></button><button data-dialog="help" aria-label="Abrir ajuda">? <span>Ajuda</span></button><button class="share top-share" data-dialog="share">↗ Compartilhar</button></nav>
 </header>
-<div class="demo-banner"><span class="demo-dot"></span> ESTUDO DE LAYOUT · VERSÃO 1 <span class="demo-description">Interações de demonstração, sem executar LOGO ou publicar.</span></div>
+<div class="demo-banner"><span class="demo-dot"></span> ESTUDO DE LAYOUT · VERSÃO 2 <span class="demo-description">Interações de demonstração, sem executar LOGO ou publicar.</span></div>
+<section class="command-dock" id="palette" aria-label="Comandos">
+  <div class="dock-heading"><strong>Caixa de ideias</strong><span>Escolha uma família e comece a criar</span><button id="sound-toggle" aria-pressed="true">♫ Som ligado</button></div>
+  <div class="categories" aria-label="Categorias de comandos"></div>
+  <div class="command-drawer" id="command-drawer" hidden><div class="drawer-heading"><p id="drawer-help">Arraste um bloco ou clique nele e depois em um encaixe.</p><button id="close-palette" aria-label="Recolher comandos">Recolher ⌃</button></div><div class="palette-list" id="palette-list"></div></div>
+</section>
 <main class="workspace">
-  <aside class="palette panel" id="palette" aria-label="Paleta de comandos">
-    <div class="panel-heading"><div><span class="eyebrow">01 · EXPLORE</span><h2>Seus comandos</h2></div><button class="mobile-only" id="close-palette" aria-label="Fechar comandos">×</button></div>
-    <p class="subtle">Uma ideia começa com um bloco.</p>
-    <div class="categories" aria-label="Categorias de comandos"></div>
-    <div class="palette-list" id="palette-list"></div>
-    <div class="palette-note"><span>✧</span><p>Um passo de cada vez.<br><strong>Veja sua ideia ganhar forma.</strong></p></div>
-    <div class="palette-foot">19 opções para experimentar</div>
-  </aside>
   <section class="program panel" id="program" tabindex="-1" aria-labelledby="program-heading">
-    <div class="panel-heading"><div><span class="eyebrow">02 · CRIE</span><h1 id="program-heading">Meu programa</h1></div><span class="local-label"><i></i> Rascunho local · demo</span></div>
-    <div class="program-tools"><div class="mode-tabs" role="tablist" aria-label="Modo do programa"><button id="visual-tab" role="tab" aria-selected="true" aria-controls="visual-panel">▦ Visual</button><button id="code-tab" role="tab" aria-selected="false" aria-controls="code-panel" tabindex="-1">&lt;/&gt; Código</button></div><button class="mobile-only" id="open-palette">＋ Blocos</button><button class="quiet" id="new-program">Novo</button></div>
+    <div class="panel-heading"><div><span class="eyebrow">MONTE SUA IDEIA</span><h1 id="program-heading">Meu programa</h1></div><span class="local-label"><i></i> Protótipo · sem salvar</span></div>
+    <div class="program-tools"><div class="mode-tabs" role="tablist" aria-label="Modo do programa"><button id="visual-tab" role="tab" aria-selected="true" aria-controls="visual-panel">▦ Blocos</button><button id="code-tab" role="tab" aria-selected="false" aria-controls="code-panel" tabindex="-1">&lt;/&gt; Código</button></div><button id="open-palette">＋ Comandos</button><button class="quiet" id="new-program">Novo</button></div>
     <div class="program-body">
       <div id="visual-panel" role="tabpanel" aria-labelledby="visual-tab">
         <div class="program-caption"><span class="tiny-dot"></span> Uma flor de possibilidades <span>EXEMPLO</span></div>
@@ -27,11 +24,11 @@
           <div class="code-block drawing"><span class="grip" aria-hidden="true">⠿</span> usar a cor <span class="color-chip" aria-label="cor violeta"></span><span class="block-comment">o começo de tudo</span></div>
           <div class="repeat-shell"><div class="code-block control"><span class="grip" aria-hidden="true">⠿</span> repetir <input aria-label="Quantidade de repetições, demonstração" value="12" inputmode="numeric"> vezes <span class="loop-icon">↻</span></div><div class="repeat-body"><div class="repeat-shell inner-repeat"><div class="code-block control">repetir <input aria-label="Repetições internas, demonstração" value="4" inputmode="numeric"> vezes</div><div class="repeat-body"><div class="code-block movement">↑ para frente <input aria-label="Passos, demonstração" value="100" inputmode="numeric"></div><div class="code-block movement">↱ girar à direita <input aria-label="Ângulo interno, demonstração" value="90" inputmode="numeric"> °</div></div></div><div class="code-block movement">↱ girar à direita <input aria-label="Ângulo externo, demonstração" value="30" inputmode="numeric"> °</div></div></div>
         </div>
-        <button class="add-block" id="add-block">＋ Escolher um comando <small>prévia de inserção</small></button>
-        <p class="workspace-hint">Combine passos pequenos. Crie coisas grandes.</p>
+        <button class="add-block" id="add-block">＋ Escolher um comando <small>abrir caixa de ideias</small></button>
+        <p class="workspace-hint">Arraste para encaixar. Mude a ordem. Experimente!</p>
       </div>
       <div id="code-panel" role="tabpanel" aria-labelledby="code-tab" hidden>
-        <div class="code-caption">LOGO <span>Realce simulado · edição livre do rascunho</span></div>
+        <div class="code-caption">LOGO <span>Realce ilustrativo · sem execução</span></div>
         <div class="code-preview" aria-label="Prévia do realce de sintaxe"><div class="line-numbers" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</div><pre><span class="syntax-comment">; Uma flor de possibilidades</span>
 <span class="syntax-command">color</span> [<span class="syntax-number">118 77 215</span>]
 <span class="syntax-control">repeat</span> <span class="syntax-number">12</span> [
@@ -46,18 +43,19 @@
       </div>
       <div class="notice" id="conversion-notice" role="status" hidden><strong>Seu código continua aqui.</strong><p>Linha 1: “random” não tem equivalente nestes blocos. Continue no modo Código; o texto foi preservado.</p><small>Cenário simulado, sem parser ou conversor.</small></div>
     </div>
-    <div class="execution"><div class="run-row"><button class="primary" id="run">▶ Executar <span>demo</span></button><button id="stop" disabled>■ Parar</button><label class="speed">Velocidade<select id="speed"><option>Lenta</option><option selected>Normal</option><option>Rápida</option></select></label></div><div class="execution-meta"><span id="run-status" role="status"><i></i> Pronto para experimentar</span><button id="error-scenario">Simular erro</button></div></div>
-    <details class="output"><summary>Saída e histórico <span>0 mensagens</span></summary><p id="output-text">As mensagens do programa aparecerão aqui. Nesta prévia, nenhum comando é executado.</p></details>
   </section>
   <section class="stage-panel panel" aria-labelledby="stage-heading">
-    <div class="panel-heading"><div><span class="eyebrow">03 · DESCUBRA</span><h2 id="stage-heading">Seu desenho</h2></div><button class="quiet" id="clear">⌫ Limpar</button></div>
+    <div class="panel-heading"><div><span class="eyebrow">VEJA ACONTECER</span><h2 id="stage-heading">Seu desenho</h2></div><button class="quiet" id="clear">⌫ Limpar</button></div>
+    <div class="execution"><div class="run-row"><button class="primary" id="run">▶ Executar <span>demo</span></button><button id="stop" disabled>■ Parar</button><label class="speed">Velocidade<select id="speed"><option>Lenta</option><option selected>Normal</option><option>Rápida</option></select></label></div><div class="execution-meta"><span id="run-status" role="status"><i></i> Pronto para experimentar</span><button id="error-scenario">Simular erro</button></div></div>
     <div class="stage-wrap"><div class="stage" role="img" aria-label="Prévia estática de uma flor geométrica violeta, com personagem tartaruga"><svg class="art" viewBox="0 0 500 500" aria-hidden="true"><g id="flower" fill="none" stroke="#7952cd" stroke-width="1.8" opacity=".85"></g></svg><img id="stage-character" src="assets/personagens/tartaruga.png" alt="" width="40" height="40"><span class="axis axis-x">x</span><span class="axis axis-y">y</span><span class="stage-origin">0, 0</span></div><div class="stage-caption"><span><i></i> Palco · 500 × 500</span><span>Prévia ilustrativa</span></div></div>
     <div class="character-bar"><button id="character-picker" data-dialog="characters"><img id="chosen-character" src="assets/personagens/tartaruga.png" alt="" width="46" height="46"><span><small>QUEM VAI DESENHAR?</small><strong id="character-name">Tartaruga <span>⌄</span></strong></span></button><button id="random-character" aria-label="Sortear personagem">⚄</button></div>
     <div class="stage-actions"><button id="download">↓ Baixar PNG <small>demo</small></button><button data-dialog="share">↗ Compartilhar <small>demo</small></button></div>
-    <div class="discovery"><span>✦</span><p>O que acontece se você mudar<br><strong>o ângulo da sua ideia?</strong></p><button id="explore" aria-label="Ver dica sobre ângulos">↗</button></div>
+    <details class="output"><summary>Saída e histórico <span>0 mensagens</span></summary><p id="output-text">As mensagens do programa aparecerão aqui. Nesta prévia, nenhum comando é executado.</p></details>
+
   </section>
 </main>
 <footer class="app-footer"><span>Um espaço para aprender criando.</span><span>Feito com LOGO e imaginação <span class="footer-spark">✳</span></span><button data-dialog="help">Sobre o Pinte o 7</button></footer>
+<audio id="snap-audio" src="assets/click.mp3" preload="none"></audio>
 <div id="toast" role="status" hidden></div>
 <dialog id="gallery-dialog" aria-labelledby="gallery-title"><div class="dialog-heading"><div><span class="eyebrow">IDEIAS QUE INSPIRAM</span><h2 id="gallery-title">Uma galeria de possibilidades</h2></div><button data-close aria-label="Fechar galeria">×</button></div><p>Exemplos fictícios para explorar o layout. Nenhum compartilhado real é carregado.</p><div class="gallery-grid" id="gallery-grid"></div><p class="dialog-foot">Na versão final: exemplos preservados e desenhos compartilhados, sem cadastro.</p></dialog>
 <dialog id="characters-dialog" aria-labelledby="characters-title"><div class="dialog-heading"><div><span class="eyebrow">21 COMPANHEIROS DE CRIAÇÃO</span><h2 id="characters-title">Escolha seu personagem</h2></div><button data-close aria-label="Fechar personagens">×</button></div><p>Todos desenham com os mesmos comandos. Qual combina com sua ideia?</p><div class="characters-grid" id="characters-grid"></div></dialog>

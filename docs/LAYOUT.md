@@ -1,8 +1,8 @@
-# Layout — T-061, proposta v1
+# Layout — T-061, propostas v1 e v2
 
 Apresentação em 23/10/2026 (America/Belem). **Aguardando aprovação explícita de Márcio.** T-061 permanece in-progress; T-062–T-069 não iniciadas. A meta persistente está ativa e ainda não foi concluída.
 
-## Direção
+## Direção da v1 (histórico)
 
 Oficina de criação clara, com identidade violeta, fundo neutro e blocos por categoria. Três áreas numeradas: explorar comandos, criar programa e descobrir o desenho. Palco branco com grade discreta e personagem central; nenhuma ilustração externa nova. Controles de execução permanecem no rodapé do programa no desktop. Programa e paleta rolam internamente quando necessário; não exigir que o programa inteiro caiba na tela.
 
@@ -48,9 +48,33 @@ Revisão técnica estática por subagente: um achado P2 sobre rótulos de galeri
 
 Na primeira tentativa, servidor Python padrão bloqueou a inicialização por resolução de hostname; a tentativa seguinte com servidor de uma conexão teve resets em imagens paralelas. Prévia final usa ThreadingHTTPServer sem resolução reversa, atendendo só o diretório do estudo; rodada final sem esses erros.
 
+## Revisão v2 — solicitação de Márcio em 23/10/2026
+
+A v1 não foi aprovada. Márcio solicitou comandos no topo expandindo no clique, área inferior dividida em duas metades (programa Blocos/Código e visualização/execução/resultado), paleta mais alegre/infantil e reforçou arrastar/encaixar com o som original como obrigação no produto final. Esse aceite funcional foi explicitado em F03 do PRD e R2 da T-066, sem iniciar a implementação.
+
+A **v2** substitui a composição lateral da v1: seis categorias coloridas no topo; novo clique na categoria ou Recolher fecha a gaveta. Grade inferior 1fr/1fr com intervalo 18 px e margens 22 px no desktop/tablet. Em até 650 px, as categorias ficam em duas linhas e as metades empilhadas. Blocos/Código são abas na metade esquerda; Executar/Parar/Velocidade, palco, personagem, exportação/compartilhamento e saída/histórico ficam na metade direita.
+
+Cores da v2: azul #276dcd para movimento, amarelo #ffc83c para repetição, rosa #d63865 para desenho, verde #37b99b para dados e lilás #ae7ee5 para operadores, sobre fundo #f4f8fe. A ação primária usa #1463cf. Tipografia segue de sistema neste estudo.
+
+### Encaixe demonstrável
+
+A v2 permite arrastar comandos da gaveta até encaixes, inclusive em corpos de repetição, e mover blocos existentes. Usa apenas Pointer Events/DOM locais para demonstrar a interação; não é a arquitetura de blocos definitiva. Alternativa por clique/Enter (comando → encaixe) e reordenação de irmãos com Alt+setas. Arraste cancelado preserva o bloco original; mover contêiner para dentro dele mesmo é recusado. O arquivo `assets/click.mp3`, idêntico por SHA-256 a `sounds/click.mp3`, toca no encaixe; há controle de som. `js/pinteo7.js` usa o mesmo asset via clicksound nos handlers de drop do legado.
+
+Sem sincronização entre blocos, fonte e desenho, sem execução LOGO, nem validação completa dos tipos de slots. Em especial, operadores são cartões ilustrativos nesta prévia; o produto manterá os slots e invariantes do contrato. Não confundir o comportamento do mock com aceite do editor final.
+
+### Evidências da v2
+
+- [Desktop recolhido](../design/reviews/t-061/v2/1280.png) e [comandos expandidos](../design/reviews/t-061/v2/1280-comandos.png).
+- [Tablet](../design/reviews/t-061/v2/768.png), [412 px](../design/reviews/t-061/v2/412.png) e [360 px](../design/reviews/t-061/v2/360.png); versões expandidas na mesma pasta.
+- [Código](../design/reviews/t-061/v2/codigo.png).
+
+Verificados no Chromium disponível: quatro larguras, gaveta aberta/fechada, scrollWidth igual ao viewport, palco quadrado, arraste de paleta para corpo de repeat (6→7 blocos), inserção por clique (7→8), reordenação por mouse sem aumentar a quantidade e por Alt+setas. Toque emulado via Chromium/CDP inseriu um bloco (6→7). Reprodução do áudio confirmou `paused=false` e `error=null`; não há afirmação de escuta humana. Seleção de som alterna aria-pressed. Teclado/Enter insere e conserva foco no bloco novo. Rascunho editado permaneceu íntegro na tentativa de voltar aos Blocos. Console sem erros.
+
+Revisão estática independente da v2 encontrou dois P2: perda de foco após inserir por teclado e seleção pendente de comando ao trocar categoria. Ambos corrigidos e casos reproduzidos novamente: foco no novo bloco, troca de categoria sem inserir seleção oculta. Nenhum outro bloqueio apontado. Toque físico, leitores de tela e outros navegadores continuam não verificados.
+
 ## Decisão de Márcio
 
-- Versão submetida: **v1**, arquivos em design/prototipo e capturas acima.
-- Aprovação: **pendente**; nenhuma mensagem de aprovação recebida.
-- Ajustes solicitados: aguardando revisão.
-- Gate: somente aceite explícito desta proposta (ou de versão ajustada) encerra T-061 e libera T-062.
+- Versão submetida agora: **v2**; v1 preservada no commit `9833d4d` e nas capturas anteriores.
+- Aprovação: **pendente**. O pedido de alteração não constitui aprovação da v2.
+- Ajustes pedidos sobre a v1: aplicados nesta proposta conforme descrito acima.
+- Gate: aceite explícito da v2 ou de nova revisão encerra T-061; T-062 permanece não iniciada.

@@ -1,4 +1,4 @@
-# Protótipo de layout — T-061, versão 1
+# Protótipo de layout — T-061, versão 2
 
 Estudo descartável em HTML/CSS/JS, sem dependências. Aguarda aprovação visual de Márcio. Não é implementação do produto.
 
@@ -12,16 +12,18 @@ Abrir http://127.0.0.1:8080/. O servidor atende apenas esta pasta, em loopback; 
 
 ## O que explorar
 
-- Categorias e inserção ilustrativa de comandos; 19 opções.
-- Abas Visual/Código; realce estático e rascunho separado. Setas alternam as abas.
+- Categorias no topo, expandindo/recolhendo no clique; 19 opções. Metade esquerda para Blocos/Código e metade direita para execução/palco/resultado no desktop.
+- Arraste comandos até os encaixes azuis, inclusive dentro de repetições. Blocos existentes podem mudar de ordem/corpo. Som original de encaixe com interruptor.
+- Alternativa: selecione um comando com clique ou Enter e depois ative um encaixe. Bloco focado + Alt+seta para cima/baixo reordena entre irmãos.
+- Abas Blocos/Código; realce estático e rascunho separado. Setas alternam as abas.
 - “Experimentar comando sem bloco” mantém o texto e demonstra a recusa de conversão. Qualquer rascunho editado permanece no Código, pois não há conversor.
 - Executar/Parar animam somente a opacidade da ilustração. Limpar oculta a ilustração; Executar a restaura.
 - 21 personagens locais, escolha e sorteio.
 - Galeria fictícia, ajuda, erro simulado e compartilhamento com falha seguida de nova tentativa. Escape fecha os diálogos.
-- No celular, “+ Blocos” abre a paleta acima do programa.
+- No celular, as seis categorias continuam no topo em duas linhas; programa e resultado são empilhados.
 
-Não há drag-and-drop, interpretador, conversor, API, armazenamento, download, vídeo ou publicação. A galeria não abre programas reais. Novo não apaga o rascunho. Campos dos blocos não alteram a fonte nem a geometria. Recarregar retorna ao exemplo inicial. Nenhum dado sai do computador.
+O arraste/encaixe é uma demonstração de manipulação DOM, sem modelo ou validação completa de programa. Não há interpretador, conversor, API, armazenamento, download, vídeo ou publicação. Operadores também aparecem como cartões de demonstração; no produto serão expressões encaixadas em slots, conforme contrato. A galeria não abre programas reais. Novo não apaga o rascunho. Campos dos blocos não alteram a fonte nem a geometria. Recarregar retorna ao exemplo inicial. Nenhum dado sai do computador. Os encaixes não sincronizam a fonte ou a ilustração.
 
-Os PNGs em assets/personagens são cópias byte a byte dos 21 assets existentes de images/personagens. Não se adicionaram fontes, imagens externas ou bibliotecas. A tipografia usa fontes do sistema neste estudo; Nunito local continua requisito para o produto, com verificação na fundação. Créditos/licenças originais: LICENSE e Papert-License.txt na raiz. A geometria SVG é ilustrativa criada neste estudo. Nenhum CP7 foi carregado.
+Os PNGs em assets/personagens são cópias byte a byte dos 21 assets existentes de images/personagens. O som `assets/click.mp3` é cópia byte a byte de `sounds/click.mp3`, usado pelo legado no encaixe. Não se adicionaram fontes, imagens externas ou bibliotecas. A tipografia usa fontes do sistema neste estudo; Nunito local continua requisito para o produto, com verificação na fundação. Créditos/licenças originais: LICENSE e Papert-License.txt na raiz. A geometria SVG é ilustrativa criada neste estudo. Nenhum CP7 foi carregado.
 
 Decisões, capturas e validações: ../../docs/LAYOUT.md. Evidências: ../reviews/t-061/.
