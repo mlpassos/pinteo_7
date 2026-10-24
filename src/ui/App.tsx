@@ -3,7 +3,7 @@ import '@fontsource/nunito/latin-600.css';
 import '@fontsource/nunito/latin-700.css';
 import '@fontsource/nunito/latin-800.css';
 import nunitoLicense from '@fontsource/nunito/LICENSE?raw';
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useReducer, useRef, useState } from 'react';
 import type { Block, BlockAction, BlockId, BodyTarget, Projection } from '../core/program/index.js';
 import { createBlockId } from '../core/program/index.js';
 import type { ProgramDocument } from '../shared/index.js';
@@ -69,6 +69,23 @@ export function App({
   const audio = useRef<HTMLAudioElement | null>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const suppressedClick = useRef(0);
+  const pendingFocus = useRef<{ revision: number; id: BlockId | null } | null>(null);
+
+  useLayoutEffect(() => {
+    const request = pendingFocus.current;
+    if (!request) return;
+    pendingFocus.current = null;
+    if (request.revision !== state.revision || state.mode !== 'visual') return;
+    const target = request.id
+      ? document.querySelector<HTMLElement>(`[data-block-id="${request.id}"] > .code-block`)
+      : document.querySelector<HTMLElement>('#visual-tab');
+    target?.focus();
+    if (target && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      target.animate([{ transform: 'translateY(-4px)' }, { transform: 'translateY(0)' }], {
+        duration: 160,
+      });
+    }
+  }, [state.revision, state.mode]);
 
   useEffect(
     () =>
@@ -150,6 +167,10 @@ export function App({
       originalSource: serialized.value,
       sourceRevision: state.revision + 1,
     };
+    pendingFocus.current = {
+      revision: state.revision + 1,
+      id: action.type === 'insert' ? action.block.id : action.type === 'remove' ? null : action.id,
+    };
     dispatch({
       type: 'edited',
       projection,
@@ -159,18 +180,6 @@ export function App({
     setPending(null);
     if (action.type === 'remove') dispatch({ type: 'select', id: null });
     playSound(action.type === 'remove');
-    const id =
-      action.type === 'insert' ? action.block.id : action.type === 'remove' ? null : action.id;
-    requestAnimationFrame(() => {
-      const target = id
-        ? document.querySelector<HTMLElement>(`[data-block-id="${id}"] > .code-block`)
-        : document.querySelector<HTMLElement>('#visual-tab');
-      target?.focus();
-      if (target && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-        target.animate([{ transform: 'translateY(-4px)' }, { transform: 'translateY(0)' }], {
-          duration: 160,
-        });
-    });
     return true;
   }
   /** Insere ou move apenas o tipo esperado no destino. */

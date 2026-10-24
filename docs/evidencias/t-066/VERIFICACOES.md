@@ -49,3 +49,11 @@ Base combinada `03a62a2`, com motor/API e dependências coordenadas. O coordenad
 A alteração de DPR foi feita por CDP e seguida de um evento resize explícito: a emulação não emitiu evento nativo de resolução/resize ao mudar somente o fator. O teste verifica o handler com DPR real=2 no navegador, sem afirmar mudança física de monitor. A recuperação do editor tem uma única URL alternativa; falhas das dependências compartilhadas ou da alternativa podem continuar em cache, mas nenhum código do usuário é descartado ou depende de reload obrigatório para ser copiado.
 
 Após esses fixes, `npm run check` completo, build web/API, allowlist SHA-256 e `git diff --check` passaram na árvore combinada. O editor mantém dependências comuns num chunk e duas entradas pequenas para a carga inicial/alternativa, sem aviso de tamanho. A suíte geral anterior não foi reexecutada nesta frente; o coordenador conduzirá QA conjunto/CI. Nenhum arquivo de dependências, pacote, configuração ou evidência de audit do coordenador entrou no commit desta correção.
+
+## Correção dirigida de foco após edição visual
+
+O QA conjunto do coordenador executou check, 254 testes Vitest, build web/API, TypeDoc e allowlist com sucesso; no E2E geral, 15 de 16 passaram e o cenário de Alt+ArrowUp falhou por uma corrida real: o requestAnimationFrame de uma edição anterior ainda podia focar a peça antiga depois de o usuário já ter escolhido outra.
+
+`App.apply` agora registra o destino antes do dispatch. Um useLayoutEffect consome a solicitação uma única vez após o commit da revisão correta, focando a peça no DOM novo; não há callback de foco da edição pendurado no próximo frame. A microanimação permanece independente de foco tardio. Solicitação de outra revisão ou modo é descartada.
+
+O cenário afetado passou novamente, agora com regressão determinística: o teste segura o próximo requestAnimationFrame, encaixa uma expressão, foca outra peça e libera os callbacks antes de Alt+ArrowUp. O foco permanece na peça escolhida e a ordem muda corretamente. Não foi acrescentado sleep/retry para esconder a corrida. TypeScript e ESLint dos arquivos afetados passaram; `git diff --check` passou. O coordenador repetirá o E2E conjunto; esta frente não declarou a suíte geral aprovada com base no cenário isolado.

@@ -97,6 +97,18 @@ test('encaixe aninhado por teclado, expressão em slot, reordenação e recusa d
     .toBe(true);
   await page.getByRole('button', { name: 'Operadores', exact: false }).first().click();
   await page.getByRole('button', { name: 'Soma', exact: true }).click();
+  // Segura o próximo frame para reproduzir navegação antes de um callback tardio de foco.
+  await page.evaluate(() => {
+    const queued: FrameRequestCallback[] = [];
+    window.requestAnimationFrame = (callback) => {
+      queued.push(callback);
+      return queued.length;
+    };
+    window.addEventListener('test-flush-frame', () => {
+      const current = queued.splice(0);
+      for (const callback of current) callback(performance.now());
+    });
+  });
   await page
     .getByRole('button', { name: 'Encaixar expressão em Valor de para frente', exact: true })
     .first()
@@ -104,6 +116,10 @@ test('encaixe aninhado por teclado, expressão em slot, reordenação e recusa d
   await expect(page.locator('.expression')).toHaveCount(1);
   const right = page.locator('[data-block-id="right"] > .code-block');
   await right.focus();
+  await page.evaluate(() => {
+    window.dispatchEvent(new Event('test-flush-frame'));
+  });
+  await expect(right).toBeFocused();
   await page.keyboard.press('Alt+ArrowUp');
   await expect(right).toBeFocused();
   await expect(
