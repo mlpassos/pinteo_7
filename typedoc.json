@@ -5,7 +5,10 @@
     "src/core/turtle/index.ts",
     "src/application/index.ts",
     "src/shared/index.ts",
-    "src/server/index.ts"
+    "src/server/index.ts",
+    "src/core/logo/index.ts",
+    "src/application/runner/index.ts",
+    "src/infrastructure/canvas/index.ts"
   ],
   "out": "docs/reference",
   "name": "Pinte o 7 — referência dos módulos",

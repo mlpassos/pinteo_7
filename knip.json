@@ -8,7 +8,9 @@
     "tests/**/*.test.ts",
     "src/server/index.ts",
     "src/server/main.ts",
-    "src/server/admin.ts"
+    "src/server/admin.ts",
+    "src/application/runner/index.ts",
+    "src/infrastructure/canvas/index.ts"
   ],
   "project": ["src/**/*.{ts,tsx}", "tests/**/*.ts", "scripts/**/*.mjs", "*.ts", "*.mjs"],
   "ignoreExportsUsedInFile": false
