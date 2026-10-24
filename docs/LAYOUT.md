@@ -1,4 +1,4 @@
-# Layout — T-061, propostas v1 a v3
+# Layout — T-061, propostas v1 a v4
 
 Apresentação em 23/10/2026 (America/Belem). **Aguardando aprovação explícita de Márcio.** T-061 permanece in-progress; T-062–T-069 não iniciadas. A meta persistente está ativa e ainda não foi concluída.
 
@@ -84,9 +84,19 @@ Capturas: [1280 px](../design/reviews/t-061/v3/1280.png), [768 px](../design/rev
 
 Verificação proporcional: inspeção visual das molduras em desktop/celular; medições nas quatro larguras com gaveta aberta/fechada sem overflow horizontal e palco quadrado. Console sem erros. Estilo computado dos controles durante execução: `toy-turn`; com movimento reduzido: `none`. Sem mudança no JS de encaixe/som. Não repetida a suíte de interações da v2 porque o comportamento permanece igual. Sem validação em dispositivo físico ou leitor de tela nesta revisão.
 
+## Revisão v4 — o painel inteiro é o brinquedo
+
+Márcio esclareceu que todo o painel “Seu desenho” deve formar o brinquedo, com os controles integrados ao design ou externos. A v4 remove a miniatura de brinquedo interna: a própria borda externa do painel é a carcaça coral, com cantos arredondados e relevo. O palco ocupa a tela clara central. Executar/Parar/Velocidade/Limpar estão no topo da carcaça; personagem, exportação, compartilhamento e saída/histórico compõem a parte inferior. Os dois controles giratórios decorativos ficam nos cantos inferiores, ao lado das ações, sem função de entrada.
+
+Composição geral, categorias, blocos e áudio preservados. Sem temas, novas dependências ou implementação do produto.
+
+Capturas: [1280 px](../design/reviews/t-061/v4/1280.png), [768 px](../design/reviews/t-061/v4/768.png), [412 px](../design/reviews/t-061/v4/412.png), [360 px](../design/reviews/t-061/v4/360.png).
+
+Verificações proporcionais: quatro larguras sem rolagem horizontal da página, inclusive com gaveta expandida; palco quadrado. Seletor com 21 personagens, diálogo de compartilhar acionado no novo painel, saída/histórico expansível e controles decorativos animados durante execução simulada. Console sem erros. Nenhuma mudança no JS de arraste/encaixe/som. Capturas inspecionadas em desktop e celular. Limitações anteriores de protótipo permanecem.
+
 ## Decisão de Márcio
 
-- Versão submetida agora: **v3**; v1/v2 preservadas nos commits anteriores e nas capturas.
-- Aprovação: **pendente**. Pedido de ajuste não constitui aprovação da nova proposta.
-- Ajustes solicitados: bordas e moldura mais lúdicas, aplicados na v3; seletor/blocos/som mantidos.
+- Versão submetida agora: **v4**; versões anteriores preservadas nos commits e capturas.
+- Aprovação: **pendente**. Pedido de ajuste não constitui aprovação.
+- Ajuste solicitado nesta rodada: painel inteiro como brinquedo, aplicado na v4.
 - Gate: aceite explícito da versão visual encerra T-061; T-062 permanece não iniciada.
