@@ -192,3 +192,6 @@ A integração T-063/T-066 acrescenta `Runner.clear()` e `Runner.setSpeed()` com
 
 
 T-065 materializa limites adicionais do processo: até32 operações de disco pendentes (incluindo ativa), duas criações de imagem sem fila e uma única instância sob trava exclusiva. O resumo privado summary.json é publicado no mesmo rename de program.json/preview.png; evita carregar fonte/imagens para paginar, sem mudar DTOs públicos. Código inesperado de erro é registrado sem conteúdo recebido ou caminhos.
+
+
+`BodyTarget.index` identifica um encaixe entre irmãos na árvore **anterior à remoção**. Há length+1 encaixes; mover um item para índice posterior no mesmo corpo desconta a remoção uma única vez. A UI pode usar o mesmo destino para inserir ou mover; conversor valida e ajusta atomicamente, sem depender de DOM.

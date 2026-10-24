@@ -10,7 +10,8 @@
     "src/server/main.ts",
     "src/server/admin.ts",
     "src/application/runner/index.ts",
-    "src/infrastructure/canvas/index.ts"
+    "src/infrastructure/canvas/index.ts",
+    "tests/ui/harness.ts"
   ],
   "project": ["src/**/*.{ts,tsx}", "tests/**/*.ts", "scripts/**/*.mjs", "*.ts", "*.mjs"],
   "ignoreExportsUsedInFile": false

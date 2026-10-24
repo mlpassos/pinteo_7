@@ -6,10 +6,10 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
   reporter: 'list',
-  use: { baseURL: 'http://127.0.0.1:5177', trace: 'retain-on-failure' },
+  use: { baseURL: 'http://127.0.0.1:5180', trace: 'retain-on-failure' },
   webServer: {
     command: 'npm run dev',
-    url: 'http://127.0.0.1:5177',
+    url: 'http://127.0.0.1:5180',
     reuseExistingServer: !process.env.CI,
   },
 });

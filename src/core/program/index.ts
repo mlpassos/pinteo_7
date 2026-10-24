@@ -78,6 +78,7 @@ export type Projection = Readonly<{
 }>;
 
 /** Índice de inserção em um corpo; parentId nulo indica a raiz do programa. */
+/** Encaixe na árvore anterior à edição; mover no mesmo corpo ajusta índice após remoção. */
 export type BodyTarget = Readonly<{ parentId: BlockId | null; index: number }>;
 
 /** Edição atômica; replace deve conservar a identidade do alvo. */
