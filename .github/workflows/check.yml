@@ -24,3 +24,5 @@ jobs:
       - run: npm run build
       - run: npm run docs
       - run: node scripts/check-artifact.mjs
+      - run: npx --no-install playwright install --with-deps chromium
+      - run: npm run test:e2e

@@ -9,7 +9,8 @@
     "src/core/logo/index.ts",
     "src/application/runner/index.ts",
     "src/infrastructure/canvas/index.ts",
-    "src/infrastructure/legacy-import/index.ts"
+    "src/infrastructure/legacy-import/index.ts",
+    "src/ui/index.ts"
   ],
   "out": "docs/reference",
   "name": "Pinte o 7 — referência dos módulos",
