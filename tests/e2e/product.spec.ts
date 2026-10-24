@@ -51,7 +51,7 @@ for (const width of [360, 412, 768, 1280]) {
     await page.evaluate(() => {
       window.scrollTo(0, 0);
     });
-    await page.screenshot({ path: `design/reviews/t-067/${String(width)}.png`, fullPage: true });
+    await page.screenshot({ path: test.info().outputPath(`${String(width)}.png`), fullPage: true });
     expect(errors).toEqual([]);
   });
 }

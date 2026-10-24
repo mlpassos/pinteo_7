@@ -37,12 +37,12 @@ for (const width of [360, 412, 768, 1280]) {
     const canvas = await page.locator('canvas').boundingBox();
     expect(canvas).not.toBeNull();
     if (canvas) expect(Math.abs(canvas.width - canvas.height)).toBeLessThan(1);
-    await page.screenshot({ path: `design/reviews/t-066/${String(width)}.png`, fullPage: true });
+    await page.screenshot({ path: test.info().outputPath(`${String(width)}.png`), fullPage: true });
     await page.getByRole('button', { name: 'Movimento', exact: false }).first().click();
     await expect(page.getByRole('button', { name: 'Para frente', exact: true })).toBeVisible();
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
     await page.screenshot({
-      path: `design/reviews/t-066/${String(width)}-comandos.png`,
+      path: test.info().outputPath(`${String(width)}-comandos.png`),
       fullPage: true,
     });
     const help = page.getByRole('button', { name: 'Abrir ajuda' });
@@ -339,7 +339,7 @@ test('renderer real acompanha contêiner, DPR e personagem fora do palco', async
       }),
     )
     .toBeLessThan(200);
-  await page.locator('.stage').screenshot({ path: 'design/reviews/t-066/palco-real-1280.png' });
+  await page.locator('.stage').screenshot({ path: test.info().outputPath('palco-real-1280.png') });
   await page.setViewportSize({ width: 360, height: 1000 });
   await expect
     .poll(async () => {
@@ -382,7 +382,9 @@ test('renderer real acompanha contêiner, DPR e personagem fora do palco', async
       }),
     )
     .toBeLessThan(200);
-  await page.locator('.stage').screenshot({ path: 'design/reviews/t-066/palco-real-360-dpr2.png' });
+  await page
+    .locator('.stage')
+    .screenshot({ path: test.info().outputPath('palco-real-360-dpr2.png') });
   await page.getByRole('button', { name: 'Parar', exact: false }).click();
   await page.locator('.cm-content').fill('outside');
   await page.getByRole('button', { name: 'Executar', exact: false }).click();

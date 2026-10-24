@@ -3,6 +3,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { startApiServer, importPreparedExamples } from '../dist/api/server/index.js';
 
+const flags = process.argv.slice(2);
+if (flags.length > 1 || (flags[0] !== undefined && flags[0] !== '--release'))
+  throw new Error('Use somente --release ou nenhum argumento.');
+const release = flags[0] === '--release';
+const port = release ? 5198 : 5178;
+const publicOrigin = release ? 'http://127.0.0.1:5190' : 'http://127.0.0.1:5180';
 const temporary = await mkdtemp(join(tmpdir(), 'pinteo7-e2e-'));
 let api;
 let closing = false;
@@ -23,14 +29,16 @@ try {
   api = await startApiServer(
     {
       dataDirectory,
-      publicOrigin: 'http://127.0.0.1:5180',
-      port: 5178,
+      publicOrigin,
+      port,
       quotaBytes: 250 * 1024 * 1024,
       trustLocalProxy: false,
     },
     process.cwd(),
   );
-  console.log('API real de teste em 5178 com 34 exemplos, dados temporários fora do checkout.');
+  console.log(
+    `API real de teste em ${String(port)} com 34 exemplos, dados temporários fora do checkout.`,
+  );
   process.once('SIGINT', () => {
     void close();
   });

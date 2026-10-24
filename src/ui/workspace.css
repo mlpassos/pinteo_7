@@ -370,7 +370,7 @@ button:active:not(:disabled) {
 }
 .program .eyebrow,
 .local-label {
-  color: #76512f;
+  color: #160c08;
 }
 .local-label {
   font-size: 9px;
@@ -408,7 +408,7 @@ button:active:not(:disabled) {
   padding: 7px 20px;
   background: transparent;
   border: 0;
-  color: #59412c;
+  color: #160c08;
   font-size: 12px;
 }
 .mode-tabs button[aria-selected='true'] {
@@ -445,7 +445,7 @@ button:active:not(:disabled) {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  color: #6d4d29;
+  color: #3b2919;
   font-size: 11px;
   margin-bottom: 17px;
 }
@@ -662,7 +662,7 @@ button:active:not(:disabled) {
   text-align: center;
   font-size: 10px;
   line-height: 1.7;
-  color: #684b29;
+  color: #3b2919;
 }
 .editor-host {
   min-height: 420px;

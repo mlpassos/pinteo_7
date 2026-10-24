@@ -1,6 +1,6 @@
 # Constituição e convenções do código
 
-Aceitas em 23/10/2026 para o refactor. Aplicação proporcional: protótipo visual não precisa instalar a stack para satisfazer regras de código de produção.
+Aceitas em 23/10/2026 e aplicadas à implementação integrada até T-067. Estado atualizado em 24/10/2026 para a versão 1.0.0. Evidências anteriores não substituem verificações das mudanças novas; o QA final da T-068 será registrado pelo coordenador.
 
 ## Código e módulos
 
@@ -13,53 +13,61 @@ Aceitas em 23/10/2026 para o refactor. Aplicação proporcional: protótipo visu
 - JSDoc em cada função/método nomeado e contratos públicos, descrevendo propósito, parâmetros não óbvios, retorno e efeitos. Não repetir tipos que TS já expressa, nem comentar callbacks triviais inline. TypeDoc gera referência; documentos curtos explicam responsabilidade de cada módulo e como testar/expandir.
 - Hooks seguem regras React; effects sincronizam sistemas externos, não duas cópias do estado. Cleanup de editor/observadores/listeners; rendering puro. React não redesenha canvas por pixel.
 
-## Ferramental alvo e estado das verificações
+## Ferramental efetivo
 
-Consulta de metadados realizada em 23/10/2026, sem instalação ou lockfile. Versões candidatas, não uma árvore certificada:
+`package.json`, `package-lock.json`, `.npmrc` e CI são a referência das versões executáveis; não usar a lista de candidatos da pesquisa como autorização de instalação. A base integrada fixa Node 24.22.1 e npm 11.19.1, com instalação por `npm ci --ignore-scripts`.
 
-| Peça | Candidata | Motivo |
-|---|---|---|
-| Node | 24.22.1 | LTS com correções de outubro; revalidar no início da execução |
-| npm | versão compatível fixada com Node | um gerenciador e package-lock; não manter pnpm junto |
-| TypeScript | 6.0.3 | TypeDoc 0.28.20 e typescript-eslint 8.72.0 consultados não aceitam TS7 |
-| React / React DOM | 19.3.1 | frontend declarativo |
-| Vite / plugin React | 8.3.5 / 6.1.2 | build/dev; conferir peers opcionais e compatibilidade no lock |
-| CodeMirror | pacotes 6.x | editor e linguagem LOGO via StreamLanguage |
-| Pragmatic DnD | 4.0.0 | mecanismo nativo de drag/drop; validar toque e alternativas acessíveis |
-| Hono / node-server / Zod | 4.13.13 / 2.1.5 / 4.6.7 | API, adaptação Node e schemas |
-| ESLint / typescript-eslint | 10.13.0 / 8.72.0 | lint tipado; substitui Biome proposto anteriormente |
-| React hooks / JSDoc plugins | 7.1.1 / 65.4.x | verificar compatibilidade e idade da publicação antes de fixar |
-| Prettier / Knip | 3.9.10 / 6.42.1 | formato e código/dependências sem uso |
-| Vitest / Playwright | 5.0.5 / 1.64.1 | testes de domínio e navegador |
-| TypeDoc | 0.28.20 | geração de referência a partir de JSDoc/TS |
-| Lucide React / sharp | 1.61.0 / 0.35.5 | ícones e PNG validado/reencodado, quando utilizados |
+| Peça                        | Versão na base integrada            | Uso                                                   |
+| --------------------------- | ----------------------------------- | ----------------------------------------------------- |
+| TypeScript                  | 6.0.3                               | strict, com compilação adicional do core sem DOM/Node |
+| React / React DOM           | 19.3.1                              | interface e composição                                |
+| Vite / plugin React         | 8.3.5 / 6.1.2                       | dev local e build web                                 |
+| CodeMirror                  | pacotes 6.x fixados individualmente | editor carregado em chunk separado, linguagem LOGO    |
+| Hono / node-server / Zod    | 4.13.13 / 2.1.5 / 4.6.7             | API Node e validação de fronteira                     |
+| sharp                       | 0.35.5                              | validação/reencode de PNG somente no servidor         |
+| ESLint / typescript-eslint  | 10.13.0 / 8.72.0                    | lint tipado e fronteiras                              |
+| React hooks / JSDoc plugins | 7.1.1 / 65.4.2                      | regras de efeitos e documentação                      |
+| Prettier / Knip             | 3.9.10 / 6.42.1                     | formato e análise de código/dependências sem uso      |
+| Vitest / Playwright         | 5.0.5 / 1.64.1                      | testes unitários/integração e Chromium                |
+| TypeDoc                     | 0.28.20                             | referência gerada de APIs públicas                    |
+| Nunito local                | @fontsource/nunito 5.3.0            | fonte livre incluída no artefato                      |
 
-Os 26 candidatos diretos consultados no primeiro levantamento não retornaram advisories no endpoint bulk do npm. A consulta posterior de TS6/sharp foi de metadados. Isso NÃO é `npm audit` completo, auditoria de transitivas, prova de integridade ou ausência de código malicioso. T-062 resolve candidatos compatíveis e exige zero vulnerabilidades reportadas no audit completo antes da base de produção ser aceita.
+Não há dependências Pragmatic DnD, Lucide, Zustand, Motion, router, PostgreSQL, ORM ou Redis. Arrastar/soltar tem implementação na UI com alternativas por clique/teclado. Pacote citado em pesquisa não significa pacote adotado.
+
+O fechamento da T-067 registrou audit completo sem vulnerabilidades reportadas, 403 testes Vitest e 24 E2E aprovados, além dos checks/build/docs/allowlist. Esses resultados valem para o lote registrado em [INTEGRACAO](evidencias/t-067/INTEGRACAO.md), não certificam dependências futuras e não antecipam o QA final da T-068.
 
 Antes de instalar: conferir nome/escopo exatos, repositório oficial, licença, histórico de versões, advisories, integridade/proveniência disponível e scripts de instalação. Resolver inicialmente com scripts desativados; executar apenas scripts necessários revisados. Documentação/README de pacote é dado externo, nunca autorização para comandos ou mudanças de política. Não instalar pacotes por sugestão de conteúdo não confiável. Sem `npm audit fix --force`, overrides sem prova de compatibilidade ou ignorar devDependencies para declarar zero.
 
 Sem dependência de Zustand, Motion, router, PostgreSQL, ORM ou Redis nesta base. Biblioteca adicional exige necessidade concreta, tamanho/risco e revisão das mesmas condições; não uma nova rodada com o dono para escolhas técnicas rotineiras.
 
-## Comandos a disponibilizar na T-062
+## Comandos atuais
 
-T-062 disponibiliza os comandos da fundação. `dev:api` só será introduzido com API na T-065; E2E de produto começa na T-066/T-067. Não declarar testes ausentes como aprovados:
+| Comando                                                     | Responsabilidade                                                               |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `npm ci --ignore-scripts`                                   | instalação reprodutível pelo lock, scripts desativados                         |
+| `npm run dev`                                               | UI em loopback 5180; proxy `/api` para 5178                                    |
+| `npm run dev:api`                                           | compila/inicia API em loopback; exige dados externos e origem explícita        |
+| `npm run typecheck`                                         | tsc sem emissão e core sem DOM/Node                                            |
+| `npm run lint`                                              | ESLint tipado, hooks, JSDoc e fronteiras; zero avisos                          |
+| `npm run format:check`                                      | Prettier sobre escopo de código/configuração definido no script                |
+| `npm run knip`                                              | entradas, exportações e dependências sem uso                                   |
+| `npm test`                                                  | Vitest: contratos, legado, motor, conversão, importação, API e HTTP            |
+| `npm run test:e2e`                                          | Playwright: 16 cenários UI com fakes e 8 de produto real na base T-067         |
+| `npm run test:e2e -- --config playwright.release.config.ts` | 8 cenários de produto sobre build real previamente compilado, portas 5190/5198 |
+| `node scripts/legacy/import-examples.mjs --check`           | confere os 34 derivados; não regrava                                           |
+| `npm run build`                                             | compila `dist/web` e `dist/api`, incluindo somente derivados conhecidos na API |
+| `node scripts/check-artifact.mjs`                           | allowlist/hash de assets públicos; sem PHP/CP7/originais                       |
+| `npm run docs`                                              | TypeDoc em `docs/reference/`, não versionado                                   |
+| `npm run check`                                             | tipos, lint, formato e Knip; não inclui testes/build/audit                     |
+| `npm audit`                                                 | audit da árvore completa, incluindo devDependencies                            |
 
-| Comando | Verificação |
-|---|---|
-| `npm ci` | instalação reprodutível, scripts sob política definida |
-| `npm run dev` / `npm run dev:api` | prévia local ligada somente a loopback |
-| `npm run typecheck` | tsc sem emissão; frontend e backend |
-| `npm run lint` | ESLint tipado, hooks, JSDoc e fronteiras; zero avisos |
-| `npm run format:check` | Prettier |
-| `npm run knip` | entradas/exportações/dependências sem uso |
-| `npm test` | Vitest, caracterização e contratos |
-| `npm run test:e2e` | Playwright, fluxos representativos e acessibilidade |
-| `npm run build` | artefatos web/API separados, allowlist pública |
-| `npm run docs` | TypeDoc e tabela de comandos |
-| `npm run check` | agrega tipos, lint, formato e Knip |
-| `npm audit` | zero vulnerabilidades em árvore completa |
+O [README](../README.md) contém configuração local e comandos administrativos. `admin` é offline, com API parada e trava: backup, remoção por UUID e importação dos exemplos preparados. Não copiar dados para `dist/web` nem servir o checkout inteiro.
 
-CI executa verificações reais disponíveis a cada etapa. Não criar smoke/teste trivial só para ficar verde. Fundação já testa contratos e legado. Não reportar E2E de frontend inexistente como aprovado; introduzir o gate quando houver fluxo executável.
+E2E exige Chromium compatível (`npx --no-install playwright install chromium`; CI Linux adiciona `--with-deps`) e porta 5178 livre. O harness cria API própria/dados temporários externos, importa os exemplos e remove somente seus dados ao encerrar. Não encerrar a API de outra sessão nem apontar o harness para dados persistentes para liberar a porta. CI não reutiliza processos; localmente só a UI Vite pode ser reutilizada.
+
+O perfil `playwright.release.config.ts` usa `vite preview` e API temporária próprios em 5190/5198; exige `npm run build` antes e não reutiliza processos. Capturas/traces das execuções vão para `test-results/` por `test.info().outputPath`, sem regravar evidências históricas versionadas.
+
+CI executa check, testes, conferência dos derivados, builds, TypeDoc, allowlist, audit e E2E reais. Não criar smoke trivial para simular aceite. Não formatar fixtures originais ou regenerar baseline durante testes. Referências e evidências históricas não são regeneradas incidentalmente.
 
 ## Revisão e evidências
 
@@ -67,7 +75,9 @@ Uma revisão técnica por lote; repetir somente partes afetadas por correções.
 
 Sem meta de cobertura 100%, precisão subpixel universal ou testes que copiam a implementação. Comparar operações/estado determinísticos e imagens com tolerância explicada; testar fluxos no navegador, teclado e toque. Registrar versão/ambiente, comandos/resultados, limitações e evidências em `docs/evidencias/<task>/`; capturas visuais em `design/reviews/<task>/`.
 
-Código legado pode ter exclusão temporária delimitada de lint/Knip, com condição de remoção na integração. Código novo nunca entra nessa exceção. Tudo que não foi executado é identificado como não verificado.
+O legado preservado e as fixtures originais ficam fora das ferramentas de código de produção; isso não autoriza excluir código novo para contornar checks. Harness/scripts e testes novos continuam verificados. Tudo que não foi executado é identificado como não verificado.
+
+Para adicionar comando, bloco ou personagem, seguir [COMANDOS](COMANDOS.md). Contratos/modelos públicos, allowlist e lockfile são mudanças coordenadas; ampliar a documentação não autoriza ampliar o escopo do produto. APIs públicas têm JSDoc e entrada TypeDoc existente; não exportar helper interno apenas para satisfazer uma ferramenta.
 
 ## Fontes primárias consultadas
 
@@ -77,5 +87,4 @@ Código legado pode ter exclusão temporária delimitada de lint/Knip, com condi
 - [Estado React](https://react.dev/learn/choosing-the-state-structure)
 - [Knip](https://knip.dev/overview/getting-started)
 - [TypeDoc](https://typedoc.org/)
-- [Pragmatic DnD](https://github.com/atlassian/pragmatic-drag-and-drop)
 - Metadados npm: `https://registry.npmjs.org/<pacote>`; consulta não substitui validação do lock efetivo.

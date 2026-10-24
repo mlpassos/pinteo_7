@@ -1,0 +1,15 @@
+[
+  {
+    "name": "vite",
+    "version": "8.3.5",
+    "reason": "Aviso suplementar da ferramenta que emite helpers/modulepreload no bundle web; fora das 52 entradas runtime do lock. Não representa inclusão do servidor de desenvolvimento no runtime.",
+    "source": "node_modules/vite/LICENSE.md",
+    "path": "licenses/packages/vite/LICENSE.md",
+    "sha256": "a22152baa1aef74402443008e767e7c689a524c0909d19b0431d97f5ab066a13",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/vitejs/vite.git",
+      "directory": "packages/vite"
+    }
+  }
+]

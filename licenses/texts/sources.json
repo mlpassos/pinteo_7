@@ -1,0 +1,17 @@
+[
+  {
+    "path": "licenses/texts/LGPL-3.0.txt",
+    "officialReference": "https://www.gnu.org/licenses/lgpl-3.0.txt",
+    "source": "https://www.gnu.org/licenses/lgpl-3.0.txt",
+    "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+    "bytes": 7652
+  },
+  {
+    "path": "licenses/texts/GPL-3.0.txt",
+    "officialReference": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "source": "/opt/homebrew/Cellar/gmp/6.3.0/COPYING",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+    "bytes": 35147,
+    "verification": "Texto integral copiado byte a byte do COPYING do GNU GMP 6.3.0 já instalado; coincide também com COPYING.GPLv3 do FFmpeg 9.0.2 já instalado. GNU.org e Savannah deram timeout para GPL; não se afirma download oficial direto bem-sucedido deste arquivo."
+  }
+]

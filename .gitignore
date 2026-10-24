@@ -8,3 +8,6 @@ playwright-report/
 test-results/
 docs/reference/
 .vite/
+
+# Pacotes locais e relatórios de release gerados, fora do webroot.
+artifacts/

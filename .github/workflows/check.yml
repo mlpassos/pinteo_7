@@ -26,3 +26,4 @@ jobs:
       - run: node scripts/check-artifact.mjs
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:e2e
+      - run: npm run test:e2e -- --config playwright.release.config.ts

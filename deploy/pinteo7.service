@@ -1,0 +1,37 @@
+[Unit]
+Description=Pinte o 7 — API local de compartilhamento
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=pinteo7
+Group=pinteo7
+WorkingDirectory=/srv/pinteo7/current
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/pinteo7/api.env
+# Candidato: confirmar o caminho real do Node 24 no host antes de instalar.
+ExecStart=/usr/bin/node /srv/pinteo7/current/dist/api/server/main.js
+Restart=on-failure
+RestartSec=2s
+TimeoutStopSec=20s
+KillSignal=SIGTERM
+UMask=0077
+StateDirectory=pinteo7
+StateDirectoryMode=0700
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/pinteo7
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+[Install]
+WantedBy=multi-user.target
