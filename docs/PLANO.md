@@ -1,6 +1,6 @@
 # Plano de entrega e fila
 
-Atualizado em 23/10/2026. T-061 concluída: v6 aprovada por Márcio e integrada pelo PR #5 (`e7038fb`). T-062 integrada pelo PR #6 (`bea82feb`), CI Linux40058083365 aprovada. T-065 integrada pelo PR #7 (`ba3893df`), CI40058997348 aprovada. T-063 integrada pelo PR #8 (`6d1ef995`), CI40059684942 aprovada. T-064 e T-066 em andamento em escopos separados. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
+Atualizado em 23/10/2026. T-061 concluída: v6 aprovada por Márcio e integrada pelo PR #5 (`e7038fb`). T-062 integrada pelo PR #6 (`bea82feb`), CI Linux40058083365 aprovada. T-065 integrada pelo PR #7 (`ba3893df`), CI40058997348 aprovada. T-063 integrada pelo PR #8 (`6d1ef995`), CI40059684942 aprovada. T-066 integrada pelo PR #9 (`0130a153`), CI 40108087699 aprovada. T-064 fecha conversão/importação sobre essa base. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
 
 ## Sequência
 
@@ -11,7 +11,7 @@ Atualizado em 23/10/2026. T-061 concluída: v6 aprovada por Márcio e integrada 
 | T-063 | Papert tipado, tartaruga, canvas e runner seguro | T-062 | done — PR #8 / 6d1ef995 |
 | T-064 | Conversão bidirecional e importação dos 34 exemplos | T-063 | in-progress — conversão e importação segura |
 | T-065 | API Node e compartilhamento seguro em arquivos | T-062 | done — PR #7 / ba3893df |
-| T-066 | Interface React, blocos e editor conforme protótipo | T-062 | in-progress — UI conforme v6 |
+| T-066 | Interface React, blocos e editor conforme protótipo | T-062 | done — PR #9 / 0130a153 |
 | T-067 | Integração funcional e retirada do legado do artefato | T-063, T-064, T-065, T-066 | aguardando quatro frentes |
 | T-068 | Aceite final local, documentação e release preparada | T-067 | aguardando integração |
 | T-069 | Publicação e validação externa, após go específico | T-068 | exige autorização de produção |

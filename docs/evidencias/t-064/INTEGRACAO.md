@@ -11,3 +11,9 @@ A inspeção do coordenador conferiu patches localizados, validação da fonte a
 A correção do lexer para nomes de procedimento como `.forma` foi comparada ao Papert legado em teste dedicado. Não amplia a gramática de variáveis ou símbolos. Importação não executa LOGO, não injeta CP7 no DOM e não publica os relatórios que contêm nomes de arquivos históricos.
 
 A revisão não atesta o gate de revisão mais recente da interface; esse comportamento precisa de serviços reais na T-067. Ainda não é validação completa de produto: UI e serviços reais serão ligados na T-067. Nenhum servidor remoto foi inspecionado ou alterado.
+
+## Base conjunta com a interface
+
+Após integrar a UI do PR #9 (`0130a153`), a instalação limpa com scripts desativados instalou 259 pacotes e reportou zero vulnerabilidades. A árvore é a união já revisada das frentes, sem versões novas. Conflitos de configuração preservaram as duas entradas públicas (UI e importação), e o CI inclui ambos os gates: importação e navegador.
+
+O check completo passou; 385 testes em 16 arquivos passaram. Conferência dos 34 conjuntos, build web/API, TypeDoc e allowlist passaram novamente. Os serviços reais ainda não estão ligados ao bootstrap: isso pertence à T-067, após integração desta task.
