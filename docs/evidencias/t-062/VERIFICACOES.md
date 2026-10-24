@@ -17,7 +17,7 @@ Base: T-061 integrada em `e7038fb`, PR #5. V6 aprovada por Márcio com “Aceito
 | Navegador em contexto novo | Entrada técnica renderiza; zero mensagens de erro/aviso e recursos apenas locais |
 | `git diff --check` | Sem erro |
 
-CI criada em `.github/workflows/check.yml`, com actions oficiais fixadas por SHA e permissão contents:read. Executa instalação/audit/check/test/build/docs/allowlist. Execução remota será validada no PR antes de integrar; o registro externo da task aponta o run e o SHA efetivamente integrado. A presença deste arquivo não afirma que CI remota já passou.
+CI criada em `.github/workflows/check.yml`, com actions oficiais fixadas por SHA e permissão contents:read. Executa instalação/audit/check/test/build/docs/allowlist. Execução remota será validada no PR antes de integrar; o registro externo da task aponta o run e o SHA efetivamente integrado. CI remota aprovada no head `080ea99`, run [40058083365](https://github.com/mlpassos/pinteo_7/actions/runs/40058083365); PR #6 integrado em `bea82feb2e1119afc503cbee14bc91aba82d12cb`. Revisão dirigida do último diff sem novos achados, 63 testes afetados aprovados.
 
 ## Por que esta estrutura
 

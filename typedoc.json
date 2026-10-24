@@ -4,12 +4,17 @@
     "src/core/program/index.ts",
     "src/core/turtle/index.ts",
     "src/application/index.ts",
-    "src/shared/index.ts"
+    "src/shared/index.ts",
+    "src/server/index.ts"
   ],
   "out": "docs/reference",
-  "name": "Pinte o 7 — referência dos contratos",
+  "name": "Pinte o 7 — referência dos módulos",
   "readme": "none",
   "excludeInternal": true,
   "treatWarningsAsErrors": true,
-  "validation": { "notExported": true, "invalidLink": true, "notDocumented": false }
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": false
+  }
 }
