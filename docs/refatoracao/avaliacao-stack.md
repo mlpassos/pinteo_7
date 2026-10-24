@@ -1,5 +1,7 @@
 # Avaliação de stack
 
+> **Pesquisa histórica de setembro de 2026.** As decisões vigentes estão no [PRD](../PRD.md) e na [ADR-0013](../adr/0013-refactor-enxuto-e-layout-primeiro.md). Status, versões e contagens abaixo preservam o registro original e não substituem o planejamento de 23/10/2026.
+
 Responde às perguntas 1, 2 e 3 da issue #2: a stack TypeScript + React + Node serve? Se não, o que cabe na infra? E a alternativa sem framework?
 
 Versões e licenças conferidas em 29/09/2026 no registro npm (`npm view <pacote> version license`) e nos repositórios oficiais. Só entram candidatos com licença livre verificada; os que não passam estão marcados.

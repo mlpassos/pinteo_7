@@ -15,20 +15,26 @@ Contato e sugestões: marciopassosbel [at] gmail [dot] com
 
 O projeto voltou a ser mantido em 2026 e está sendo refatorado aos poucos. Este repositório substitui o antigo `mlpassos/pinteo7`, que o GitHub bloqueou em 2019 por conter uma fonte comercial. Esta versão usa só fontes livres e personagens originais.
 
+Em 23/10/2026 o código ainda é legado; PRD e arquitetura estão documentados, sem implementação iniciada. Primeira task: validar layout em HTML com dados fictícios. Não há protótipo novo ou deploy confirmado nesta entrega documental.
+
+- [PRD](docs/PRD.md), [arquitetura](docs/ARQUITETURA.md) e [contratos](docs/CONTRATOS.md)
+- [Convenções](docs/CONVENCOES.md) e [regras para agentes](AGENTS.md)
+- [Plano T-061–T-069](docs/PLANO.md) e [prompt da nova sessão com goal](docs/PROMPT-NOVA-SESSAO.md)
+
 ## Rodar localmente
 
 Não precisa de build nem de instalação:
 
 ```bash
-python3 -m http.server 8077
+python3 -m http.server 8077 --bind 127.0.0.1
 ```
 
-Abra http://127.0.0.1:8077/. Compartilhar e salvar desenhos depende dos scripts PHP; para usar essa parte, rode com `php -S 127.0.0.1:8077`.
+Abra http://127.0.0.1:8077/. Galeria/compartilhamento ainda dependem dos PHPs legados e não funcionam integralmente no servidor estático. Há problemas conhecidos nos endpoints e na importação de HTML; não publicar o diretório nem reativar PHP para esse fim. O refactor os substituirá por API Node e importação segura.
 
 ## Como contribuir
 
-- A `main` é sempre publicável.
-- Crie uma branch curta a partir da `main` (`feat/…`, `fix/…`, `refactor/…`, `docs/…`) e abra um PR.
+- A `main` é a base de integração; publicação do refactor exige os critérios e o go descritos no plano. O legado atual ainda não atende esse aceite.
+- Crie uma branch curta a partir da `main` (`codex/<task>`) e abra um PR conforme a autorização de trabalho.
 - As releases são tags `vX.Y.Z`.
 
 Detalhes e regras de assets em [CLAUDE.md](CLAUDE.md).

@@ -1,5 +1,7 @@
 # Pesquisa de refatoração do Pinte o 7
 
+> **Pesquisa histórica de setembro de 2026.** As decisões vigentes estão no [PRD](../PRD.md) e na [ADR-0013](../adr/0013-refactor-enxuto-e-layout-primeiro.md). Status, versões e contagens abaixo preservam o registro original e não substituem o planejamento de 23/10/2026.
+
 Resposta à issue #2. Pesquisa feita em 29/09/2026 sobre o commit `b582715`. Nada aqui altera o código do app; a decisão é do Márcio.
 
 ## Recomendação em uma página

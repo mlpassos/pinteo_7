@@ -1,5 +1,7 @@
 # Inventário do código atual
 
+> **Pesquisa histórica de setembro de 2026.** As decisões vigentes estão no [PRD](../PRD.md) e na [ADR-0013](../adr/0013-refactor-enxuto-e-layout-primeiro.md). Status, versões e contagens abaixo preservam o registro original e não substituem o planejamento de 23/10/2026.
+
 Levantamento feito em 29/09/2026 sobre o commit `b582715`. Cada afirmação cita `arquivo:linha`. Contagens vêm de `wc -l` e `grep -c`.
 
 ## 1. Tamanho e composição

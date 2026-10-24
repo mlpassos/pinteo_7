@@ -1,5 +1,7 @@
 # Plano de migração incremental
 
+> **Pesquisa histórica de setembro de 2026.** As decisões vigentes estão no [PRD](../PRD.md) e na [ADR-0013](../adr/0013-refactor-enxuto-e-layout-primeiro.md). Status, versões e contagens abaixo preservam o registro original e não substituem o planejamento de 23/10/2026.
+
 Responde à pergunta 6 da issue #2. Regras: uma etapa por PR (ou poucos PRs pequenos por etapa), sempre na `main`, o app funcionando ao fim de cada PR, sem branch longa de reescrita. Tamanhos: P, M e G são relativos entre si, não prazos. O projeto é um hobby feito em parceria com Claude e Codex; o ritmo é devagar e prazo não é critério. O que importa é cada etapa deixar o código melhor do que estava.
 
 Estratégia: **estrangulamento**. O `index.html` da raiz é a página que vai sendo estrangulada. A partir da etapa 2, a árvore legada inteira mora em `public/legacy/` e é apagada peça a peça conforme as partes novas em `src/` a substituem. Não existe uma cópia intacta do app numa pasta própria: seria um segundo app para manter, e o Vite já serve `public/` como está, sem bundling, que é o que os `<script>` clássicos precisam. Cada peça nova entra por um adaptador que expõe os mesmos globais que o legado espera (`Logo`, `DelayTurtle`, `cm`, `run`).
