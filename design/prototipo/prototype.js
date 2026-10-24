@@ -159,6 +159,7 @@ for (let i = 0; i < 12; i++) {
   rect.setAttribute('x', '250'); rect.setAttribute('y', '125');
   rect.setAttribute('width', '125'); rect.setAttribute('height', '125');
   rect.setAttribute('transform', 'rotate(' + i * 30 + ' 250 250)');
+  rect.style.setProperty('--line-index', i);
   document.querySelector('#flower').append(rect);
 }
 ['Flor geométrica','Voltas e mais voltas','Uma estrela no papel'].forEach((name, index) => {
@@ -251,7 +252,7 @@ function refreshSlots() {
         pendingCommand = null;
         document.querySelectorAll('.palette-list button').forEach(button => button.setAttribute('aria-pressed', 'false'));
         refreshSlots();
-        playSnap();
+        playSnap(block);
         toast('Bloco encaixado! Prévia visual, sem gerar ou executar código.');
         (block.querySelector('input') || block).focus();
       });
@@ -275,7 +276,14 @@ function makeDemoBlock(categoryIndex, commandIndex) {
   return block;
 }
 /** Toca o mesmo arquivo de encaixe usado pelo legado após gesto do usuário. */
-function playSnap() {
+function playSnap(block) {
+  if (block && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    block.animate([
+      { transform:'translateY(-7px) scale(1.018)', offset:0 },
+      { transform:'translateY(1px) scale(.995)', offset:.65 },
+      { transform:'translateY(0) scale(1)', offset:1 },
+    ], { duration:260, easing:'cubic-bezier(.2,.75,.3,1)' });
+  }
   if (!soundEnabled) return;
   const sound = document.querySelector('#snap-audio');
   sound.currentTime = 0;
@@ -335,6 +343,7 @@ document.addEventListener('pointermove', event => {
     ghost.className = 'drag-ghost';
     ghost.textContent = original.textContent;
     ghost.style.backgroundColor = getComputedStyle(original).backgroundColor;
+    ghost.style.backgroundImage = getComputedStyle(original).backgroundImage;
     ghost.style.color = getComputedStyle(original).color;
     document.body.append(ghost);
     dragState.ghost = ghost;
@@ -364,7 +373,7 @@ document.addEventListener('pointerup', event => {
     slot.before(block);
     pendingCommand = null;
     document.querySelectorAll('.palette-list button').forEach(button => button.setAttribute('aria-pressed', 'false'));
-    playSnap();
+    playSnap(block);
     toast('Encaixou! Arraste novamente para mudar a ordem · demonstração.');
   } else toast('Solte sobre um encaixe destacado. Nenhum bloco foi removido.');
   finishDrag();
@@ -389,6 +398,6 @@ document.querySelector('#block-stack').addEventListener('keydown', event => {
   if (event.key === 'ArrowUp') next.before(block); else next.after(block);
   refreshSlots();
   block.focus();
-  playSnap();
+  playSnap(block);
   toast('Ordem alterada pelo teclado · demonstração.');
 });

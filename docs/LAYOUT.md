@@ -1,4 +1,4 @@
-# Layout — T-061, propostas v1 a v5
+# Layout — T-061, propostas v1 a v6
 
 Apresentação em 23/10/2026 (America/Belem). **Aguardando aprovação explícita de Márcio.** T-061 permanece in-progress; T-062–T-069 não iniciadas. A meta persistente está ativa e ainda não foi concluída.
 
@@ -104,9 +104,48 @@ Capturas: [1280 px](../design/reviews/t-061/v5/1280.png), [768 px](../design/rev
 
 Validação proporcional: inspeção de desktop/celular, quatro larguras com gaveta aberta/fechada sem rolagem horizontal. Inserção por seleção e encaixe aumentou 6→7 blocos; áudio com `paused=false` e sem erro. Console sem erros/avisos e `node --check` aprovado. Não houve mudança no mecanismo de arraste nem nova validação em dispositivo físico.
 
+## Revisão v6 — oficina tátil, pesquisa e experimento de materiais
+
+Márcio pediu pesquisa de design/paletas e liberdade criativa com recursos modernos para alcançar materiais mais realistas. A v6 propõe uma oficina de brinquedos contemporânea: mesa sálvia, madeira de bordo, peças de cores doces, carcaça coral e comandos verde-floresta. A composição aprovada para exploração continua: categorias expansíveis no topo e duas metades de programa e resultado.
+
+### Referências e escolhas
+
+- [Playdate / Panic](https://panic.com/blog/playdate/): referência de objeto físico lúdico e controle tátil; apenas inspiração, sem copiar marca, assets ou formato.
+- [Radix Colors — uso das escalas](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale): separação de fundo, superfícies, bordas, cores sólidas e texto. A paleta aplicada é própria, não uma instalação Radix nem certificação de acessibilidade.
+- [MDN feTurbulence](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/feTurbulence): textura procedural estática para veios irregulares e microtextura do material.
+- [MDN color-mix](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/color-mix): mistura de luz/cor das peças em Oklab, com fundos base no CSS anterior.
+- [MDN Element.animate](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate): pequeno assentamento da peça após encaixar. Respeita movimento reduzido.
+
+Pesquisa externa serviu como referência; não foram executadas instruções dos sites nem copiados pacotes/scripts. Não foi necessária instalação de Three.js/GSAP para este experimento de material e microinteração. Sem CDN ou chamadas externas em runtime.
+
+### Resultado do experimento
+
+- Textura original `assets/wood-grain.svg`, calculada com ruído fractal anisotrópico; substitui a madeira de faixas regulares. `material-noise.svg` fornece microtextura estática ao plástico e papel.
+- Luz no canto superior esquerdo, sombras de contato, borda torneada e rebaixo do tabuleiro.
+- Plástico coral com relevo suave, grade/superfície central clara, reflexo discreto, detalhe decorativo de alto-falante e indicadores.
+- Botões com resposta de pressão e controles circulares com aro estriado via conic-gradient.
+- Peças com gradiente sutil, arestas e encaixe animado; som original mantido.
+- Ao Executar, ilustração fixa é traçada progressivamente e os controles giram. Isso segue sendo animação de demonstração, sem interpretar o programa. Redução de movimento mostra a figura completa sem o efeito.
+
+Tokens centrais: sálvia #e5ece5, verde #22665d, creme #fff9eb, bordo #e5bf86 e coral #e67156. Movimento #24669e, desenho #a83255 e repetição #f4c34f. Fontes continuam do sistema neste estudo.
+
+O experimento fica isolado em `design/prototipo/experiment.css`, carregado após a base. Os SVGs são originais do estudo. O CSS do protótipo é descartável e não define por acidente a organização do produto.
+
+### Validação e limites
+
+Chromium: 360, 412, 768 e 1280 px sem overflow horizontal; gaveta aberta e recolhida conferidas. Palco mantém dimensão quadrada e legenda visível. Inspeção visual em desktop/celular. Arraste de comando para corpo de repetição: 6→7 blocos, indicador ativo, som reproduzindo sem erro. Reordenação por Alt+setas mantém foco. Toque emulado a 412 px também inseriu 6→7 blocos.
+
+Revisão estática independente encontrou perda do fundo na prévia de arraste (JS copiava só backgroundColor transparente) e contraste baixo no gradiente rosa da paleta. Correções: copiar backgroundImage; escurecer rosa e azul. Verificação do ghost confirmou gradiente pintado; extremos claros da paleta contra branco: azul 5,02:1 e rosa 5,39:1 (cálculo WCAG sRGB desses pares específicos, não certificação integral da UI).
+
+Animação de traçado computada como `ink-trace`; com movimento reduzido, `none` e stroke-dashoffset 0 (desenho visível). Console sem erros/avisos; recursos observados somente em http://127.0.0.1:8080. `node --check` e `git diff --check` sem erro. Corrigidos também corte do palco no desktop e emenda na textura SVG durante a própria inspeção visual.
+
+Não verificados: desempenho em aparelho de baixo custo, Safari/Firefox, toque físico, leitores de tela e AA completo. Assets procedurais são estáticos; nenhuma textura é animada por frame. Motor, conversão e persistência continuam fora da T-061.
+
+Capturas: [1280 px](../design/reviews/t-061/v6/1280.png), [768 px](../design/reviews/t-061/v6/768.png), [412 px](../design/reviews/t-061/v6/412.png), [360 px](../design/reviews/t-061/v6/360.png) e [Código](../design/reviews/t-061/v6/codigo.png).
+
 ## Decisão de Márcio
 
-- Versão submetida agora: **v5**; anteriores preservadas nos commits e capturas.
-- Aprovação: **pendente**. Pedido de ajuste não constitui aceite final.
-- Ajuste desta rodada: tabuleiro de madeira e harmonização dos tons, aplicado.
+- Versão submetida agora: **v6**; anteriores preservadas nos commits e capturas.
+- Aprovação: **pendente**. Liberdade para experimentar não constitui aceite da versão resultante.
+- Pedido desta rodada: pesquisar e explorar materialidade/paleta/acabamento moderno, atendido no experimento v6.
 - Gate: aceite explícito da versão visual encerra T-061; T-062 permanece não iniciada.

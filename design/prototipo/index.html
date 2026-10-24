@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pinte o 7 · oficina de ideias</title><link rel="icon" href="data:,"><link rel="stylesheet" href="style.css"><script defer src="prototype.js"></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pinte o 7 · oficina de ideias</title><link rel="icon" href="data:,"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="experiment.css"><script defer src="prototype.js"></script></head>
 <body>
 <a class="skip" href="#program">Pular para o programa</a>
 <header class="topbar">
   <a class="brand" href="./" aria-label="Pinte o 7, início"><span class="brand-mark">7<span>✦</span></span><span>Pinte o <b>7</b><small>IMAGINE. PROGRAME. DESENHE.</small></span></a>
   <nav aria-label="Principal"><button data-dialog="gallery" aria-label="Abrir galeria">▦ <span>Galeria</span></button><button data-dialog="help" aria-label="Abrir ajuda">? <span>Ajuda</span></button><button class="share top-share" data-dialog="share">↗ Compartilhar</button></nav>
 </header>
-<div class="demo-banner"><span class="demo-dot"></span> ESTUDO DE LAYOUT · VERSÃO 5 <span class="demo-description">Interações de demonstração, sem executar LOGO ou publicar.</span></div>
+<div class="demo-banner"><span class="demo-dot"></span> ESTUDO DE LAYOUT · VERSÃO 6 <span class="demo-description">Interações de demonstração, sem executar LOGO ou publicar.</span></div>
 <section class="command-dock" id="palette" aria-label="Comandos">
   <div class="dock-heading"><strong>Caixa de ideias</strong><span>Escolha uma família e comece a criar</span><button id="sound-toggle" aria-pressed="true">♫ Som ligado</button></div>
   <div class="categories" aria-label="Categorias de comandos"></div>
@@ -15,7 +15,7 @@
 </section>
 <main class="workspace">
   <section class="program panel" id="program" tabindex="-1" aria-labelledby="program-heading">
-    <div class="panel-heading"><div><span class="eyebrow">MONTE SUA IDEIA</span><h1 id="program-heading">Meu programa</h1></div><span class="local-label"><i></i> Protótipo · sem salvar</span></div>
+    <div class="panel-heading"><div><span class="eyebrow">01 / ATELIÊ DE IDEIAS</span><h1 id="program-heading">Meu programa</h1></div><span class="local-label"><i></i> Seu espaço de inventar</span></div>
     <div class="program-tools"><div class="mode-tabs" role="tablist" aria-label="Modo do programa"><button id="visual-tab" role="tab" aria-selected="true" aria-controls="visual-panel">▦ Blocos</button><button id="code-tab" role="tab" aria-selected="false" aria-controls="code-panel" tabindex="-1">&lt;/&gt; Código</button></div><button id="open-palette">＋ Comandos</button><button class="quiet" id="new-program">Novo</button></div>
     <div class="program-body">
       <div id="visual-panel" role="tabpanel" aria-labelledby="visual-tab">
@@ -45,7 +45,7 @@
     </div>
   </section>
   <section class="stage-panel panel" aria-labelledby="stage-heading">
-    <div class="panel-heading"><div><span class="eyebrow">VEJA ACONTECER</span><h2 id="stage-heading">Seu desenho</h2></div><button class="quiet" id="clear">⌫ Limpar</button></div>
+    <div class="panel-heading"><div><span class="eyebrow">02 / MÁQUINA DE DESENHAR</span><h2 id="stage-heading">Seu desenho</h2></div><span class="device-speaker" aria-hidden="true"></span><button class="quiet" id="clear">⌫ Limpar</button></div>
     <div class="execution"><div class="run-row"><button class="primary" id="run">▶ Executar <span>demo</span></button><button id="stop" disabled>■ Parar</button><label class="speed">Velocidade<select id="speed"><option>Lenta</option><option selected>Normal</option><option>Rápida</option></select></label></div><div class="execution-meta"><span id="run-status" role="status"><i></i> Pronto para experimentar</span><button id="error-scenario">Simular erro</button></div></div>
     <div class="stage-wrap"><div class="stage" role="img" aria-label="Prévia estática de uma flor geométrica violeta, com personagem tartaruga"><svg class="art" viewBox="0 0 500 500" aria-hidden="true"><g id="flower" fill="none" stroke="#7952cd" stroke-width="1.8" opacity=".85"></g></svg><img id="stage-character" src="assets/personagens/tartaruga.png" alt="" width="40" height="40"><span class="axis axis-x">x</span><span class="axis axis-y">y</span><span class="stage-origin">0, 0</span></div><div class="stage-caption"><span><i></i> Palco · 500 × 500</span><span>Prévia ilustrativa</span></div></div>
     <div class="character-bar"><button id="character-picker" data-dialog="characters"><img id="chosen-character" src="assets/personagens/tartaruga.png" alt="" width="46" height="46"><span><small>QUEM VAI DESENHAR?</small><strong id="character-name">Tartaruga <span>⌄</span></strong></span></button><button id="random-character" aria-label="Sortear personagem">⚄</button></div>
