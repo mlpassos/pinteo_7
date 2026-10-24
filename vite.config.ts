@@ -9,8 +9,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '127.0.0.1',
-    port: 5177,
+    port: 5180,
     strictPort: true,
+    proxy: { '/api': { target: 'http://127.0.0.1:5178', changeOrigin: false } },
     fs: { allow: [fileURLToPath(new URL('.', import.meta.url))] },
   },
   build: {
