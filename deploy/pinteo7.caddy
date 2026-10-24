@@ -1,4 +1,4 @@
-# Candidato de site isolado. Importar na configuração existente após inspeção/go.
+# Site dedicado do Pinte o 7; dados e API ficam fora do root público.
 pinteo7.instadev.com.br {
 	encode zstd gzip
 	@api path /api /api/*

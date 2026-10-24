@@ -1,6 +1,17 @@
 # Publicação e operação do Pinte o 7
 
-Guia candidato da T-068, para execução somente na T-069 após **go específico de Márcio para produção**. Nenhum comando deste guia foi aplicado ao host. O pacote local revisável não constitui publicação. Layout e implementação técnica já têm autorização; alterar o servidor continua sujeito ao gate próprio.
+Versão **1.0.0 publicada em 24/10/2026** após go explícito de Márcio na T-069. URL: **https://pinteo7.instadev.com.br/**. Código/tag `85099a4cb5d7`, sem reconstruir ou deslocar a tag. [Relatório e evidências reais](../design/reviews/t-069/RELATORIO.md). O restante do guia descreve procedimentos operacionais; exemplos candidatos devem sempre ser confrontados ao host antes de uma nova publicação.
+
+## Estado instalado e recuperação
+
+- Ubuntu 26.04.1 x86_64; Caddy 2.11.7 existente preservado. Node global 22.23.4 não alterado.
+- Runtime dedicado `/opt/pinteo7/node/bin/node`: Node 24.22.1, npm 11.19.1, OpenSSL 3.5.9. Unit `pinteo7.service`, usuário sem login `pinteo7`, porta **127.0.0.1:5178**.
+- Release ativa `/srv/pinteo7/releases/1.0.0-85099a4cb5d7`; `current` aponta para ela. Código root sem escrita para o serviço; `/var/lib/pinteo7` e backups privados, modo 0700.
+- Caddy importa `/etc/caddy/sites/pinteo7.caddy`. O [fragmento legado](../deploy/redirect-legado.caddy) fica dentro do bloco principal antes das normalizações: `/pinteo7` e `/pinteo7/*` → **301 https://pinteo7.instadev.com.br/**, em um salto. O destino é a entrada nova; caminhos PHP/CP7 antigos não são reativados.
+- Configuração anterior em `/var/backups/pinteo7-deploy/20261024T170424Z`; backups de dados em `/var/backups/pinteo7`. Cópia externa conferida em `artifacts/t-069/backup-aceite-t069.tar.gz` no workspace local, fora do Git/webroot. Não há rotina recorrente de backup criada nesta entrega.
+- Por ser a primeira publicação, não existe release anterior para trocar o symlink. A retirada inicial está preparada em `/etc/pinteo7/retirar-publicacao.sh`: `sudo /etc/pinteo7/retirar-publicacao.sh --check` foi executado e passou. `--execute` retira a publicação após novo backup dos dados, restaura o Caddy anterior e desabilita somente a API, sem apagar releases/dados. Essa retirada efetiva **não foi executada**. Guardas de hash impedem sobrescrever mudanças posteriores do Caddy; se o host mudar, revisar o procedimento.
+- A restauração do backup final foi testada em diretório temporário isolado no macOS, servindo e confrontando os 34 documentos e PNGs pela API compilada. Isso não equivale a um teste destrutivo de recuperação do servidor Linux.
+
 
 ## Artefato e identidade
 

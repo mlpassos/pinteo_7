@@ -1,6 +1,6 @@
 # Contratos de implementação
 
-Especificação aceita em 23/10/2026 e implementada até T-067, integrada em `ef680594`. Versão 1.0.0 registrada em `f844d71`; publicação ainda não realizada. APIs públicas em `src/core/{common,program,turtle,logo}`, `src/application`, `src/shared` e adaptadores implementam estas fronteiras. Alterações precisam preservar PRD/consumidores e coordenar documentação antes de dividir trabalho. Este documento descreve contratos; resultados de QA pertencem às evidências do lote.
+Especificação aceita em 23/10/2026 e implementada até T-067, integrada em `ef680594`. Versão 1.0.0 publicada na T-069 em 24/10/2026 após go explícito, código/tag `85099a4`; evidências em `design/reviews/t-069/RELATORIO.md`. APIs públicas em `src/core/{common,program,turtle,logo}`, `src/application`, `src/shared` e adaptadores implementam estas fronteiras. Alterações precisam preservar PRD/consumidores e coordenar documentação antes de dividir trabalho. Este documento descreve contratos; resultados de QA pertencem às evidências do lote.
 
 ## 1. Tipos do programa
 

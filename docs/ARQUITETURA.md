@@ -1,6 +1,6 @@
 # Arquitetura do Pinte o 7
 
-Estado em 24/10/2026: implementação integrada até T-067 (`ef680594`), versão 1.0.0 registrada em `f844d71`. Layout v6 aprovado na T-061; T-062 estabeleceu fundação/caracterização, T-063 motor/runner/Canvas, T-064 conversão/importação, T-065 API, T-066 UI e T-067 composição/migração reais. Complementa o PRD e mantém as decisões de outubro, substituindo escolhas conflitantes da pesquisa histórica. Produto pronto localmente; publicação ainda não feita, sujeita ao go da T-069. QA final de release da T-068 é registrado separadamente.
+Estado em 24/10/2026: implementação integrada até T-067 (`ef680594`), versão 1.0.0 registrada em `f844d71`. Layout v6 aprovado na T-061; T-062 estabeleceu fundação/caracterização, T-063 motor/runner/Canvas, T-064 conversão/importação, T-065 API, T-066 UI e T-067 composição/migração reais. Complementa o PRD e mantém as decisões de outubro, substituindo escolhas conflitantes da pesquisa histórica. Publicado em 24/10/2026 na T-069 após go explícito: https://pinteo7.instadev.com.br/, código/tag 1.0.0 em `85099a4`. QA e operação em `design/reviews/t-069/RELATORIO.md`.
 
 ## 1. Estrutura e dependências
 

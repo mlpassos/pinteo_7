@@ -2,7 +2,7 @@
 
 Ambiente educacional de LOGO para aprender programação com blocos, código e desenho. O projeto nasceu de um trabalho de conclusão de curso no CESMAC, em Maceió, e preserva o interpretador Papert e os exemplos originais.
 
-A versão **1.0.0** está integrada e pronta para uso local. A integração T-067 foi incorporada em `ef680594`; a versão foi registrada em `f844d71`. A publicação desta versão ainda não foi feita e exige o go específico da T-069. A T-068 prepara o aceite e a release; seus resultados finais serão registrados separadamente.
+A versão **1.0.0** está publicada em **[pinteo7.instadev.com.br](https://pinteo7.instadev.com.br/)** desde 24/10/2026, após go explícito de Márcio. A tag `v1.0.0` identifica o código `85099a4cb5d7`; os links antigos `instadev.com.br/pinteo7` e seus subcaminhos redirecionam para a aplicação. [Evidências da publicação e recuperação](design/reviews/t-069/RELATORIO.md).
 
 A interface reúne as 19 opções visuais, os 21 personagens preservados, editor LOGO, execução cooperativa, exportação PNG e galeria/compartilhamento por API Node. Os 34 conjuntos de exemplos foram preservados e têm derivados seguros para importação administrativa. Não há login, banco de dados, analytics ou runtime PHP/jQuery na aplicação nova.
 

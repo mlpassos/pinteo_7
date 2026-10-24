@@ -1,0 +1,36 @@
+{
+  "persistentAfterRestart": true,
+  "sourcePreserved": true,
+  "characterPreserved": true,
+  "redirects": [
+    {
+      "path": "/pinteo7",
+      "status": 301,
+      "location": "https://pinteo7.instadev.com.br/"
+    },
+    {
+      "path": "/pinteo7/",
+      "status": 301,
+      "location": "https://pinteo7.instadev.com.br/"
+    },
+    {
+      "path": "/pinteo7/index.php",
+      "status": 301,
+      "location": "https://pinteo7.instadev.com.br/"
+    },
+    {
+      "path": "/pinteo7/algum-artigo.html",
+      "status": 301,
+      "location": "https://pinteo7.instadev.com.br/"
+    }
+  ],
+  "privatePaths404": [
+    "/save.php",
+    "/package.json",
+    "/dist/api/server/main.js",
+    "/.env",
+    "/data",
+    "/api/unknown"
+  ],
+  "foreignOrigin403": true
+}
