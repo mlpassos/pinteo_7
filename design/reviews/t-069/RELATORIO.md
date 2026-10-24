@@ -57,3 +57,7 @@ Por ser a primeira implantação, não há versão anterior compatível para tro
 `smoke-browser.json`, `smoke-http.json`, `backup-verification.json`, `restore-verification.json`, `producao-desktop.png`, `producao-mobile.png` e script de retirada nesta pasta. Logs e pacote ficam no diretório ignorado `artifacts/t-069/`; credenciais e backup privado ficam fora do Git. Os scripts temporários de smoke foram usados somente para esta verificação.
 
 A revisão técnica conferiu escopo da configuração, isolamento, somas, instalação sem scripts, persistência, backup/recuperação, redirecionamentos e ausência de exposição do legado/dados. Nenhum bloqueio encontrado. As verificações relatam o estado desta publicação, sem promessa de ausência absoluta de vulnerabilidades ou de renovação já ocorrida no futuro.
+
+## Registro da integração
+
+`npm run check` e `git diff --check` passaram no lote de documentação/configuração. A execução inicial do GitHub Actions `40114885485` permaneceu em andamento além do tempo habitual; consultas dos detalhes do job retornaram HTTP 502/timeout. Foram solicitados cancelamento normal e forçado, sem confirmação imediata de término. Essa execução pendente não é contabilizada como aprovação. A release publicada `85099a4` já tinha CI própria aprovada (`40111298396`); as verificações Linux/produção descritas acima foram executadas independentemente. A atualização deste registro dispara nova execução para a revisão documental.
