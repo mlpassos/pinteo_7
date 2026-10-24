@@ -1,4 +1,4 @@
-# Protótipo de layout — T-061, versão 2
+# Protótipo de layout — T-061, versão 3
 
 Estudo descartável em HTML/CSS/JS, sem dependências. Aguarda aprovação visual de Márcio. Não é implementação do produto.
 
@@ -9,6 +9,8 @@ python3 design/prototipo/preview.py
 ```
 
 Abrir http://127.0.0.1:8080/. O servidor atende apenas esta pasta, em loopback; Ctrl+C encerra. A porta precisa estar livre. O pequeno helper evita uma consulta de hostname que bloqueou `python3 -m http.server` neste ambiente. Também é possível abrir `index.html` diretamente, sem servidor.
+
+A v3 acrescenta bordas de caixa de brinquedos e uma moldura coral ao palco, com controles decorativos que giram durante a animação de execução. Não controlam o desenho. Movimento reduzido desliga as animações. Sem seletor de temas nesta rodada.
 
 ## O que explorar
 

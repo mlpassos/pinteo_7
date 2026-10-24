@@ -1,12 +1,12 @@
 # Plano de entrega e fila
 
-Atualizado em 23/10/2026. T-061 em andamento: proposta v2 disponível, aguardando aprovação visual de Márcio. Demais tasks não iniciadas. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
+Atualizado em 23/10/2026. T-061 em andamento: proposta v3 disponível, aguardando aprovação visual de Márcio. Demais tasks não iniciadas. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
 
 ## Sequência
 
 | Task | Entrega | Depende de | Situação inicial |
 |---|---|---|---|
-| T-061 | Protótipo de layout/UX com mocks e decisão de Márcio | nenhuma | em andamento; aguardando aprovação da v2 |
+| T-061 | Protótipo de layout/UX com mocks e decisão de Márcio | nenhuma | em andamento; aguardando aprovação da v3 |
 | T-062 | Fundação, contratos, caracterização e CI | T-061 | aguardando layout aprovado |
 | T-063 | Papert tipado, tartaruga, canvas e runner seguro | T-062 | aguardando fundação |
 | T-064 | Conversão bidirecional e importação dos 34 exemplos | T-063 | aguardando parser estável |

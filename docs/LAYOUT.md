@@ -1,4 +1,4 @@
-# Layout — T-061, propostas v1 e v2
+# Layout — T-061, propostas v1 a v3
 
 Apresentação em 23/10/2026 (America/Belem). **Aguardando aprovação explícita de Márcio.** T-061 permanece in-progress; T-062–T-069 não iniciadas. A meta persistente está ativa e ainda não foi concluída.
 
@@ -72,9 +72,21 @@ Verificados no Chromium disponível: quatro larguras, gaveta aberta/fechada, scr
 
 Revisão estática independente da v2 encontrou dois P2: perda de foco após inserir por teclado e seleção pendente de comando ao trocar categoria. Ambos corrigidos e casos reproduzidos novamente: foco no novo bloco, troca de categoria sem inserir seleção oculta. Nenhum outro bloqueio apontado. Toque físico, leitores de tela e outros navegadores continuam não verificados.
 
+## Revisão v3 — molduras mais lúdicas
+
+Em 23/10/2026 Márcio considerou a v2 próxima do desejado, gostou de blocos, som e seletor de personagens e pediu um acabamento mais infantil nas bordas, sobretudo no palco e nas categorias. A referência sugerida foi um brinquedo de desenhar com controles giratórios, ou linguagem de brinquedo/arcade, sem Comic Sans e sem polimento excessivo.
+
+A v3 preserva composição e interações da v2. Acrescenta moldura coral original em HTML/CSS ao palco, dois controles decorativos (sem ação de entrada), pequenos brilhos, bordas azuis mais fortes e fundo creme. Categorias têm contornos na própria cor, cantos variados e sombra de etiqueta/caixinha. A parte inferior ganha bordas mais visíveis nas ações, seletor e saída/histórico. Nenhuma marca, imagem externa, fonte ou dependência nova.
+
+Os controles giram apenas durante a animação ilustrativa de execução; não estão ligados às coordenadas LOGO. `prefers-reduced-motion` desliga essa animação. Temas foram citados pelo usuário como possibilidade; não foram implementados nem adicionados ao escopo de entrega nesta rodada, que prioriza bordas.
+
+Capturas: [1280 px](../design/reviews/t-061/v3/1280.png), [768 px](../design/reviews/t-061/v3/768.png), [412 px](../design/reviews/t-061/v3/412.png), [360 px](../design/reviews/t-061/v3/360.png); gaveta aberta nas mesmas larguras em `design/reviews/t-061/v3/*-comandos.png`.
+
+Verificação proporcional: inspeção visual das molduras em desktop/celular; medições nas quatro larguras com gaveta aberta/fechada sem overflow horizontal e palco quadrado. Console sem erros. Estilo computado dos controles durante execução: `toy-turn`; com movimento reduzido: `none`. Sem mudança no JS de encaixe/som. Não repetida a suíte de interações da v2 porque o comportamento permanece igual. Sem validação em dispositivo físico ou leitor de tela nesta revisão.
+
 ## Decisão de Márcio
 
-- Versão submetida agora: **v2**; v1 preservada no commit `9833d4d` e nas capturas anteriores.
-- Aprovação: **pendente**. O pedido de alteração não constitui aprovação da v2.
-- Ajustes pedidos sobre a v1: aplicados nesta proposta conforme descrito acima.
-- Gate: aceite explícito da v2 ou de nova revisão encerra T-061; T-062 permanece não iniciada.
+- Versão submetida agora: **v3**; v1/v2 preservadas nos commits anteriores e nas capturas.
+- Aprovação: **pendente**. Pedido de ajuste não constitui aprovação da nova proposta.
+- Ajustes solicitados: bordas e moldura mais lúdicas, aplicados na v3; seletor/blocos/som mantidos.
+- Gate: aceite explícito da versão visual encerra T-061; T-062 permanece não iniciada.
