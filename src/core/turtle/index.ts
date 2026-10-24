@@ -23,3 +23,5 @@ export type TurtleView = Readonly<{
   heading: number;
   visible: boolean;
 }>;
+
+export { Turtle } from './turtle.js';

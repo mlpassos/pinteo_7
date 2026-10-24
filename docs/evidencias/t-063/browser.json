@@ -1,0 +1,96 @@
+{
+  "browser": "153.0.8010.12",
+  "cancellations": [
+    {
+      "source": "forever []",
+      "runningBefore": true,
+      "timerDelay": 1.7000000029802322,
+      "cancelDuration": 0.20000000298023224,
+      "status": {
+        "type": "state",
+        "status": "idle"
+      },
+      "events": 3
+    },
+    {
+      "source": "repeat 1000000000 []",
+      "runningBefore": true,
+      "timerDelay": 1.2999999970197678,
+      "cancelDuration": 0,
+      "status": {
+        "type": "state",
+        "status": "idle"
+      },
+      "events": 3
+    },
+    {
+      "source": "to recurse repeat 1000 [] recurse end recurse",
+      "runningBefore": true,
+      "timerDelay": 1,
+      "cancelDuration": 0.09999999403953552,
+      "status": {
+        "type": "state",
+        "status": "idle"
+      },
+      "events": 3
+    }
+  ],
+  "speeds": [
+    {
+      "speed": "slow",
+      "view": {
+        "position": {
+          "x": 250,
+          "y": 248.49999999999997
+        },
+        "heading": 270,
+        "visible": true
+      }
+    },
+    {
+      "speed": "normal",
+      "view": {
+        "position": {
+          "x": 250,
+          "y": 248.49999999999997
+        },
+        "heading": 270,
+        "visible": true
+      }
+    },
+    {
+      "speed": "fast",
+      "view": {
+        "position": {
+          "x": 250,
+          "y": 248.49999999999997
+        },
+        "heading": 270,
+        "visible": true
+      }
+    }
+  ],
+  "resize": {
+    "before": "{\"position\":{\"x\":250,\"y\":248.49999999999997},\"heading\":270,\"visible\":true}",
+    "after": "{\"position\":{\"x\":250,\"y\":248.49999999999997},\"heading\":270,\"visible\":true}",
+    "first": {
+      "circleInk": true,
+      "width": 1600,
+      "height": 800,
+      "sprite": {
+        "left": "400px",
+        "top": "198.8px",
+        "transform": "translate(-50%, -50%) rotate(360deg)"
+      }
+    },
+    "png": {
+      "type": "image/png",
+      "bytes": 43637
+    },
+    "final": {
+      "width": 1000,
+      "height": 1000
+    }
+  },
+  "pageErrors": []
+}
