@@ -1,17 +1,17 @@
 # Plano de entrega e fila
 
-Atualizado em 23/10/2026. T-061 concluída: v6 aprovada por Márcio e integrada pelo PR #5 (`e7038fb`). T-062 em andamento na base integrada. Demais tasks não iniciadas. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
+Atualizado em 23/10/2026. T-061 concluída: v6 aprovada por Márcio e integrada pelo PR #5 (`e7038fb`). T-062 integrada pelo PR #6 (`bea82feb`), CI Linux40058083365 aprovada. T-065 integrada pelo PR #7 (`ba3893df`), CI40058997348 aprovada. T-063 e T-066 em andamento em escopos separados. Fila: `/Users/marciopassos/dev/instadev/tasks/queue`. Regras específicas: [PINTEO7.md](../../tasks/PINTEO7.md). Numeração compartilhada desta rodada: T-061–T-069.
 
 ## Sequência
 
 | Task | Entrega | Depende de | Situação inicial |
 |---|---|---|---|
 | T-061 | Protótipo de layout/UX com mocks e decisão de Márcio | nenhuma | done — PR #5 / e7038fb |
-| T-062 | Fundação, contratos, caracterização e CI | T-061 | in-progress — fundação e caracterização |
-| T-063 | Papert tipado, tartaruga, canvas e runner seguro | T-062 | aguardando fundação |
+| T-062 | Fundação, contratos, caracterização e CI | T-061 | done — PR #6 / bea82feb |
+| T-063 | Papert tipado, tartaruga, canvas e runner seguro | T-062 | in-progress — motor e palco |
 | T-064 | Conversão bidirecional e importação dos 34 exemplos | T-063 | aguardando parser estável |
-| T-065 | API Node e compartilhamento seguro em arquivos | T-062 | paralelizável com motor/UI |
-| T-066 | Interface React, blocos e editor conforme protótipo | T-062 | usa fakes enquanto core/API avançam |
+| T-065 | API Node e compartilhamento seguro em arquivos | T-062 | done — PR #7 / ba3893df |
+| T-066 | Interface React, blocos e editor conforme protótipo | T-062 | in-progress — UI conforme v6 |
 | T-067 | Integração funcional e retirada do legado do artefato | T-063, T-064, T-065, T-066 | aguardando quatro frentes |
 | T-068 | Aceite final local, documentação e release preparada | T-067 | aguardando integração |
 | T-069 | Publicação e validação externa, após go específico | T-068 | exige autorização de produção |

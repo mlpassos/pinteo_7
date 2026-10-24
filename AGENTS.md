@@ -38,3 +38,8 @@ Coordenador mantém fila/lockfile/contratos; escopos de arquivos distintos. Resp
 Node24.22.1/npm11.19.1; `npm ci --ignore-scripts` (também definido em .npmrc). Scripts: `npm run dev`, `check` (tipos/lint/formato/Knip), `npm test`, `npm run build`, `npm run docs`, `npm audit`. `tsconfig.core.json` comprova core sem DOM. Playwright configurado, mas E2E de produto começa quando houver fluxo de produto (T-066/T-067); não criar teste de fachada. `node scripts/check-artifact.mjs` valida allowlist da fundação.
 
 Originais preservados em tests/fixtures/legacy/originals e manifest SHA256. Scripts legacy/inventory e legacy/characterize regeneram evidências e só podem ser executados como manutenção explícita, com revisão das diferenças; testes/CI não regravam. Não formatar fixtures originais. Ajustes técnicos pequenos (inclusive velocidades) estão autorizados por Márcio, com racional e testes; não pedir confirmação para correção de bugs caracterizados. Gate visual cumprido pela v6; produção continua exigindo go específico.
+
+
+## API local (T-065)
+
+Scripts build:web e build:api geram dist/web e dist/api separados; npm run build agrega ambos. dev:api compila e inicia localhost5178, exigindo PINTEO7_DATA_DIR absoluto fora do checkout e PINTEO7_PUBLIC_ORIGIN explícita. admin executa CLI offline de remove/backup sob trava de instância; conferir docs/evidencias/t-065/API.md. Hono/sharp são runtime server-only, nunca importados na UI. tsconfig.server inclui tipos DOM necessários à interface Web Request do Hono; tsconfig.core continua sem DOM/Node. Fonte canônica e PNG/summary são dados fora do webroot; nenhum endpoint executa LOGO.
