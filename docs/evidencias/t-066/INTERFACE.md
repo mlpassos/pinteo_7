@@ -31,3 +31,11 @@ Som, velocidade e personagem são as únicas preferências persistidas, sob chav
 `tests/ui/index.html` é um harness fora do root/artefato Vite. Ele monta a mesma App com fakes explícitos e um aviso visível: **TESTE DE INTERFACE — serviços falsos, sem executar LOGO ou publicar**. `tests/ui/fakes.ts` só conhece a fixture registrada e observa ações da UI; não é parser, motor, conversor ou API de produto. Nenhum fake é importado pelo bootstrap ou pelo artefato.
 
 As capturas de T-066 foram feitas nesse harness e comprovam interface e interação, não execução real de LOGO ou publicação. A T-067 deve repetir fluxos com serviços reais, inclusive PNG com fidelidade do renderer, entrada `?share=`, DPR entre monitores e cancelamento cooperativo. Produção continua exigindo autorização própria da T-069.
+
+## Correção dirigida após composição com o renderer real
+
+O Stage agora observa `.stage`, não o canvas que recebe dimensões inline do renderer. ResizeObserver mede o contêiner; eventos resize da janela e change de uma consulta resolution reinscrita sincronizam DPR quando o tamanho CSS não muda. Todas as assinaturas são removidas no cleanup. O sprite é ocultado se visible=false ou se x/y saírem de 0..500.
+
+O harness passou a usar CanvasRenderer real da T-063; runner/conversor/store continuam fakes identificados. O ensaio novo verifica pixels da mesma linha lógica antes/depois de 1280→360 e DPR2, além da caixa CSS do canvas. Isso substitui a antiga prova insuficiente baseada apenas na porcentagem do sprite.
+
+Falha no carregamento do editor não recomenda recarregar um documento vivo: mostra a fonte atual em textarea somente leitura, selecionável para copiar, e uma tentativa alternativa com query estática própria. A tentativa recebe a fonte atual mesmo depois de edição visual durante a falha. Chrome manteve em cache o import rejeitado da URL inicial; a alternativa recuperou o cenário ensaiado. Dependências compartilhadas ou a própria alternativa também podem continuar em cache de falha: se a alternativa falhar, o botão fica desabilitado e orienta copiar a fonte antes de uma eventual recarga, sem fingir outra requisição. Nenhum loader genérico nem sequência crescente de URLs foi introduzido.

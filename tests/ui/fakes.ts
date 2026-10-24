@@ -1,3 +1,4 @@
+import { createRenderer } from '../../src/infrastructure/canvas/index.js';
 import { fail, succeed } from '../../src/core/common/index.js';
 import type { Result } from '../../src/core/common/index.js';
 import { createBlockId } from '../../src/core/program/index.js';
@@ -10,7 +11,7 @@ import type {
   Projection,
   Value,
 } from '../../src/core/program/index.js';
-import type { Renderer, RunEvent, Runner, ShareStore, Speed } from '../../src/application/index.js';
+import type { RunEvent, Runner, ShareStore, Speed } from '../../src/application/index.js';
 import type { ShareEntry } from '../../src/shared/index.js';
 import type { UiServices } from '../../src/ui/index.js';
 
@@ -208,7 +209,11 @@ class TestRunner implements Runner {
           color: [118, 77, 215],
         },
       ],
-      turtle: { position: { x: 250, y: 150 }, heading: 270, visible: true },
+      turtle: {
+        position: { x: _source === 'outside' ? -1 : 250, y: 150 },
+        heading: 270,
+        visible: true,
+      },
     });
     return succeed(undefined);
   }
@@ -245,37 +250,6 @@ class TestRunner implements Runner {
   private emit(event: RunEvent): void {
     for (const listener of this.listeners) listener(event);
   }
-}
-/** Renderer só de teste desenha a operação conhecida no canvas de captura. */
-function testRenderer(canvas: HTMLCanvasElement): Renderer {
-  const context = canvas.getContext('2d');
-  return {
-    apply(operations) {
-      for (const operation of operations) {
-        if (!context) continue;
-        if (operation.kind === 'clear') context.clearRect(0, 0, 500, 500);
-        if (operation.kind === 'line') {
-          context.beginPath();
-          context.moveTo(operation.from.x, operation.from.y);
-          context.lineTo(operation.to.x, operation.to.y);
-          context.stroke();
-        }
-      }
-    },
-    resize() {
-      /* A fixture fixa coordenadas lógicas. */
-    },
-    exportPng: () =>
-      new Promise((resolve, reject) => {
-        canvas.toBlob((blob) => {
-          if (blob) resolve(blob);
-          else reject(new Error('PNG indisponível'));
-        }, 'image/png');
-      }),
-    dispose() {
-      /* Sem recursos extras. */
-    },
-  };
 }
 /** Repositório de teste falha a primeira criação, para percorrer tentativa/rede. */
 function testShares(): ShareStore {
@@ -314,6 +288,6 @@ export function createTestServices(): UiServices {
     runner: new TestRunner(),
     conversion: new TestConversion(),
     shares: testShares(),
-    createRenderer: testRenderer,
+    createRenderer,
   };
 }

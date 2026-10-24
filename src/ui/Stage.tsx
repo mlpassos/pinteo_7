@@ -15,12 +15,14 @@ export function Stage({
   character: ProgramDocument['characterId'];
   ready: (renderer: Renderer | null) => void;
 }) {
+  const surface = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const sprite = useRef<HTMLImageElement>(null);
   const onReady = useEffectEvent(ready);
   useEffect(() => {
     const target = canvas.current;
-    if (!target || !factory) return;
+    const container = surface.current;
+    if (!target || !container || !factory) return;
     const renderer = factory(target);
     onReady(renderer);
     const unsubscribe = runner?.subscribe((event) => {
@@ -30,17 +32,35 @@ export function Stage({
         sprite.current.style.left = `${String(event.turtle.position.x / 5)}%`;
         sprite.current.style.top = `${String(event.turtle.position.y / 5)}%`;
         sprite.current.style.transform = `translate(-50%, -50%) rotate(${String(event.turtle.heading + 90)}deg)`;
-        sprite.current.hidden = !event.turtle.visible;
+        const { x, y } = event.turtle.position;
+        sprite.current.hidden = !event.turtle.visible || x < 0 || x > 500 || y < 0 || y > 500;
       }
     });
-    const observer = new ResizeObserver((entries) => {
-      const entry = entries[0];
-      if (entry)
-        renderer.resize(entry.contentRect.width, entry.contentRect.height, window.devicePixelRatio);
-    });
-    observer.observe(target);
+    /** Mede o contêiner lógico: o renderer define pixels inline no canvas filho. */
+    function resize() {
+      const current = surface.current;
+      if (!current) return;
+      const bounds = current.getBoundingClientRect();
+      if (bounds.width > 0 && bounds.height > 0)
+        renderer.resize(bounds.width, bounds.height, window.devicePixelRatio);
+    }
+    let resolution = window.matchMedia(`(resolution: ${String(window.devicePixelRatio)}dppx)`);
+    /** Reinscreve a consulta quando o monitor muda sem alterar o tamanho CSS. */
+    function resolutionChanged() {
+      resolution.removeEventListener('change', resolutionChanged);
+      resize();
+      resolution = window.matchMedia(`(resolution: ${String(window.devicePixelRatio)}dppx)`);
+      resolution.addEventListener('change', resolutionChanged);
+    }
+    const observer = new ResizeObserver(resize);
+    observer.observe(container);
+    resolution.addEventListener('change', resolutionChanged);
+    window.addEventListener('resize', resize);
+    resize();
     return () => {
       observer.disconnect();
+      resolution.removeEventListener('change', resolutionChanged);
+      window.removeEventListener('resize', resize);
       unsubscribe?.();
       renderer.dispose();
       onReady(null);
@@ -48,7 +68,7 @@ export function Stage({
   }, [factory, runner]);
   return (
     <div className="stage-wrap">
-      <div className="stage" aria-label="Palco de desenho, 500 por 500 unidades">
+      <div ref={surface} className="stage" aria-label="Palco de desenho, 500 por 500 unidades">
         <canvas ref={canvas} width={500} height={500} aria-label="Desenho do programa LOGO" />
         <img
           ref={sprite}

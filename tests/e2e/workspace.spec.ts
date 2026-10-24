@@ -301,3 +301,123 @@ test('som original no encaixe e preferência de silêncio; resize conserva coord
     '; Fonte preservada no teste',
   );
 });
+
+test('renderer real acompanha contêiner, DPR e personagem fora do palco', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 1000 });
+  await open(page);
+  await page.getByRole('button', { name: 'Executar', exact: false }).click();
+  const canvas = page.locator('canvas');
+  await expect
+    .poll(() =>
+      canvas.evaluate((element) => {
+        if (!(element instanceof HTMLCanvasElement)) throw new Error('Canvas ausente');
+        const data = element
+          .getContext('2d')
+          ?.getImageData(
+            Math.floor(element.width / 2),
+            Math.floor(element.height * 0.4),
+            1,
+            1,
+          ).data;
+        return data ? data[0] : 255;
+      }),
+    )
+    .toBeLessThan(200);
+  await page.locator('.stage').screenshot({ path: 'design/reviews/t-066/palco-real-1280.png' });
+  await page.setViewportSize({ width: 360, height: 1000 });
+  await expect
+    .poll(async () => {
+      const a = await canvas.boundingBox();
+      const b = await page.locator('.stage').boundingBox();
+      return a && b ? Math.abs(a.width - b.width) + Math.abs(a.height - b.height) : 1000;
+    })
+    .toBeLessThan(1);
+  const client = await page.context().newCDPSession(page);
+  await client.send('Emulation.setDeviceMetricsOverride', {
+    width: 360,
+    height: 1000,
+    deviceScaleFactor: 2,
+    mobile: false,
+  });
+  await page.evaluate(() => {
+    window.dispatchEvent(new Event('resize'));
+  });
+  await expect
+    .poll(() =>
+      canvas.evaluate((element) => {
+        if (!(element instanceof HTMLCanvasElement)) throw new Error('Canvas ausente');
+        return Math.abs(element.width - element.getBoundingClientRect().width * 2);
+      }),
+    )
+    .toBeLessThan(1);
+  await expect
+    .poll(() =>
+      canvas.evaluate((element) => {
+        if (!(element instanceof HTMLCanvasElement)) throw new Error('Canvas ausente');
+        const data = element
+          .getContext('2d')
+          ?.getImageData(
+            Math.floor(element.width / 2),
+            Math.floor(element.height * 0.4),
+            1,
+            1,
+          ).data;
+        return data ? data[0] : 255;
+      }),
+    )
+    .toBeLessThan(200);
+  await page.locator('.stage').screenshot({ path: 'design/reviews/t-066/palco-real-360-dpr2.png' });
+  await page.getByRole('button', { name: 'Parar', exact: false }).click();
+  await page.locator('.cm-content').fill('outside');
+  await page.getByRole('button', { name: 'Executar', exact: false }).click();
+  await expect(page.locator('.stage-character')).toBeHidden();
+});
+
+test('falha no chunk do editor mantém fonte copiável e permite tentar sem recarregar', async ({
+  page,
+}) => {
+  let attempts = 0;
+  await page.route(/\/src\/infrastructure\/editor\/index\.(?:ts|js)(?:\?|$)/, async (route) => {
+    attempts++;
+    if (attempts === 1) await route.abort('failed');
+    else await route.continue();
+  });
+  await open(page);
+  const fallback = page.getByRole('textbox', { name: 'Código preservado para copiar' });
+  await expect(fallback).toContainText('; Fonte preservada no teste');
+  const original = await fallback.inputValue();
+  await page.getByRole('tab', { name: 'Blocos' }).click();
+  const field = page.getByRole('textbox', { name: 'Valor de para frente', exact: true });
+  await field.fill('123');
+  await field.press('Enter');
+  await page.getByRole('tab', { name: 'Código' }).click();
+  await expect(fallback).toHaveValue(/forward 123/);
+  const preserved = await fallback.inputValue();
+  expect(preserved).not.toBe(original);
+  await page.getByRole('button', { name: 'Tentar carregar o editor novamente' }).click();
+  await expect(page.locator('.cm-content')).toBeVisible();
+  expect((await page.locator('.cm-line').allTextContents()).join('\n')).toBe(preserved);
+  expect(attempts).toBe(2);
+});
+
+test('falha também na alternativa mantém fonte copiável e encerra retry explícito', async ({
+  page,
+}) => {
+  let requests = 0;
+  await page.route(/\/src\/infrastructure\/editor\/index\.(?:ts|js)(?:\?|$)/, async (route) => {
+    requests++;
+    await route.abort('failed');
+  });
+  await open(page);
+  const fallback = page.getByRole('textbox', { name: 'Código preservado para copiar' });
+  await expect(fallback).toBeVisible();
+  const original = await fallback.inputValue();
+  const retry = page.getByRole('button', { name: 'Tentar carregar o editor novamente' });
+  await retry.click();
+  await expect(
+    page.getByText('A tentativa alternativa também falhou.', { exact: false }),
+  ).toBeVisible();
+  await expect(retry).toBeDisabled();
+  await expect(fallback).toHaveValue(original);
+  expect(requests).toBe(2);
+});
